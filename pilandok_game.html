@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>필란독의 망고 심부름 대작전 3D</title>
+    <style>
+        /* CSS reset & base */
+        body, html {
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            font-family: 'Pretendard', 'Malgun Gothic', sans-serif;
+            background: #87CEEB url('file:///C:/Users/군산남초노트북5/.gemini/antigravity/brain/2ab1fd2b-de30-49b8-9bf7-d83432daa902/tropical_ocean_bg_1785310573473.png') no-repeat center center fixed;
+            background-size: cover;
+            overflow-x: hidden;
+            user-select: none;
+        }
+
+        /* Glassmorphism panels */
+        .panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.4);
+            padding: 3vw 4vw;
+            width: 95%;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+            box-sizing: border-box;
+        }
+
+        #intro-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .story-content {
+            display: flex;
+            align-items: center;
+            gap: 2vw;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .story-text {
+            flex: 1;
+            min-width: 300px;
+            font-size: clamp(1rem, 1.2vw, 1.2rem);
+            line-height: 1.6;
+            color: #2c3e50;
+        }
+
+        .story-text p { margin-bottom: 15px; }
+
+        /* Transparent SVG Filter Classes */
+        .img-transparent {
+            /* Removes white background using SVG filter */
+            filter: url(#remove-white) drop-shadow(0 5px 5px rgba(0,0,0,0.5));
+        }
+
+        .intro-pilandok-img {
+            width: clamp(150px, 20vw, 250px);
+            height: auto;
+            /* Transparent + Neon Green Glow */
+            filter: url(#remove-white) drop-shadow(0 0 15px #00ff00) drop-shadow(0 0 25px #00ff00);
+            transition: transform 0.3s ease;
+        }
+        
+        .intro-pilandok-img:hover {
+            transform: scale(1.05);
+        }
+
+        h1 {
+            color: #00695c;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+            text-shadow: 1px 1px 3px rgba(255,255,255,0.9);
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(135deg, #ff7043, #f4511e);
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(244, 81, 30, 0.4);
+            transition: all 0.2s ease;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        .btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(244, 81, 30, 0.6);
+        }
+        .btn:active { transform: translateY(1px); }
+
+        /* Game Screen */
+        #game-screen {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+            background: rgba(0,0,0,0.1);
+        }
+
+        .game-header {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            max-width: 1100px;
+            margin-bottom: 15px;
+        }
+
+        .hints-panel {
+            width: 95%;
+            padding: 15px 25px;
+            font-size: clamp(0.9rem, 1.1vw, 1.1rem);
+            background: rgba(255, 255, 255, 0.95);
+        }
+        .hints-panel h3 { margin: 0 0 10px 0; color: #d84315; font-size: 1.3rem; border-bottom: 2px dashed #ffab91; padding-bottom: 5px; }
+        .hints-panel ul { padding-left: 20px; margin: 0; line-height: 1.6; color: #37474f; }
+        .hints-panel li { margin-bottom: 5px; }
+
+        .river-area {
+            width: 100%;
+            max-width: 1200px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            position: relative;
+        }
+
+        .bridge-slots-wrapper {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            width: 95%;
+            min-height: 200px;
+            background: linear-gradient(to right, rgba(0, 151, 167, 0.1), rgba(0, 151, 167, 0.4), rgba(0, 151, 167, 0.1));
+            border-radius: 30px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            gap: 15px;
+        }
+
+        .start-bank {
+            width: clamp(80px, 12vw, 120px);
+            height: clamp(80px, 12vw, 120px);
+            position: relative;
+        }
+
+        .bridge-slots {
+            display: flex;
+            flex: 1;
+            justify-content: space-evenly;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .island-bank {
+            width: clamp(80px, 12vw, 130px);
+            height: clamp(80px, 12vw, 130px);
+            background: #8d6e63;
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset -10px -10px 20px rgba(0,0,0,0.3);
+        }
+        .island-bank::after {
+            content: '';
+            position: absolute;
+            width: 85%; height: 85%;
+            background: #aed581;
+            border-radius: 50%;
+        }
+
+        /* Mango */
+        .mango-img {
+            position: relative;
+            width: 60%; 
+            z-index: 2;
+            transition: opacity 0.3s;
+            filter: url(#remove-white) drop-shadow(0 5px 10px rgba(0,0,0,0.5));
+        }
+
+        /* Slots */
+        .slot {
+            width: clamp(55px, 9vw, 110px);
+            height: clamp(55px, 9vw, 110px);
+            border: 3px dashed rgba(255,255,255,0.7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.1);
+            font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+            color: #fff;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.9);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .slot:hover { background: rgba(255,255,255,0.3); }
+        .slot.filled { border: none; background: transparent; }
+
+        .croc-layer-img {
+            width: 120%;
+            transform: translateY(-5px);
+            filter: url(#remove-white) drop-shadow(0 5px 8px rgba(0,0,0,0.6));
+        }
+
+        /* Croc Pool Cards */
+        .crocodile-pool {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+            background: rgba(255,255,255,0.85);
+            padding: 15px 25px;
+            border-radius: 20px;
+            width: auto;
+            max-width: 95%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+        .croc-card {
+            width: clamp(65px, 11vw, 100px);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        .croc-card img {
+            width: 100%;
+            filter: url(#remove-white) drop-shadow(0 4px 6px rgba(0,0,0,0.4));
+            transition: transform 0.2s;
+        }
+        .croc-card:hover img { transform: scale(1.1) translateY(-5px); filter: url(#remove-white) drop-shadow(0 8px 12px rgba(0,0,0,0.5)); }
+        .croc-card.disabled { opacity: 0.3; pointer-events: none; }
+
+        .croc-label {
+            background: #ffb300;
+            color: #fff;
+            width: 100%;
+            text-align: center;
+            padding: 5px 0;
+            font-weight: bold;
+            font-size: clamp(0.7rem, 1vw, 0.9rem);
+            border-radius: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            margin-top: -5px;
+            z-index: 3;
+            position: relative;
+        }
+
+        .controls-btns { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+
+        /* Animated Active Character (Pilandok in game) */
+        #pilandok-char {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            width: clamp(70px, 10vw, 120px);
+            transform: translateY(-50%);
+            transition: left 0.4s linear, top 0.2s cubic-bezier(0.2, 0.8, 0.5, 1);
+            z-index: 30;
+            /* Transparent + Neon Green Glow */
+            filter: url(#remove-white) drop-shadow(0 0 10px #00ff00) drop-shadow(0 0 15px #00ff00);
+        }
+        #pilandok-char.flip { transform: translateY(-50%) scaleX(-1); }
+        
+        /* Celebration animation */
+        #pilandok-char.celebrate {
+            animation: bounce-happy 0.5s infinite alternate, spin-happy 2s infinite linear;
+        }
+        @keyframes bounce-happy {
+            0% { transform: translateY(-50%) scale(1); }
+            100% { transform: translateY(-80%) scale(1.1); }
+        }
+        @keyframes spin-happy {
+            0% { filter: url(#remove-white) drop-shadow(0 0 10px #00ff00) hue-rotate(0deg); }
+            100% { filter: url(#remove-white) drop-shadow(0 0 10px #00ff00) hue-rotate(360deg); }
+        }
+
+        /* Bounce effect for crocodiles when stepped on */
+        .bounce-active {
+            animation: croc-squish 0.3s ease-in-out;
+            filter: brightness(1.3) contrast(1.2);
+        }
+        @keyframes croc-squish {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.8) translateY(10px); }
+            100% { transform: scale(1); }
+        }
+
+        /* Dialog Bubble */
+        #dialog-bubble {
+            position: fixed;
+            background: white;
+            border: 4px solid #f44336;
+            border-radius: 20px;
+            padding: 20px 40px;
+            font-size: clamp(1.3rem, 2vw, 1.8rem);
+            font-weight: bold;
+            color: #d32f2f;
+            z-index: 100;
+            display: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            text-align: center;
+        }
+        #dialog-bubble.success {
+            border-color: #4caf50;
+            color: #2e7d32;
+        }
+
+        @keyframes popIn {
+            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- SVG Filter to remove white background purely in CSS/SVG engine -->
+    <svg width="0" height="0" style="position:absolute; z-index:-1;">
+        <filter id="remove-white" color-interpolation-filters="sRGB">
+            <!-- Convert to luminance/grayscale -->
+            <feColorMatrix in="SourceGraphic" type="matrix" values="
+                0 0 0 0 1
+                0 0 0 0 1
+                0 0 0 0 1
+                0.333 0.333 0.333 0 0" result="gray"/>
+            <!-- Threshold: if alpha > 0.95 (mostly white), make it 0 (transparent). Else 1 (opaque) -->
+            <feComponentTransfer in="gray" result="mask">
+                <feFuncA type="discrete" tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0"/>
+            </feComponentTransfer>
+            <!-- Apply new alpha mask back to original graphic -->
+            <feComposite in="SourceGraphic" in2="mask" operator="in" />
+        </filter>
+    </svg>
+
+    <!-- Intro Screen -->
+    <div id="intro-screen">
+        <div class="panel">
+            <h1>🐾 [비버 챌린지] 필란독의 망고 심부름</h1>
+            <div class="story-content">
+                <img class="intro-pilandok-img" src="file:///C:/Users/군산남초노트북5/.gemini/antigravity/brain/2ab1fd2b-de30-49b8-9bf7-d83432daa902/pilandok_white_1785311550907.png" alt="필란독">
+                <div class="story-text">
+                    <p>재치 만점 쥐 <b>필란독</b>은 바다 건너 섬에 가서 가장 달콤한 망고를 따온 뒤, 다시 집으로 돌아와야 합니다. 하지만 바다에는 무시무시한 악어들이 득실거리고 있어 그냥 건널 수 없습니다!</p>
+                    <p>필란독은 머리를 써서 악어들을 일렬로 세우려 합니다. 바다를 무사히 건너기 위해 악어들은 <b>'나이가 어린 순서대로(오름차순)'</b> 정렬해야 합니다.</p>
+                    <p>하지만 콧대 높은 악어들은 자신의 나이를 직접 말해주지 않고 각자 독특한 조건(퍼즐)만을 외칩니다. 조건을 잘 분석해서 악어들의 올바른 순서를 찾아주세요!</p>
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <button class="btn" onclick="startGame()">도전하기 (다음 단계로)</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen">
+        <div class="game-header">
+            <div class="panel hints-panel">
+                <h3>💡 바다를 건너기 위한 악어들의 조건</h3>
+                <ul>
+                    <li><b>악어 A</b>: "내 나이는 짝수야. 그리고 악어 B보다 나이가 많아."</li>
+                    <li><b>악어 B</b>: "내 나이는 가장 어린 악어와 가장 많은 악어의 중간값이야. 내 나이는 10살이야."</li>
+                    <li><b>악어 C</b>: "내 나이는 소수(Prime number)이고, 10보다 작아."</li>
+                    <li><b>악어 D</b>: "내 나이는 5의 배수야. 그리고 악어 C보다 나이가 많고 악어 B보다는 적어."</li>
+                    <li><b>악어 E</b>: "내 나이는 5마리 악어 중 가장 많아."</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="river-area">
+            
+            <img id="pilandok-char" src="file:///C:/Users/군산남초노트북5/.gemini/antigravity/brain/2ab1fd2b-de30-49b8-9bf7-d83432daa902/pilandok_white_1785311550907.png" alt="필란독">
+
+            <div class="bridge-slots-wrapper">
+                <div class="start-bank" id="start-bank"></div>
+                
+                <div class="bridge-slots">
+                    <div class="slot" id="slot-0" onclick="resetSlot(0)">1번</div>
+                    <div class="slot" id="slot-1" onclick="resetSlot(1)">2번</div>
+                    <div class="slot" id="slot-2" onclick="resetSlot(2)">3번</div>
+                    <div class="slot" id="slot-3" onclick="resetSlot(3)">4번</div>
+                    <div class="slot" id="slot-4" onclick="resetSlot(4)">5번</div>
+                </div>
+
+                <div class="island-bank" id="island-bank">
+                    <img class="mango-img" id="mango-item" src="file:///C:/Users/군산남초노트북5/.gemini/antigravity/brain/2ab1fd2b-de30-49b8-9bf7-d83432daa902/mango_white_1785311570473.png" alt="망고">
+                </div>
+            </div>
+
+            <div class="crocodile-pool" id="pool">
+                <!-- 악어 카드들이 생성될 위치 -->
+            </div>
+
+            <div class="controls">
+                <div class="controls-btns">
+                    <button class="btn" style="margin-top:0;" onclick="checkAnswer()">정답 확인하기</button>
+                    <button class="btn" style="margin-top:0; background: linear-gradient(135deg, #757575, #616161);" onclick="resetAll()">초기화</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="dialog-bubble"></div>
+
+    <script>
+        const crocs = [
+            { id: 'A', label: '악어 A' },
+            { id: 'B', label: '악어 B' },
+            { id: 'C', label: '악어 C' },
+            { id: 'D', label: '악어 D' },
+            { id: 'E', label: '악어 E' }
+        ];
+
+        let currentAnswer = [null, null, null, null, null];
+        const crocSrc = "file:///C:/Users/군산남초노트북5/.gemini/antigravity/brain/2ab1fd2b-de30-49b8-9bf7-d83432daa902/croc_white_1785311559435.png";
+
+        // Web Audio API Context
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        const audioCtx = new AudioContext();
+
+        function playSound(type) {
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            const now = audioCtx.currentTime;
+            
+            if (type === 'click') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(600, now);
+                osc.frequency.exponentialRampToValueAtTime(800, now + 0.1);
+                gain.gain.setValueAtTime(0.3, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
+                osc.start(now); osc.stop(now + 0.1);
+            } else if (type === 'fail') {
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(150, now);
+                osc.frequency.linearRampToValueAtTime(100, now + 0.5);
+                gain.gain.setValueAtTime(0.5, now);
+                gain.gain.linearRampToValueAtTime(0.01, now + 0.5);
+                osc.start(now); osc.stop(now + 0.5);
+                
+                const osc2 = audioCtx.createOscillator();
+                osc2.type = 'square';
+                osc2.frequency.setValueAtTime(160, now);
+                osc2.connect(gain);
+                osc2.start(now); osc2.stop(now + 0.5);
+            } else if (type === 'success') {
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(400, now);
+                osc.frequency.setValueAtTime(500, now + 0.2);
+                osc.frequency.setValueAtTime(600, now + 0.4);
+                gain.gain.setValueAtTime(0.3, now);
+                gain.gain.linearRampToValueAtTime(0, now + 0.6);
+                osc.start(now); osc.stop(now + 0.6);
+            } else if (type === 'jump') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(300, now);
+                osc.frequency.exponentialRampToValueAtTime(600, now + 0.2);
+                gain.gain.setValueAtTime(0.3, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
+                osc.start(now); osc.stop(now + 0.2);
+            } else if (type === 'squish') {
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(200, now);
+                osc.frequency.exponentialRampToValueAtTime(100, now + 0.15);
+                gain.gain.setValueAtTime(0.2, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
+                osc.start(now); osc.stop(now + 0.15);
+            } else if (type === 'grab') {
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(800, now);
+                osc.frequency.setValueAtTime(1200, now + 0.1);
+                gain.gain.setValueAtTime(0.2, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
+                osc.start(now); osc.stop(now + 0.2);
+            } else if (type === 'celebrate') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(500, now);
+                osc.frequency.linearRampToValueAtTime(1000, now + 0.3);
+                osc.frequency.linearRampToValueAtTime(800, now + 0.6);
+                gain.gain.setValueAtTime(0.2, now);
+                gain.gain.linearRampToValueAtTime(0.01, now + 0.6);
+                osc.start(now); osc.stop(now + 0.6);
+            }
+        }
+
+        function startGame() {
+            playSound('click');
+            document.getElementById('intro-screen').style.display = 'none';
+            document.getElementById('game-screen').style.display = 'flex';
+            resetPilandokPosition();
+            initPool();
+        }
+
+        function resetPilandokPosition() {
+            const pilandok = document.getElementById('pilandok-char');
+            const startBank = document.getElementById('start-bank');
+            const riverArea = document.querySelector('.river-area');
+            
+            const bankRect = startBank.getBoundingClientRect();
+            const riverRect = riverArea.getBoundingClientRect();
+            
+            pilandok.style.transition = 'none';
+            pilandok.style.left = (bankRect.left - riverRect.left + (bankRect.width/2) - (pilandok.offsetWidth/2)) + 'px';
+            pilandok.style.top = '50%';
+            pilandok.classList.remove('flip');
+            pilandok.classList.remove('celebrate');
+        }
+
+        function initPool() {
+            const poolDiv = document.getElementById('pool');
+            poolDiv.innerHTML = '';
+            crocs.forEach(c => {
+                const isUsed = currentAnswer.some(ans => ans && ans.id === c.id);
+                const card = document.createElement('div');
+                card.className = 'croc-card ' + (isUsed ? 'disabled' : '');
+                card.onclick = () => { playSound('click'); selectCard(c); };
+                
+                card.innerHTML = `
+                    <img src="${crocSrc}">
+                    <div class="croc-label">${c.label}</div>
+                `;
+                poolDiv.appendChild(card);
+            });
+            updateSlots();
+        }
+
+        function selectCard(c) {
+            const emptyIndex = currentAnswer.indexOf(null);
+            if (emptyIndex !== -1) {
+                currentAnswer[emptyIndex] = c;
+                initPool();
+            }
+        }
+
+        function resetSlot(index) {
+            if (currentAnswer[index] !== null) {
+                playSound('click');
+                currentAnswer[index] = null;
+                initPool();
+            }
+        }
+
+        function resetAll() {
+            playSound('click');
+            currentAnswer = [null, null, null, null, null];
+            document.getElementById('dialog-bubble').style.display = 'none';
+            document.getElementById('mango-item').style.opacity = '1';
+            resetPilandokPosition();
+            initPool();
+        }
+
+        function updateSlots() {
+            for (let i = 0; i < 5; i++) {
+                const slotDiv = document.getElementById(`slot-${i}`);
+                if (currentAnswer[i] !== null) {
+                    slotDiv.innerHTML = `
+                        <img class="croc-layer-img" src="${crocSrc}">
+                        <div class="croc-label" style="position:absolute; bottom:-15px;">${currentAnswer[i].label}</div>
+                    `;
+                    slotDiv.classList.add('filled');
+                } else {
+                    slotDiv.innerHTML = `${i + 1}번`;
+                    slotDiv.classList.remove('filled');
+                }
+            }
+        }
+        
+        function showBubble(text, isSuccess) {
+            const bubble = document.getElementById('dialog-bubble');
+            bubble.innerText = text;
+            bubble.className = isSuccess ? 'success' : '';
+            bubble.style.display = 'block';
+            
+            setTimeout(() => {
+                bubble.style.display = 'none';
+            }, 3000);
+        }
+
+        async function checkAnswer() {
+            if (currentAnswer.includes(null)) {
+                alert("모든 악어를 자리에 배치해주세요!");
+                return;
+            }
+
+            const order = currentAnswer.map(item => item.id);
+            const correctOrder = ['C', 'D', 'B', 'A', 'E'];
+
+            if (JSON.stringify(order) === JSON.stringify(correctOrder)) {
+                playSound('success');
+                showBubble("흠, 제법인데? 길을 열어주지!", true);
+                
+                await new Promise(r => setTimeout(r, 1500));
+                
+                const pilandok = document.getElementById('pilandok-char');
+                pilandok.style.transition = 'left 0.3s linear, top 0.15s cubic-bezier(0.2, 0.8, 0.5, 1)';
+                
+                const riverArea = document.querySelector('.river-area');
+                const riverRect = riverArea.getBoundingClientRect();
+                
+                // Go to island
+                for(let i=0; i<5; i++) {
+                    const slotElement = document.getElementById(`slot-${i}`);
+                    const slotRect = slotElement.getBoundingClientRect();
+                    
+                    playSound('jump');
+                    pilandok.style.left = (slotRect.left - riverRect.left + (slotRect.width/2) - (pilandok.offsetWidth/2)) + 'px';
+                    pilandok.style.top = '10%'; // Jump high
+                    
+                    await new Promise(r => setTimeout(r, 150));
+                    pilandok.style.top = '50%'; // Land
+                    
+                    // Crocodile squish reaction
+                    playSound('squish');
+                    slotElement.classList.add('bounce-active');
+                    setTimeout(() => slotElement.classList.remove('bounce-active'), 300);
+                    
+                    await new Promise(r => setTimeout(r, 150));
+                }
+                
+                // Jump to island
+                playSound('jump');
+                const islandBank = document.getElementById('island-bank');
+                const islandRect = islandBank.getBoundingClientRect();
+                pilandok.style.left = (islandRect.left - riverRect.left + (islandRect.width/2) - (pilandok.offsetWidth/2)) + 'px';
+                pilandok.style.top = '20%';
+                await new Promise(r => setTimeout(r, 150));
+                pilandok.style.top = '50%';
+                
+                // Grab mango
+                playSound('grab');
+                document.getElementById('mango-item').style.opacity = '0';
+                await new Promise(r => setTimeout(r, 800));
+                
+                // Turn around
+                pilandok.classList.add('flip');
+                
+                // Go back
+                for(let i=4; i>=0; i--) {
+                    const slotElement = document.getElementById(`slot-${i}`);
+                    const slotRect = slotElement.getBoundingClientRect();
+                    
+                    playSound('jump');
+                    pilandok.style.left = (slotRect.left - riverRect.left + (slotRect.width/2) - (pilandok.offsetWidth/2)) + 'px';
+                    pilandok.style.top = '10%';
+                    
+                    await new Promise(r => setTimeout(r, 150));
+                    pilandok.style.top = '50%';
+                    
+                    playSound('squish');
+                    slotElement.classList.add('bounce-active');
+                    setTimeout(() => slotElement.classList.remove('bounce-active'), 300);
+                    
+                    await new Promise(r => setTimeout(r, 150));
+                }
+                
+                // Jump to start
+                playSound('jump');
+                const startBank = document.getElementById('start-bank');
+                const startRect = startBank.getBoundingClientRect();
+                pilandok.style.left = (startRect.left - riverRect.left + (startRect.width/2) - (pilandok.offsetWidth/2)) + 'px';
+                pilandok.style.top = '20%';
+                await new Promise(r => setTimeout(r, 150));
+                pilandok.style.top = '50%';
+                
+                pilandok.classList.remove('flip');
+                
+                // Celebrate!
+                playSound('celebrate');
+                pilandok.classList.add('celebrate');
+                showBubble("망고를 구했다!!", true);
+                
+            } else {
+                playSound('fail');
+                showBubble("어림없다!!!", false);
+                resetPilandokPosition();
+            }
+        }
+    </script>
+</body>
+</html>
