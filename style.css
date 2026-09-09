@@ -1,0 +1,944 @@
+/* Root variables for design system tokens */
+:root {
+    --primary: #00e5ff;      /* Futuristic Cyber Cyan */
+    --primary-glow: rgba(0, 229, 255, 0.4);
+    --secondary: #d500f9;    /* Neon Purple/Magenta Accent */
+    --secondary-glow: rgba(213, 0, 249, 0.4);
+    --dark-bg: #0b0c16;      /* Infinite Space dark background */
+    --panel-bg: rgba(14, 16, 29, 0.75);
+    --panel-border: rgba(0, 229, 255, 0.15);
+    --text-main: #ffffff;
+    --text-muted: #8a9fc4;
+    --danger: #ff1744;       /* Crimson warning red */
+    --danger-glow: rgba(255, 23, 68, 0.4);
+    --font-game: 'Rubik', 'Outfit', 'Pretendard', sans-serif;
+    --transition-speed: 0.3s;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--dark-bg);
+    font-family: var(--font-game);
+    color: var(--text-main);
+}
+
+/* Fullscreen container for the game */
+#game-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Background Canvas */
+#game-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 1;
+}
+
+/* Base style for full-screen UI overlays */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle, rgba(15,17,26,0.6) 0%, rgba(10,11,18,0.9) 100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-speed) ease;
+    backdrop-filter: blur(8px);
+}
+
+.overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Glassmorphism Panel standard */
+.glass-panel {
+    background: var(--panel-bg);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--panel-border);
+    border-radius: 24px;
+    padding: 40px;
+    width: 90%;
+    max-width: 580px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transform: translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.overlay.active .glass-panel {
+    transform: translateY(0);
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Typography styles */
+.game-title {
+    font-size: 2.8rem;
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 12px;
+    font-style: italic;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.game-title .highlight {
+    background: linear-gradient(135deg, #00e5ff 0%, #d500f9 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 3.2rem;
+    text-shadow: 0 0 20px rgba(0, 229, 255, 0.5);
+}
+
+.game-subtitle {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+/* Stage selection cards */
+.stage-selection-container {
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.stage-selection-container h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--text-main);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stage-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.stage-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 14px 20px;
+    color: var(--text-main);
+    text-align: left;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 15px;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.stage-card:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.stage-card.active {
+    background: linear-gradient(135deg, rgba(0, 229, 255, 0.15) 0%, rgba(213, 0, 249, 0.05) 100%);
+    border-color: var(--primary);
+    box-shadow: 0 0 15px var(--primary-glow);
+}
+
+.stage-num {
+    font-size: 1.5rem;
+    font-weight: 900;
+    font-style: italic;
+    color: var(--text-muted);
+    transition: color 0.2s ease;
+}
+
+.stage-card.active .stage-num {
+    color: var(--primary);
+}
+
+.stage-name {
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 2px;
+}
+
+.stage-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.audio-control-warning {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 8px;
+    margin-bottom: 24px;
+    font-size: 0.85rem;
+    color: #e2e8f0;
+}
+
+/* Premium Buttons */
+.btn {
+    font-family: var(--font-game);
+    font-weight: 800;
+    font-size: 1.15rem;
+    padding: 16px 36px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #00e5ff 0%, #d500f9 100%);
+    color: white;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(255, 71, 26, 0.3);
+}
+
+.btn-glow {
+    position: relative;
+    box-shadow: 0 0 20px var(--primary-glow);
+}
+
+.btn-glow::after {
+    content: '';
+    position: absolute;
+    top: -2px; left: -2px; right: -2px; bottom: -2px;
+    border-radius: 32px;
+    background: linear-gradient(135deg, #00e5ff, #d500f9);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.btn-glow:hover::after {
+    opacity: 1;
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--text-main);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.02);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #ff1744 0%, #ff5252 100%);
+    color: white;
+}
+
+.btn-danger:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(255, 23, 68, 0.3);
+}
+
+/* Animations helpers */
+.animate-pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 15px var(--primary-glow); }
+    50% { transform: scale(1.03); box-shadow: 0 0 25px rgba(255, 71, 26, 0.7); }
+    100% { transform: scale(1); box-shadow: 0 0 15px var(--primary-glow); }
+}
+
+.animate-bounce {
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* HUD System (Overlay on running game) */
+.hud-container {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    right: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.hud-group {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.hud-left {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.hud-right {
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.hud-item {
+    background: rgba(15, 17, 26, 0.85);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 10px 18px;
+    display: flex;
+    flex-direction: column;
+    pointer-events: auto;
+}
+
+.shadow-glow {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.hud-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+}
+
+.hud-val {
+    font-size: 1.6rem;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    font-style: italic;
+    color: var(--text-main);
+}
+
+.hud-val-small {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--secondary);
+}
+
+.hud-unit {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-left: 2px;
+}
+
+/* Combo multiplier indicator */
+.combo-item {
+    background: linear-gradient(135deg, rgba(0, 229, 255, 0.95) 0%, rgba(213, 0, 249, 0.95) 100%);
+    border-color: var(--primary);
+    box-shadow: 0 0 15px var(--primary-glow);
+    animation: comboPulse 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hud-val-accent {
+    font-size: 2rem;
+    font-weight: 900;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hud-label-accent {
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: white;
+    letter-spacing: 0.5px;
+}
+
+@keyframes comboPulse {
+    0% { transform: scale(0.6); }
+    100% { transform: scale(1); }
+}
+
+/* HUD Progress tracker bar */
+.progress-track {
+    width: 280px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    position: relative;
+    margin-top: 15px;
+    pointer-events: auto;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+    border-radius: 6px;
+    box-shadow: 0 0 10px var(--primary-glow);
+    transition: width 0.3s ease;
+}
+
+.progress-icon {
+    position: absolute;
+    top: -15px;
+    font-size: 1.3rem;
+}
+
+.player-icon {
+    left: calc(0% - 10px);
+    transition: left 0.3s ease;
+}
+
+.finish-icon {
+    right: -10px;
+}
+
+/* Hidden elements */
+.hidden {
+    display: none !important;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Question panel overlay when encountering a gate */
+.question-overlay {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 90%;
+    max-width: 440px;
+    z-index: 6;
+    pointer-events: auto;
+    animation: slideDown 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+}
+
+.glass-panel-neon {
+    background: rgba(15, 17, 26, 0.85);
+    backdrop-filter: blur(16px);
+    border: 2px solid var(--primary);
+    box-shadow: 0 0 25px rgba(255, 71, 26, 0.3), 
+                inset 0 0 15px rgba(255, 71, 26, 0.1);
+    border-radius: 20px;
+    padding: 20px;
+}
+
+@keyframes slideDown {
+    0% { transform: translateY(-40px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+.question-header {
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.action-prompt {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-main);
+    letter-spacing: 0.2px;
+}
+
+/* Fraction boxes style */
+.fraction-input-area {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+.fraction-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 140px;
+}
+
+.fraction-line {
+    width: 100%;
+    height: 6px;
+    background-color: var(--text-main);
+    border-radius: 3px;
+    margin: 8px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.input-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fraction-num, .fraction-den {
+    width: 100%;
+    height: 54px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    color: white;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 800;
+    font-family: var(--font-game);
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.fraction-num:focus, .fraction-den:focus {
+    border-color: var(--primary);
+    background: rgba(255, 71, 26, 0.08);
+    box-shadow: 0 0 15px rgba(255, 71, 26, 0.3);
+}
+
+/* Helper labels below inputs */
+.field-label {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    font-weight: 700;
+    margin-top: 4px;
+    text-transform: uppercase;
+}
+
+.instruction-tips {
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* Virtual Keypad overlay (bottom right/center) */
+.keypad-overlay {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 440px;
+    z-index: 6;
+    background: rgba(15, 17, 26, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    pointer-events: auto;
+}
+
+.keypad-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 8px;
+}
+
+.key-btn {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    color: white;
+    font-family: var(--font-game);
+    font-size: 1.4rem;
+    font-weight: 700;
+    padding: 14px 0;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.key-btn:active {
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(0.96);
+}
+
+.key-action-tab {
+    background: rgba(213, 0, 249, 0.12);
+    border-color: rgba(213, 0, 249, 0.35);
+    font-size: 0.95rem;
+    color: #ff80ab;
+}
+
+.key-action-tab:active {
+    background: rgba(213, 0, 249, 0.28);
+}
+
+.key-action-back {
+    font-size: 1.3rem;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.key-action-enter {
+    grid-column: span 3;
+    background: linear-gradient(135deg, #00e5ff 0%, #d500f9 100%);
+    border-color: var(--primary);
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: white;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 10px var(--primary-glow);
+}
+
+.key-action-enter:active {
+    background: linear-gradient(135deg, #00b8d4 0%, #aa00ff 100%);
+    box-shadow: 0 0 18px rgba(0, 229, 255, 0.7);
+}
+
+/* Boss Health Bar Overlay */
+.boss-hud-container {
+    position: absolute;
+    bottom: calc(30px + 230px); /* Positioned cleanly above the keyboard */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 480px;
+    z-index: 5;
+    pointer-events: auto;
+    animation: slideUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+}
+
+/* When the keyboard is hidden, boss hud floats lower */
+.keypad-overlay.hidden + .boss-hud-container,
+.boss-hud-container.no-keyboard {
+    bottom: 40px;
+}
+
+@keyframes slideUp {
+    0% { transform: translate(-50%, 40px); opacity: 0; }
+    100% { transform: translate(-50%, 0); opacity: 1; }
+}
+
+.boss-health-bar-container {
+    background: rgba(15, 17, 26, 0.9);
+    border: 1px solid rgba(255, 23, 68, 0.3);
+    border-radius: 16px;
+    padding: 12px 18px;
+    box-shadow: 0 0 20px rgba(255, 23, 68, 0.2);
+}
+
+.boss-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.boss-tag {
+    background: var(--danger);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 900;
+    padding: 2px 6px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+}
+
+.boss-title {
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--text-main);
+}
+
+.health-track {
+    width: 100%;
+    height: 14px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 7px;
+    overflow: hidden;
+    position: relative;
+}
+
+.health-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ff1744 0%, #ff5252 100%);
+    box-shadow: 0 0 10px rgba(255, 23, 68, 0.6);
+    transition: width 0.3s ease;
+}
+
+.health-text {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-align: right;
+    margin-top: 4px;
+}
+
+/* Feedback alert overlays (Wrong answers) */
+.feedback-alert {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-weight: 800;
+    font-size: 1.6rem;
+    font-style: italic;
+    pointer-events: none;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+    animation: alertPop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.feedback-alert.wrong {
+    background: var(--danger);
+    border: 2px solid #ff5252;
+    color: white;
+    box-shadow: 0 0 30px var(--danger-glow);
+}
+
+.feedback-alert.correct {
+    background: var(--secondary);
+    border: 2px solid #69f0ae;
+    color: white;
+    box-shadow: 0 0 30px var(--secondary-glow);
+}
+
+@keyframes alertPop {
+    0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+    50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+/* Screen Shaking Effect */
+.shake-element {
+    animation: screenShake 0.4s ease;
+}
+
+@keyframes screenShake {
+    0%, 100% { transform: translate(0, 0); }
+    10%, 30%, 50%, 70%, 90% { transform: translate(-6px, -2px); }
+    20%, 40%, 60%, 80% { transform: translate(6px, 2px); }
+}
+
+/* Flash screen overlay (correct answer flash) */
+.flash-effect {
+    animation: screenFlash 0.3s ease-out;
+}
+
+@keyframes screenFlash {
+    0% { background: rgba(0, 229, 255, 0.25); }
+    100% { background: rgba(0,0,0,0); }
+}
+
+/* Victory Screen Specifics */
+.victory-glow {
+    border: 2px solid var(--primary);
+    box-shadow: 0 0 35px var(--primary-glow),
+                inset 0 0 15px rgba(0, 229, 255, 0.1);
+}
+
+.victory-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    font-style: italic;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    margin-bottom: 8px;
+}
+
+.victory-subtitle {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    margin-bottom: 30px;
+}
+
+.stats-container {
+    display: flex;
+    justify-content: space-around;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 30px;
+}
+
+.stat-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.stat-val {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: white;
+}
+
+/* Gameover Screen Specifics */
+.gameover-glow {
+    border: 2px solid var(--danger);
+    box-shadow: 0 0 35px rgba(255, 23, 68, 0.3),
+                inset 0 0 15px rgba(255, 23, 68, 0.1);
+}
+
+.gameover-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    font-style: italic;
+    background: linear-gradient(135deg, var(--danger) 0%, #ff5252 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    margin-bottom: 8px;
+}
+
+.gameover-subtitle {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    margin-bottom: 30px;
+}
+
+/* Utility buttons (Mute/Pause) */
+.utility-controls {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    z-index: 12;
+    display: flex;
+    gap: 10px;
+    pointer-events: auto;
+}
+
+/* We hide default hud right side if it collides, or make sure utility is next to it */
+.util-btn {
+    width: 44px;
+    height: 44px;
+    background: rgba(15, 17, 26, 0.85);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: white;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.util-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.08);
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 600px) {
+    .glass-panel {
+        padding: 24px 20px;
+    }
+    
+    .game-title {
+        font-size: 2.1rem;
+    }
+    
+    .game-title .highlight {
+        font-size: 2.4rem;
+    }
+    
+    .btn {
+        padding: 12px 24px;
+        font-size: 1rem;
+    }
+    
+    .hud-container {
+        top: 12px;
+        left: 12px;
+        right: 12px;
+    }
+    
+    .hud-item {
+        padding: 8px 12px;
+    }
+    
+    .hud-val {
+        font-size: 1.2rem;
+    }
+    
+    .progress-track {
+        width: 140px;
+    }
+    
+    .question-overlay {
+        top: 65px;
+        left: 5%;
+        width: 90%;
+    }
+    
+    .fraction-num, .fraction-den {
+        height: 48px;
+        font-size: 1.5rem;
+    }
+    
+    .keypad-overlay {
+        bottom: 12px;
+        padding: 8px;
+    }
+    
+    .key-btn {
+        padding: 10px 0;
+        font-size: 1.2rem;
+    }
+    
+    .boss-hud-container {
+        bottom: calc(12px + 180px);
+    }
+    
+    .victory-title, .gameover-title {
+        font-size: 2.5rem;
+    }
+    
+    .button-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

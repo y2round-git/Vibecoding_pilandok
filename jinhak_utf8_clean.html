@@ -1,0 +1,2652 @@
+﻿
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head id="Head1"><meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" /><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><meta http-equiv="Expires" content="-1" /><meta http-equiv="Pragma" content="no-cache" /><meta http-equiv="Cache-Control" content="No-Cache" /><title>
+	국립군산대학교 경쟁률 서비스
+</title><link href="/RatioV1/Common/Css/template/jinhakratio_blue_v3.css" rel="stylesheet" type="text/css" />
+	<!-- <script type="text/javascript" src="/ApplyV8/scripts/jquery.js"></script> -->
+	<script type="text/javascript" src="/RatioV1/Common/Script/jquery.js"></script>
+	<script language="javascript" type="text/javascript">
+//IE forEach문 문제
+if (window.NodeList && !NodeList.prototype.forEach) { NodeList.prototype.forEach = Array.prototype.forEach;}
+
+if ( document.addEventListener && navigator.appName!="Microsoft Internet Explorer") {
+	window.captureEvents(Event.ONKEYDOWN); 
+	document.addEventListener("DOMContentLoaded", function(){
+		if(document.getElementById('Logo')){
+			document.getElementById('Logo').innerHTML = '<a href="http://apply.jinhak.com" target="_blank"><img src="/RatioV1/img/blank.gif" width="150" height="23" border="0"></a>';
+		}
+	}, false );
+//IE
+} else if ( document.attachEvent ) {
+	document.attachEvent("onreadystatechange", function(){
+		if ( document.readyState === "complete" ) {
+			if(document.getElementById('Logo')){
+				document.getElementById('Logo').innerHTML = '<a href="http://apply.jinhak.com" target="_blank"><img src="/RatioV1/img/blank.gif" width="150" height="23" border="0"></a>';
+			}
+		}
+	});
+}
+// 나를 호출한 넘이 있다면.. 
+if (document.referrer != "")
+{
+	// 해당 값이 특정한 곳이라면.. 
+	if (document.referrer.toLowerCase().indexOf("uway") != -1)
+	{
+		window.parent.href = 'http://apply.jinhak.com';
+
+	}
+}
+
+// chess :: Link 
+window.onload = function(){
+	if(document.getElementById('TopLink').children.length > 0){
+    	var isV8Link = new RegExp(/(www\.jinhakapply\.com\/frame)[\d]{6}\.(aspx)/);
+		document.querySelectorAll('#TopLink a').forEach(function(link){
+			if(!isV8Link.test(link)){ // V8 링크가 아닐 시 https로 자동 변환.
+			    link.href = link.href.replace('http://', 'https://');
+			}
+		});    	
+	}
+}
+
+</script>
+	<script type="text/javascript">
+<!--
+			function selType_onChange() {
+				var selType = document.getElementById("selType");
+				var value = selType.options[selType.selectedIndex].value;
+				var strSelectRatio = '3';
+
+				if (strSelectRatio == '2' || strSelectRatio == '3') {
+					// 전체일 경우 전부 보임
+					if(value == 0){
+						$('div[id^=SelType]').show()
+					}
+					else{
+						$('div[id^=SelType]').hide()
+						$('#SelType' + value).show();
+						document.getElementById("SelType" + value).scrollIntoView();
+					}
+					
+					return;
+				}
+				else {
+					//HIde Show 처리
+					if (value == 0) {
+						SelType_Change('block');
+					}
+					else {
+						SelType_Change('none');
+						document.getElementById("SelType" + value).style.display = 'block';
+						document.getElementById("SelType" + value).scrollIntoView();
+					}
+				}
+			}
+
+		function SelType_Change(flag) {
+			var arrDiv = document.getElementsByTagName("div");
+			for (var i = 0; i < arrDiv.length; i++) {
+				if (arrDiv[i].id.indexOf("SelType") != -1) {
+					document.getElementById(arrDiv[i].id).style.display = flag;
+				}
+			}
+		}
+
+		//=============================================================
+		// 반응형 경쟁률 스크롤 이벤트 추가
+		//=============================================================
+		window.addEventListener('scroll', function(){
+			var height = window.innerHeight;
+			var scrollPosition = document.documentElement.scrollTop;
+
+			if(scrollPosition > height){
+				$('.quick_menu').show("slow");
+			} else{
+				$('.quick_menu').hide("slow");
+			}
+		});
+
+		function MoveTop(){
+			$('html, body').animate({
+				scrollTop : 0
+			}, 300)
+
+		}
+		//=============================================================
+
+		$(document).ready(function () {
+			/****************************************************************************************
+			 엑셀버튼 추가  
+			****************************************************************************************/
+			$('#btnExcel').click(ExportExcel);
+		});
+
+    /****************************************************************************************
+     엑셀버튼 추가  
+    ****************************************************************************************/
+		function ExportExcel() {
+			// 마우스 오버 이벤트 삭제(IE에서 문제가 될 수 있음)
+			var divData = $('#Ratio1035061').html();
+			divData = divData.replace(/<tr onmouseover=\"this.className='over';\" onmouseout=\"this.className='';\">/gi, "<tr>");
+			divData = divData.replace(/'/g, '"');
+
+			var PostHtml = "<form method='post' action='/RatioV1/Common/Etc/RatioExcel.aspx' style='top:-198501px;' id='tempForm'>";
+			PostHtml += "<input type='hidden' name='ServiceName' value='" + encodeURIComponent('국립군산대학교') + "' >";
+			PostHtml += "<input type='hidden' name='Data' value='" + encodeURIComponent($('#TopType').html()) + encodeURIComponent(divData) + "' >";
+			PostHtml += "</form>";
+
+			$('#JHService').prepend(PostHtml);
+			$('#tempForm').submit();
+			$("tempForm").remove();
+
+			return false;
+		}
+		-->
+	</script>
+</head>
+
+<body id="JHService">
+	<form method="post" action="./Ratio10350611.aspx?idx=33003&amp;Company=jinhak&amp;Name=Ratio" id="form1">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUJODE1ODcwMTUwZGS5yneDd2iLxTHleGTK2Qh51hnFVA==" />
+
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="584256B8" />
+<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAA8T65XBBVPwUv++AXA+3XJPxGV0aKErUllaWtqgLmJ8ZYib52FktutToXf6WUUHosWQW/BZ/Tz8iBIgj0Cb8lK5u9geoXd3sHCTf9tcFUNMOGLqS8nly3KiLCF5Fy/TK5TPRSp+7MUrKXqMvh33xcKwsXotsR4FSQ3eaDKTLH4LjzDiLfhchTvZbyIy+tcRdc3UIhIQH5aWRytYU9CJ/ISh0ykslJe5AryCarU53mnfZ5jngt7TFRNPnHZjYWy/Oi7/jVS6beyi7DquuKhsU7wRvd4cA74sc7XQqYpZxilOxl8CerowXX77u3kAyLAuyRITcFL50ef4trlDI1sp61Gx+FaMcQ==" />
+		<!-- bgcolor : #DF3151, #51B79F, #E29F30, #82BD3E, #318CC7 -->
+
+		<div id="RoundT">
+			<div class="header">
+				<h1 class="univ"><img src="http://apply.jinhakapply.com/WebAppForms/Wonseo/LogImg/1035.gif" id="UnivLogo" alt="대학로고" /></h1>
+				<span id="TextType">
+					<p class="tit">
+						<span id="TitleYear">2027학년도</span>&nbsp;
+						<span id="TitleService">국립군산대학교 수시모집</span>&nbsp;
+						<span id="TitleText">경쟁률</span>
+					</p>
+				</span>
+				
+			</div>
+
+			<div class="cont">
+				
+				<div id="Top" class="notiBox">
+					<div class="notiBox_in">
+						<!-- 이미지 영역 -->
+						<div id="divImgPromotion" class="promotion">
+							<img src="/RatioV1/img/img1035061.png" id="ImgPromotion" />
+						</div>
+						<!-- //이미지 영역 -->
+						<ul id="TopType" class="ul3"><strong>※ 원서접수 기간 : 2026. 09. 07.(월) 09:00 ~ 9. 11.(금) 20:00까지(경쟁률은 18:00까지 제공됩니다.)<br>
+&nbsp;&nbsp;&nbsp;- 경쟁률 업데이트 시간은 10분 단위입니다.</strong></ul>
+						<div id="TopLink" class="notnBtn"></div>
+					</div>
+				</div>
+
+				<div id="RatioSort" class="RateState">
+					<p id="RatioTime" class="time">2026-09-09 오후 3:20 현황</p>
+					<!-- 경쟁률 현황 Select //-->
+					<div class="RateState_in">
+						<select name="selType" id="selType" class="SltBox" onchange="return selType_onChange();">
+	<option value="0">전형 전체</option>
+	<option value="41231"> 일반전형</option>
+	<option value="41267"> 지역인재Ⅰ</option>
+	<option value="41268"> 지역인재Ⅱ</option>
+	<option value="41269"> 저소득층학생</option>
+	<option value="41270"> 일반학생</option>
+	<option value="41272"> 사회통합</option>
+	<option value="41259"> 일반전형(미술계열)</option>
+	<option value="41260"> 특기자전형(체육계열)</option>
+	<option value="41221"> 농어촌학생(정원외)</option>
+	<option value="41263"> 특성화고교졸업자(정원외)</option>
+	<option value="41273"> 특성화고졸재직자(정원외)</option>
+	<option value="41213"> 만학도(정원외)</option>
+	<option value="41222"> 특수교육대상자(정원외)</option>
+
+</select>
+					</div>
+					<!--// 군별 경쟁률 현황 Select -->
+				</div>
+
+				<!--// 엑셀 저장범위 -->
+				<div id="Ratio1035061">
+					<!-- 컨텐츠 -->
+					
+					<!--// 컨텐츠 -->
+
+					<!-- 컨텐츠 -->
+					<div>
+	<h2><strong>전체</strong> 경쟁률 현황</h2>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableRatio">
+		<colgroup>
+			<col width="25%" />
+			<col width="25%" />
+			<col width="25%" />
+			<col width="25%" />
+		</colgroup>
+		<tr>
+			<th>구분</th>
+			<th>총모집인원</th>
+			<th>지원인원</th>
+			<th>경쟁률</th>
+			</tr>
+		<tr style="text-align:center;">
+			<td>총계</td>
+			<td>1,888</td>
+			<td>3,230</td>
+			<td style="font-weight:bold;">1.71 : 1</td>
+		</tr>
+	</table>
+	</div>
+<div>
+<a name='lik_top'></a>
+	<h2><strong>전형별</strong> 경쟁률 현황</h2>
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableRatio2">
+		<colgroup>
+			<col width="15%" />
+			<col width="%" />
+			<col width="20%" />
+			<col width="20%" />
+			<col width="20%" />
+		</colgroup>
+		<tr>
+			<th colspan="2">전형명</th>
+			<th>모집인원</th>
+			<th>지원인원</th>
+			<th>경쟁률</th>
+		</tr>
+		<tr style="text-align:center;">
+			<td class="unit" rowspan="4">학생부교과 </td>
+			<td onclick='document.getElementById("selType").value="41231";selType_onChange();'> 일반전형</td>
+			<td>989</td>
+			<td>1,803</td>
+			<td style="font-weight:bold;">1.82 : 1</td>
+		</tr>		<tr style="text-align:center;">
+			<td onclick='document.getElementById("selType").value="41267";selType_onChange();'> 지역인재Ⅰ</td>
+			<td>309</td>
+			<td>459</td>
+			<td style="font-weight:bold;">1.49 : 1</td>
+		</tr>		<tr style="text-align:center;">
+			<td onclick='document.getElementById("selType").value="41268";selType_onChange();'> 지역인재Ⅱ</td>
+			<td>1</td>
+			<td>3</td>
+			<td style="font-weight:bold;">3.00 : 1</td>
+		</tr>		<tr style="text-align:center;">
+			<td onclick='document.getElementById("selType").value="41269";selType_onChange();'> 저소득층학생</td>
+			<td>15</td>
+			<td>26</td>
+			<td style="font-weight:bold;">1.73 : 1</td>
+		</tr>		<tr style="text-align:center;">
+			<td class="unit" rowspan="2">학생부종합 </td>
+			<td onclick='document.getElementById("selType").value="41270";selType_onChange();'> 일반학생</td>
+			<td>370</td>
+			<td>767</td>
+			<td style="font-weight:bold;">2.07 : 1</td>
+		</tr>		<tr style="text-align:center;">
+			<td onclick='document.getElementById("selType").value="41272";selType_onChange();'> 사회통합</td>
+			<td>4</td>
+			<td>7</td>
+			<td style="font-weight:bold;">1.75 : 1</td>
+		</tr>		<tr style="text-align:center;">
+			<td class="unit" rowspan="2">실기/실적위주 </td>
+			<td onclick='document.getElementById("selType").value="41259";selType_onChange();'> 일반전형(미술계열)</td>
+			<td>37</td>
+			<td>30</td>
+			<td style="font-weight:bold;">0.81 : 1</td>
+		</tr>		<tr style="text-align:center;">
+			<td onclick='document.getElementById("selType").value="41260";selType_onChange();'> 특기자전형(체육계열)</td>
+			<td>15</td>
+			<td>22</td>
+			<td style="font-weight:bold;">1.47 : 1</td>
+		</tr>		<tr style="text-align:center;">
+			<td class="unit" rowspan="4">학생부교과 </td>
+			<td onclick='document.getElementById("selType").value="41221";selType_onChange();'> 농어촌학생(정원외)</td>
+			<td>67</td>
+			<td>64</td>
+			<td style="font-weight:bold;">0.96 : 1</td>
+		</tr>		<tr style="text-align:center;">
+			<td onclick='document.getElementById("selType").value="41263";selType_onChange();'> 특성화고교졸업자(정원외)</td>
+			<td>24</td>
+			<td>27</td>
+			<td style="font-weight:bold;">1.13 : 1</td>
+		</tr>		<tr style="text-align:center;">
+			<td onclick='document.getElementById("selType").value="41273";selType_onChange();'> 특성화고졸재직자(정원외)</td>
+			<td>24</td>
+			<td>3</td>
+			<td style="font-weight:bold;">0.13 : 1</td>
+		</tr>		<tr style="text-align:center;">
+			<td onclick='document.getElementById("selType").value="41213";selType_onChange();'> 만학도(정원외)</td>
+			<td>30</td>
+			<td>11</td>
+			<td style="font-weight:bold;">0.37 : 1</td>
+		</tr>		<tr style="text-align:center;">
+			<td class="unit" rowspan="1">학생부종합 </td>
+			<td onclick='document.getElementById("selType").value="41222";selType_onChange();'> 특수교육대상자(정원외)</td>
+			<td>3</td>
+			<td>8</td>
+			<td style="font-weight:bold;">2.67 : 1</td>
+		</tr>		<!-- 총계 //-->
+		<tr class="total">
+			<td colspan='2'>총계</td>
+			<td>1,888</td>
+			<td>3,230</td>
+			<td class="rate4">1.71 : 1</td>
+		</tr>
+		<!--// 총계 -->
+	</table>
+	</div>
+
+					<!--// 컨텐츠 -->
+
+					<!-- 컨텐츠 -->
+						<a name='lik_41231'></a><div id="SelType41231">
+	<h2><strong>학생부교과 일반전형</strong> 경쟁률 현황</h2>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableRatio3">
+		<colgroup>
+			<col width="8.5%" />
+			<col width="18" />
+			<col width="7%" />
+			<col width="7%" />
+			<col width="8%" />
+			<col width="44.5%" />
+			<col width="7%" />
+		</colgroup>
+		<tr>
+			<th>대학</th>
+			<th>모집단위</th>
+			<th>모집인원</th>
+			<th>지원인원</th>
+			<th>경쟁률</th>
+			<th>학과소개 및 취업분야</th>
+			<th>홈페이지</th>
+		</tr>
+		<!-- 반복 //-->
+		<tr>
+			<td class="unit" rowspan="8">인문콘텐츠융합대학</td>
+			<td class="unit">국어국문학과</td>
+			<td rowspan="1">13</td>
+			<td>38</td>
+			<td class="rate4" rowspan = '1'>2.92 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">웹콘텐츠 시대, 4대 특성화 교육으로 K-문화 전문가 양성! </span><br/>(취업분야) 콘텐츠기획자, 웹라이터, 웹소설·웹툰 작가, 방송작가, 드라마작가, PD, 키워드에디터, 출판전문가, 문화예술전문가, 인문학연구원, 공무원, 한국어교사, 국어교사, 교직원, 독서지도사</td>
+			<td><a href="https://www.kunsan.ac.kr/korean/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">영어영문학과[교직]</td>
+			<td>17</td>
+			<td>29</td>
+			<td class="rate4">1.71 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">디지털 시대, 꼭 필요한 영어! 자유롭게 쓰고 싶어?</span><br/>(취업분야) 영어교사, 공무원, 기업근무자, 항공승무원, 통·번역사</td>
+			<td><a href="https://www.kunsan.ac.kr/knuenglish/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">일어일문학과</td>
+			<td>18</td>
+			<td>42</td>
+			<td class="rate4">2.33 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">서울로 유학 갈래, 일본으로 유학 갈래? </span><br/>(취업분야) 일본 현지 기업, 국내외 항공사, 국내외 호텔 및 리조트, 국내 외 공무원, IT계열</td>
+			<td><a href="https://www.kunsan.ac.kr/japanese/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">중어중문학과[교직]</td>
+			<td>11</td>
+			<td>30</td>
+			<td class="rate4">2.73 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">요즘 같은 시대에 중국어 안 배우면 코 베이징!! </span><br/>(취업분야) 중국어교육, 해양경찰, 외사경찰, 해외마케팅, 국제교류, 관광·레저, 국제물류, 호텔·항공사, 통·번역, 한중MC</td>
+			<td><a href="https://www.kunsan.ac.kr/chinese/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">역사학과</td>
+			<td>9</td>
+			<td>34</td>
+			<td class="rate2">3.78 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">과거를 알면 미래가 보입니다! 역사학·고고학·문화자원을 바탕으로 과거를 오늘과 미래로 연결하는 인재를 양성합니다. </span><br/>(취업분야) 고고학자, 역사학자, 연구원, 역사교육 전문가(교사, 교수, 강사 등), 역사 콘텐츠 기획 전문가, 학예사, 학예직 공무원, 기록연구사</td>
+			<td><a href="https://www.kunsan.ac.kr/history/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">철학과[교직]</td>
+			<td>12</td>
+			<td>30</td>
+			<td class="rate4">2.50 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">진리는 나의 힘! 모든 학문의 뿌리는 철학! </span><br/>(취업분야) 철학 교수, 교사, 연구원, 공무원, 논리논술지도사, 독서토론지도사, 글쓰기지도사, 어린이철학지도사, 영화 및 문화 평론가, 광고업, 종교계, 언론계, 관광업, 출판계, 대학원 및 교육대학원, 법학전문대학</td>
+			<td><a href="https://www.kunsan.ac.kr/philosophy/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">미디어문화학과</td>
+			<td>15</td>
+			<td>40</td>
+			<td class="rate4">2.67 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">믿으니까 미디어~ </span><br/>미디어콘텐츠연출가(영상촬영,편집 등), 프로듀서(PD), 시나리오 작가, 문화산업마케터, 미디어교육가, 프리랜서</td>
+			<td><a href="https://www.kunsan.ac.kr/mediaculture/index.kunsan" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">자율전공학부</td>
+			<td>95</td>
+			<td>170</td>
+			<td class="rate4">1.79 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">자기설계 맞춤 인재, 내가 만드는 미래의 나, 자율전공학부에서! </span><br/>국공립기관, 병원, 교육기관, 기업체, 보건소 및 병의원 운동처방사, 재활트레이너, 한국과학창의재단, 동아사이언스, 시공테크, 각종 과학관/박물관, 교통전문직 공무원, 교통연구원, 국토연구원, 건설기술 연구원, 제약사, 동물용 의약품 제조회사, 식품회사, 바이오헬스기관 전반, 환경공무원, 정부연구소, 정부출연기업, 민간연구기업,  디지털·미디어아트작가, 3D모델러, 캐릭터 아트 작가, 교육 분야, 언어치료 분야, 해양수산분야 정부 기관 및 국책연구소, 해양바이오기업(의약품, 화장품, 건강기능식품 개발), 변리사, 국제기구</td>
+			<td><a href="https://www.kunsan.ac.kr/CLS/index.kunsan" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit" rowspan="10">사회과학대학</td>
+			<td class="unit">법경찰학과</td>
+			<td>24</td>
+			<td>74</td>
+			<td class="rate2">3.08 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">법학과 경찰학을 기반으로 공공 · 법조 분야 전문 인재를 양성하는 학과 </span><br/>(취업분야) 일반직공무원(행정기관, 법원 등) 및 특정직공무원(경찰공무원, 소방공무원, 교육공무원, 군인, 군무원 등) 임용, 로스쿨 진학, 공공기관 및 사기업 취업, 법·노무·공공 영역 자격증(법무사, 노무사, 손해사정사 등) 취득</td>
+			<td><a href="https://www.kunsan.ac.kr/kslaw/index.kunsan" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">행정학과</td>
+			<td>21</td>
+			<td>31</td>
+			<td class="rate4">1.48 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">정부/공공기관을 넘어 기업·지역사회·국제기구까지 다양한 영역에서 더 나은 사회를 위한 융합형 인재 양성 </span><br/>(취업분야) 일반행정직 9급, 7급 공무원, 소방공무원, 정책연구기관, 지방공기업, 출자·출연기관, 민간기업 대외협력·ESG·공공사업 분야, 비영리기관 및 국제개발협력 분야 등</td>
+			<td><a href="https://www.kunsan.ac.kr/knupa/index.kunsan" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">사회복지학과</td>
+			<td>20</td>
+			<td>83</td>
+			<td class="rate2">4.15 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">사회복지와의 동행, 너라서 다행 </span><br/>(취업분야) 사회복지직·사회복지 관련 공무원(사회복지직 5급 사무관, 9급 지방직, 교정직) / 사회보험공단(국민연금, 근로복지, 장애인 고용공단 등), 지역사회복지관, 분야별 복지시설 (아동, 청소년, 노인, 장애인, 여성 등</td>
+			<td><a href="https://www.kunsan.ac.kr/nkssw/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">아동학과</td>
+			<td>13</td>
+			<td>32</td>
+			<td class="rate4">2.46 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">국가의 미래인 아동의 건강한 성장을 지원하기 위한 전문가를 양성하는 학부 </span><br/>(취업분야) 국공립·직장·민간 어린이집 원장 및 교사, 육아종합지원센터, 유아교구 및 산업체, 아동전문 출판사 등 대학원 진학 : 관련분야 대학원</td>
+			<td><a href="https://www.kunsan.ac.kr/child_family/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">경영학과</td>
+			<td>34</td>
+			<td>71</td>
+			<td class="rate4">2.09 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">기업을 이해하고 미래 산업을 설계하는 데이터 기반 경영 인재 양성 학부 </span><br/>(취업분야) 일반기업(인사·마케팅·재무·전략), 금융기관(은행·증권·보험), 공기업 및 공공기관, 데이터 분석 및 경영컨설팅, 플랫폼 기업 및 IT기업, 유통·물류·SCM, 스타트업 창업 및 기업경영, ESG경영 및 지속가능경영 분야 등</td>
+			<td><a href="https://www.kunsan.ac.kr/business/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">국제물류학과</td>
+			<td>16</td>
+			<td>32</td>
+			<td class="rate4">2.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">취업률 끝판왕! 물류가 멈추면 세상이 멈춘다. 우리의 생활을 움직이는 숨은 주역 </span><br/>(취업분야) 물류기업(항공, 해운, 항만, 물류시설 등), 유통기업(전자상거래, 백화점, 편의점 등), 제조기업(생산물류, 구매물류, 자재관리 등)</td>
+			<td><a href="https://www.kunsan.ac.kr/logistics/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">무역학과</td>
+			<td>18</td>
+			<td>58</td>
+			<td class="rate2">3.22 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">국경을 넘어 세계로, 신 대항해 시대를 여는 무역 </span><br/>(취업분야) 관세법인(관세사), 금융권(신용장 전문가 및 금융전문가), 상사분쟁 조정관 (대한상사중재원), 민간기업(수출입 부분), 관련 직종 공무원 (관세직, 출입국관리직, 세무 등)</td>
+			<td><a href="https://www.kunsan.ac.kr/trade/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">회계학부</td>
+			<td>19</td>
+			<td>21</td>
+			<td class="rate4">1.11 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">숫자로 경영하라! </span><br/>(취업분야) 회계전문가(공인회계사, 세무사), 세무직 공무원(국가직, 지방직), 기업회계담당자(민간기업, 공기업), 금융기관 종사자</td>
+			<td><a href="https://www.kunsan.ac.kr/accounting/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">금융부동산경제학과</td>
+			<td>15</td>
+			<td>22</td>
+			<td class="rate4">1.47 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">돈과 사람이 만든 세상에서 이야기를 푸는 학문 </span><br/>금융기관, 공기업, 사기업, 공무원</td>
+			<td><a href="https://www.kunsan.ac.kr/economics/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">상담심리학과</td>
+			<td>15</td>
+			<td>43</td>
+			<td class="rate4">2.87 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">마음을 읽고, 삶을 바꾸는 상담 전문가의 시작 </span><br/>(취업분야) 학교상담실(위센터, 위클래스), 청소년상담기관, 대학학생상담센터, 기업 상담(EAP), 정신건강의학과, 신경의학과, 정신건강복지센터, 상담센터 개소, 프리랜서 상담가, 연구 및 교육 분야</td>
+			<td><a href="https://www.kunsan.ac.kr/index.kunsan?contentsSid=8718&sso=ok&&cpath=%2Fiphak" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit" rowspan="5">AI·첨단대학</td>
+			<td class="unit">AI융합계열[교직]</td>
+			<td>119</td>
+			<td>98</td>
+			<td class="rate4">0.82 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">컴퓨터정보공학과: 인공지능/게임개발자/보안 인재를 양성하는 컴퓨터공학과 정보공학의 중심 컴퓨터정보공학과!</span><br/>(취업분야) 인공지능 개발자, 3D 게임개발자, 보안전문가, 클라우드 컴퓨팅 개발자, SW/웹 개발자, 컴퓨터 사이언티스트 ※ 최근 10년 내 졸업자 주요 취업 기업 : 삼성전자, (주)카카오, 네이버클라우드. CJ올리브네트워웍스, 스마일게이트<br/><span style="color: #CC0000">소프트웨어학과: 4차 산업의 핵심 기술을 선도하는 소프트웨어학과 </span><br/>(취업분야) 정보통신기술(ICT), 문화기술(CT), 금용·경영 등 관련 대기업, 벤처기업, 국가 정부기관의 연구소, 공무원, 국내외 대학원 등<br/><span style="color: #CC0000">인공지능융합학과: 고급 딥러닝 설계와 생성형 AI 기술로 미래 산업을 구현하는 인공지능융합학과 </span><br/>(취업분야) AI를 필요로 하고 활용하는 전 산업 분야의 대기업, 벤처기업, 국가기관, 공무원, 교수/교사, 국내외 연구소, 대학원 등<br/><span style="color: #CC0000">임베디드소프트웨어학과: 피지컬 AI시대의 주역, 임베디드 소프트웨어: 인공지능, 소프트웨어부터 자율주행, 로보틱스까지 모든 기술의 핵심 </span><br/>(취업분야) ① 임베디드 소프트웨어 분야: 펌웨어 개발자, 시스템 소프트웨어 개발자, 반도체 솔루션 개발자, 가전/모바일 기기 개발자, 등 ② 자율주행 및 로봇 분야 : 자율주행 AI,SW 개발자, 컴퓨터/로봇비전 개발자, AI모빌리티 개발자, 로봇 소프트웨어 개발자, 서비스/산업용 로봇 제어 개발자 등 ③ AIoT 소프트웨어 분야 : 스마프 홈, 스마트 팩토리, 스마트팜 개발자 등<br/><span style="color: #CC0000">AX융합통신공학과: AI와 통신의 융합, 초연결 시대를 설계하는 AX융합통신공학과 </span><br/>(취업분야) 한국전자통신연구원, 한국항공우주연구원, 한국방송통신전파진흥원, SK 텔레콤, KT, LG U플러스, 수협중앙회 어선안전조업국, 한국수자원공사, 주택관리공단, IT SW/HW 및 통신 SW/HW 관련 기업체, 공무원</td>
+			<td><a href="https://www.kunsan.ac.kr/ssw/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">이차전지·에너지학과</td>
+			<td>40</td>
+			<td>52</td>
+			<td class="rate4">1.30 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">Your Energy, Our Future </span><br/>(취업분야) 이차전지·에너지 분야 졸업생은 대체에너지개발연구원, 스마트그리드 엔지니어, 신재생에너지 전문가, LG에너지솔루션, 삼성SDI, SK온 등 이차전지 기업과 신재생에너지 산업, 연구기관, 공공기관, 정부 부처 등</td>
+			<td><a href="https://www.kunsan.ac.kr/energy/index.kunsan" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">스마트오션모빌리티공학과</td>
+			<td>12</td>
+			<td>11</td>
+			<td class="rate4">0.92 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">모빌리티, 인공지능, 로봇이 만나 미래를 열다! </span><br/>(취업분야) 대형 조선소, 유니콘기업, 중소벤처기업과 같은 기업에서의 설계, 관리직, 국책연구소와 기업연구소와 같은 연구기관에서의 연구직 및 기능직, 정부 및 지방자치단체와 공공기관의 기술직 공무원 및 군무원, 국내 및 해외 대학원 석사, 박사</td>
+			<td><a href="https://www.kunsan.ac.kr/some/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">스마트시티학과</td>
+			<td>8</td>
+			<td>10</td>
+			<td class="rate4">1.25 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">미래 도시를 설계하고 혁신하는 크리에이터, 당신이 바로 스마트시티 디자이너! </span><br/>(취업분야) 공공 부문 (정부·공기업·지자체), 공기업, 민간기업(삼성SDS, LG CNS, SK C&C, KT, 현대자동차, 포스코건설, 현대건설, GS건설 등), 연구 및 학술 분야, 대학원 진학</td>
+			<td><a href="https://www.kunsan.ac.kr/dscs/index.kunsan" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">바이오헬스학과</td>
+			<td>12</td>
+			<td>23</td>
+			<td class="rate4">1.92 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">인간과 동물을 풍요롭게, 비전과 철학을 가진 미래 산업형 전문가를 양성합니다. </span><br/>(취업분야) 의약품 연구원, 의료기기 개발 연구원, 식품 연구원, 동물용 의약품 연구원, 동물용 사료 연구원, 규제기관 심사관, 국·공립 연구원, 규제과학 전문가</td>
+			<td><a href="https://www.kunsan.ac.kr/biohealth/index.kunsan" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit" rowspan="11">해양과학대학</td>
+			<td class="unit">해양수산공공인재학과</td>
+			<td>11</td>
+			<td>20</td>
+			<td class="rate4">1.82 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">"공무원 세계의 블루오션(Blue Ocean)" </span><br/>(취업분야) 해양경찰 공무원(함정, 선박관제), 해양수산직 · 어로직 · 선박직 · 수로직 · 해양교통시설직 공무원, 해양수산부 산하 공공기관 직원, 항해사, 도선사, 대한민국 해군장교, 전공 관련 연구원 및 교수, 해운·수산회사 직원</td>
+			<td><a href="https://www.kunsan.ac.kr/marine/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">해양생명과학과</td>
+			<td>10</td>
+			<td>16</td>
+			<td class="rate4">1.60 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">해양바이오산업의 중심학과~ 해양바이오소재 생산 관련 4차산업 선도학과 </span><br/>(취업분야) 수산연구직(국립수산과학원, 지자체수산연구소), 수산과학기술직(수산물품질관리원, 지방해양수산청, 동서남해어업관리단, 해양수산직공무원, 국립해양생물자원관, 한국해양수산연구원, 국립공원공단, 수산자원관리공단 등), 스마트양식기업, 양어사료기업, 해조류개발기업, 해양바이오기업, 아쿠아리움, 환경영향평가 등</td>
+			<td><a href="https://www.kunsan.ac.kr/aquaculture/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">해양생물자원학과</td>
+			<td>22</td>
+			<td>40</td>
+			<td class="rate4">1.82 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">해양·수산분야 글로벌 인재 양성 학과 </span><br/>(취업분야) 해양수산부 및 지자체 공무원, 국·공립 연구기관, 환경기업, 아쿠아리움, 대학원 진학</td>
+			<td><a href="https://www.kunsan.ac.kr/mbiotec/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">수산생명의학과</td>
+			<td>16</td>
+			<td>36</td>
+			<td class="rate4">2.25 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">우리는 물고기의사! 수산질병관리사 면허 갖고싶니? </span><br/>(취업분야) 수산질병관리원 개원 및 취직(물고기병원 개원), 해양수산부, 국립수산과학원, 국립수산물품질관리원, 지방자지단체의 수산 해양직 공무원, 동물용의약품 제약회사 및 사료회사, 수산관련 공기업(수협, 한국수산자원공단 등), 아쿠아리움, 대학원</td>
+			<td><a href="https://www.kunsan.ac.kr/dalm/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">식품영양학과[교직]</td>
+			<td>16</td>
+			<td>45</td>
+			<td class="rate4">2.81 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">'건강한 미래를 만드는 식품영양 전문가 양성 학과' </span><br/>(취업분야) 전문영양사(학교, 병원, 단체급식 등), 식품위생 보건계열 공무원 (시청, 보건소 등), 어린이·사회복지급식관리지원센터, 영양상담원 (사회복지시설, 스포츠센터 등), 식품개발·관리직 (식품산업체), 급식코디네이터, 푸드코디네이터 등</td>
+			<td><a href="https://www.kunsan.ac.kr/foodnutr/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">해양경찰학과</td>
+			<td>15</td>
+			<td>36</td>
+			<td class="rate4">2.40 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">미래를 여는 경찰인재 양성의 요람 </span><br/>(취업분야) 경찰공무원(해양경찰청, 경찰청), 국가.지방직 공무원 등</td>
+			<td><a href="https://www.kunsan.ac.kr/mpolice/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">생명과학과</td>
+			<td>13</td>
+			<td>14</td>
+			<td class="rate4">1.08 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">유전자에서 생태계까지! 첨단 바이오 기술과 AI 데이터 융합으로 미래 생명과학, 그린바이오 산업을 선도할 2027학년도 주인공을 기다립니다! </span><br/>(취업분야) 생명과학 연구원, 그린바이오 기업 R&D, 스마트농업 연구원, 생태 및 생물분류 연구원, 국가 연구직·기술직 공무원, 환경영향평가사, 농림축산 생물검역관, 디지털 육종 전문가, AI·생물정보학 전문가, 생물교육전문가, 생태큐레이터</td>
+			<td><a href="https://www.kunsan.ac.kr/biology/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">기관공학과</td>
+			<td>9</td>
+			<td>23</td>
+			<td class="rate4">2.56 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">선박의 심장, 만능형 엔지니어 </span><br/>(취업분야) 선박 기관사, 해양경찰, 해군 장교, 공무원, 기술직 엔지니어</td>
+			<td><a href="https://www.kunsan.ac.kr/marineengineering/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">식품생명공학과</td>
+			<td>17</td>
+			<td>43</td>
+			<td class="rate4">2.53 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">식품에 숨은 비밀을 파헤치는 과학의 여정! </span><br/>(취업분야) 일반기업((주)대상, 대두식품, 오리온, 하림, 참프레, 프라임제약, 종근당, 광동제약 등),  공공기관(농촌진흥청, 한국식품연구원, 한국기능식품연구원, 해양수산과학기술 진흥원, 한국식품산업클러스터진흥원 등), 공무원(농업직, 수산직, 위생직, 보건직 공무원 등)</td>
+			<td><a href="https://www.kunsan.ac.kr/foodscience/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">환경공학과</td>
+			<td>21</td>
+			<td>17</td>
+			<td class="rate4">0.81 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">지구를 살리는 의사 - 환경공학과, 에너지 전환 시대의 ESG 리더를 꿈꾼다! </span><br/>①환경공학 전문가 및 기술직 : 한국수자원공사(K-water), 한국환경공단, 한국농어촌공사 등의 공사; 환경엔지니어링 및 컨설팅사(환경영향평가, 환경복원, 방재 컨설팅 전문기업 등); 대기업 ESG부서, 환경안전팀, 제조업체 환경관리직 ②환경관련 연구직 : 국립생태원, K-water연구원, 국립환경과학원, 국립농업과학원, 수자원연구소 등 국가 및 공공 연구기관; 포스코 기술연구원, 고등기술연구원 등 대기업 부설 연구기관 ③환경직 공무원 (환경부, 지자체 환경정책과, 수질·대기·폐기물 담당 공무원); 환경연구사 (국립환경과학원, 환경부 및 지자체 산하 연구기관 등에서 환관련 연구 및 기술개발 등)</td>
+			<td><a href="https://www.kunsan.ac.kr/environment/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">해양건설공학과</td>
+			<td>12</td>
+			<td>20</td>
+			<td class="rate4">1.67 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">해양 워터프론트 전문가는 해양건설공학과가 책임지겠습니다. </span><br/>(취업분야) 공무원 (전북도청, 충남도청, 군산시청, 익산시청 등 다수), 공기업 (농어촌공사, 한국국토정보공사, 코레일), 건설시공회사 (한화건설, 대림건설, 서희건설 등), 설계사 (항도엔지니어링, 한국종합기술, 대영엔지니어링 등)</td>
+			<td><a href="https://www.kunsan.ac.kr/constructionengineering/index.kunsan" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit" rowspan="8">공과대학</td>
+			<td class="unit">전자공학과[교직]</td>
+			<td>21</td>
+			<td>39</td>
+			<td class="rate4">1.86 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">너의 손에 있는 작은 세상(전자기기)을 만드는 전자공학! </span><br/>(취업분야) ①전자기업: 전자 제조업체, 반도체 기업, 전자 제품 회사 등에서 하드웨어 설계, 소프트웨어 개발, 시스템 엔지니어링, 제조, 품질 관리 등 다양한 역할을 수행할 수 있습니다. ②통신 기업: 통신 회사나 네트워크 기업에서 통신 시스템 설계, 네트워크 관리, 통신 소프트웨어 개발 등의 업무를 할 수 있습니다. ③컴퓨터 기업: 하드웨어 회사나 소프트웨어 기업에서 컴퓨터 시스템 설계, 임베디드 시스템 개발, 소프트웨어 엔지니어링 등을 할 수 있습니다. ④자동차 및 운송 기업: 자동차 제조업체나 운송 관련 기업에서 자율 주행 시스템, 차량 전자 시스템, 차량 통신 등에 관련된 업무를 할 수 있습니다. ⑤에너지 기업: 전력 회사나 에너지 기업에서 전력 전자, 제어 시스템, 스마트 그리드 등과 관련된 업무를 할 수 있습니다. ⑥중등교사 : 교직과정을 이수하여 중등학교정교사(2급)을 수료후 중·고등학교에 재직할수 있다.</td>
+			<td><a href="https://www.kunsan.ac.kr/electronic/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">전기공학과</td>
+			<td>22</td>
+			<td>36</td>
+			<td class="rate4">1.64 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">찌릿~ 찌릿! 전기에너지의 모든 것, 전기공학과와 함께! </span><br/>(취업분야) 공기업 (한국전력공사, 전기안전공사, 한국철도공사 등) ㅁ발전회사 (한국수력원자력, 서부발전, 중부발전 등) 산업체 (삼성전자, LG전자, 현대자동차, 현대중공업, 두산중공업 등) 전기설비 제조업체 및 전기공사 업체</td>
+			<td><a href="https://www.kunsan.ac.kr/electrical/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">신소재공학과</td>
+			<td>13</td>
+			<td>24</td>
+			<td class="rate4">1.85 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">4차 산업의 핵심인 AI 반도체와 미래 첨단산업의 핵심은 바로 신소재!!! </span><br/>(취업분야) 반도체분야, 금속자동차분야, 전자부품소재장비분야, 이차전지 에너지분야, 공기업, 연구소</td>
+			<td><a href="https://www.kunsan.ac.kr/mse/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">화학공학과</td>
+			<td>13</td>
+			<td>16</td>
+			<td class="rate4">1.23 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">탄소중립으로 기후위기에서 지구를 지키는 과학의 마법사! 화학공학! </span><br/>(취업분야) ①에너지 : 발전소, 가스, 태양광, 수소연료전지, 이차전지 ②석유화학 : 고분자, 계면활성제, 촉매, 정유산업 ③정밀화학 : 제약, 화장품, 농약, 비료, 페인트, 식품 ④ IT산업 : 디스플레이, 반도체</td>
+			<td><a href="https://www.kunsan.ac.kr/nanochemeng/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">토목공학과</td>
+			<td>35</td>
+			<td>49</td>
+			<td class="rate4">1.40 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">자연과 문명의 조화, 지구를 디자인하는 토목공학과 </span><br/>(취업분야) 토목설계 엔지니어, 토목시공 엔지니어, 토목감리원, 토목분야 연구원, 재난·안전 평가원, 토목직 공무원, 토목 공기업</td>
+			<td><a href="https://www.kunsan.ac.kr/gscivil/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">기계공학부[교직]</td>
+			<td>53</td>
+			<td>85</td>
+			<td class="rate4">1.60 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">기계공학부!! 공학을 향한 열정 킵고잉 ~ 산업을 선도하는 기계공학부 / 모빌리티 산업 패러다임 변화에 대응하기 위한 다양한 활동을 구체화 함(미래 모빌리티 플랫폼 신뢰성 핵심연구지원센터) </span><br/>(취업분야) 기아자동차, GS건설, 타타대우상용차, 공업직 공무원.. 졸업 후에는 기계공학의 특성상 모든 산업분야에 걸쳐 취업이 가능. 기계, 자동차, 철강, 금속, 조선, 우주항공, 건설, 전자, 전기, 화학 등에 관련된 산업체에 진출하여 제품개발 및 설계, 생산관리, 공정자동화 검사 및 제어, 연구개발 등의 업무를 담당할 수 있으며 벤처기업에 진출하여 최신 첨단기술의 연구와 보급 업무를 담당. 또한 관련분야 공무원 및 교사 등으로 진출</td>
+			<td><a href="https://www.kunsan.ac.kr/kunsanwheel/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">건축공학과</td>
+			<td>24</td>
+			<td>36</td>
+			<td class="rate4">1.50 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">창의적 설계로 공간의 가치를 높이고, 완성도 높은 건축을 생산하는 정통 건축인 </span><br/>(취업분야) 1. 건축설계회사: 크리에이티브 디자인을 담당하는 종합건축설계사무소 등 2. 종합건설회사: 스마트 시공을 선도하는 현대건설, GS건설, 삼성물산 등 건설회사 3. 엔지니어링회사: 안전한 녹색건축을 지향하는 건축구조, 친환경, 건축설비 설계회사 등 4. 정부 및 공공분야: 도시의 얼굴을 디자인하는 건축직 공무원, LH공사, 국토정보공사, 새만금개발공사 등</td>
+			<td><a href="https://architecture.kunsan.ac.kr" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">공간디자인융합기술학과</td>
+			<td>16</td>
+			<td>21</td>
+			<td class="rate4">1.31 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">사람을 움직이는 공간의 힘, 공간디자이너가 합니다!! </span><br/>(취업분야) 1. 공간디자이너: 인간을 위한 생활 문화를 유지하는데 필요한 실내 공간을 창조하는 자로서, 실내 건축, 전시 디자인, 가구·조명디자이너, 마감재 관련 업체에 디자이너로 진출 2. 현장관리자: 실내 건축 설계도서를 바탕으로 공사를 계획하고 시공 현장의 전반적 사항을 관리하는 자로서 건축 및 실내 건축 관련 업체에 시공 실무자로 진출 3. 건축·디자인 관련 공무원: 공공기관이나 지자체의 건축·디자인 관련 사업의 진행 기획 및 관련 행정업무를 신속 정화하게 처리하는 자로서, 국가 및 시·도/ 지자체의 건축직 혹은 디자인직류 공무원 시험을 통해 임용</td>
+			<td><a href="https://www.kunsan.ac.kr/interiorhousing/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit" rowspan="4">자연예술대학</td>
+			<td class="unit">간호학과[교직]</td>
+			<td>8</td>
+			<td>50</td>
+			<td class="rate1">6.25 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">미래 사회에 이바지할 바른 인성을 갖춘 창의적 간호 인재 양성 </span><br/>(취업분야) 병원간호사, 보건분야 공무원, 산업간호사, 가정간호사, 연구간호사, 보험심사간호사, 간호장교, 해외취업</td>
+			<td><a href="https://www.kunsan.ac.kr/nursing/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">수학과[교직]</td>
+			<td>14</td>
+			<td>11</td>
+			<td class="rate4">0.79 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">원하면 뭐든 이룰 수 있는 수학과! </span><br/>(취업분야) 중등교사, 대학교수, 다양한 이공계 연구소 연구원, 통계청 리서치회사, 여론 및 마케팅 조사 및 분석, 데이터사이언티스트, 빅데이터분석가, 딥러닝(머신러닝) 및 AI 엔지니어, 은행, 보험 및 증권회사, 자산평가, 신용평가회사, 영상처리전문가, 유체역학 시뮬레이션전문가, 컴퓨팅소프트웨어개발자</td>
+			<td><a href="https://www.kunsan.ac.kr/math/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">첨단과학기술학부</td>
+			<td>17</td>
+			<td>19</td>
+			<td class="rate4">1.12 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">반도체물리전공: 입자에서 우주까지 모든 것을 설명한다. </span><br/>ㅁ연구소: 반도체, 전기전자, 신소재 및 신재생에너지 분야 연구소ㅁ기업: 삼성전자, 이차전지 관련 기업ㅁ정부기관: 기술직 공무원, 변리사<br/><span style="color: #CC0000">소재화학전공: 소재화학 없이는 어떤 것도 만들기 힘들 껄? </span><br/>ㅁ연구소 : 한국화학연구소, 보건환경연구소, 한국생명공학연구소, 국립과학수사연구소, 한국핵융합연구소 등 ㅁ기업 : OCI, 군장에너지, 동우, 대상, 한국바스프, 한농화성, 세아베스틸, 도레이첨단소재, 한국유리, 한림제약, 보령제약 등 ㅁ정부기관 : 전북지방환경청, 환경직공무원, 화학교사</td>
+			<td><a href="https://www.kunsan.ac.kr/cdscience/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">의류학과</td>
+			<td>15</td>
+			<td>33</td>
+			<td class="rate4">2.20 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">패션을 알고 싶어? 패션이 사람을 만드니까! </span><br/>패션디자이너, 3D가상패션디자이너, 기획MD, 온라인마케터, 패턴사(2D CAD), VMD, 샵마스터, 수입바이어, 텍스타일디자이너, 소재컨버터, 콘텐츠마케터, 그레이딩사, 컬러리스트, 패션일러스트레이터, 패션잡지 저널리스트, 패턴에디터, 무대의상디자이너, 니트디자이너, 모델리스트, 패션코디네이터, 악세서리 디자이너, 생산MD, 수출입무역업, 패션인플루언서</td>
+			<td><a href="https://www.kunsan.ac.kr/clothing/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<!-- 총계 //-->
+		<tr class="total">
+			<td colspan=2>총계</td>
+			<td>989</td>
+			<td>1,803</td>
+			<td class="rate4">1.82 : 1</td>
+			<td colspan="2"></td>
+		</tr>
+		<!--// 총계 -->
+	</table>
+	</div>
+	<a name='lik_41267'></a><div id="SelType41267">
+	<h2><strong>학생부교과 지역인재Ⅰ</strong> 경쟁률 현황</h2>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableRatio3">
+		<colgroup>
+			<col width="8.5%" />
+			<col width="18" />
+			<col width="7%" />
+			<col width="7%" />
+			<col width="8%" />
+			<col width="44.5%" />
+			<col width="7%" />
+		</colgroup>
+		<tr>
+			<th>대학</th>
+			<th>모집단위</th>
+			<th>모집인원</th>
+			<th>지원인원</th>
+			<th>경쟁률</th>
+			<th>학과소개 및 취업분야</th>
+			<th>홈페이지</th>
+		</tr>
+		<!-- 반복 //-->
+		<tr>
+			<td class="unit" rowspan="8">인문콘텐츠융합대학</td>
+			<td class="unit">국어국문학과</td>
+			<td rowspan="1">3</td>
+			<td>14</td>
+			<td class="rate2" rowspan = '1'>4.67 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">웹콘텐츠 시대, 4대 특성화 교육으로 K-문화 전문가 양성! </span><br/>(취업분야) 콘텐츠기획자, 웹라이터, 웹소설·웹툰 작가, 방송작가, 드라마작가, PD, 키워드에디터, 출판전문가, 문화예술전문가, 인문학연구원, 공무원, 한국어교사, 국어교사, 교직원, 독서지도사</td>
+			<td><a href="https://www.kunsan.ac.kr/korean/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">영어영문학과[교직]</td>
+			<td>5</td>
+			<td>5</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">디지털 시대, 꼭 필요한 영어! 자유롭게 쓰고 싶어?</span><br/>(취업분야) 영어교사, 공무원, 기업근무자, 항공승무원, 통·번역사</td>
+			<td><a href="https://www.kunsan.ac.kr/knuenglish/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">일어일문학과</td>
+			<td>5</td>
+			<td>20</td>
+			<td class="rate2">4.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">서울로 유학 갈래, 일본으로 유학 갈래? </span><br/>(취업분야) 일본 현지 기업, 국내외 항공사, 국내외 호텔 및 리조트, 국내 외 공무원, IT계열</td>
+			<td><a href="https://www.kunsan.ac.kr/japanese/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">중어중문학과[교직]</td>
+			<td>3</td>
+			<td>4</td>
+			<td class="rate4">1.33 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">요즘 같은 시대에 중국어 안 배우면 코 베이징!! </span><br/>(취업분야) 중국어교육, 해양경찰, 외사경찰, 해외마케팅, 국제교류, 관광·레저, 국제물류, 호텔·항공사, 통·번역, 한중MC</td>
+			<td><a href="https://www.kunsan.ac.kr/chinese/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">역사학과</td>
+			<td>2</td>
+			<td>2</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">과거를 알면 미래가 보입니다! 역사학·고고학·문화자원을 바탕으로 과거를 오늘과 미래로 연결하는 인재를 양성합니다. </span><br/>(취업분야) 고고학자, 역사학자, 연구원, 역사교육 전문가(교사, 교수, 강사 등), 역사 콘텐츠 기획 전문가, 학예사, 학예직 공무원, 기록연구사</td>
+			<td><a href="https://www.kunsan.ac.kr/history/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">철학과[교직]</td>
+			<td>2</td>
+			<td>2</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">진리는 나의 힘! 모든 학문의 뿌리는 철학! </span><br/>(취업분야) 철학 교수, 교사, 연구원, 공무원, 논리논술지도사, 독서토론지도사, 글쓰기지도사, 어린이철학지도사, 영화 및 문화 평론가, 광고업, 종교계, 언론계, 관광업, 출판계, 대학원 및 교육대학원, 법학전문대학</td>
+			<td><a href="https://www.kunsan.ac.kr/philosophy/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">미디어문화학과</td>
+			<td>4</td>
+			<td>14</td>
+			<td class="rate2">3.50 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">믿으니까 미디어~ </span><br/>미디어콘텐츠연출가(영상촬영,편집 등), 프로듀서(PD), 시나리오 작가, 문화산업마케터, 미디어교육가, 프리랜서</td>
+			<td><a href="https://www.kunsan.ac.kr/mediaculture/index.kunsan" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">자율전공학부</td>
+			<td>45</td>
+			<td>78</td>
+			<td class="rate4">1.73 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">자기설계 맞춤 인재, 내가 만드는 미래의 나, 자율전공학부에서! </span><br/>국공립기관, 병원, 교육기관, 기업체, 보건소 및 병의원 운동처방사, 재활트레이너, 한국과학창의재단, 동아사이언스, 시공테크, 각종 과학관/박물관, 교통전문직 공무원, 교통연구원, 국토연구원, 건설기술 연구원, 제약사, 동물용 의약품 제조회사, 식품회사, 바이오헬스기관 전반, 환경공무원, 정부연구소, 정부출연기업, 민간연구기업,  디지털·미디어아트작가, 3D모델러, 캐릭터 아트 작가, 교육 분야, 언어치료 분야, 해양수산분야 정부 기관 및 국책연구소, 해양바이오기업(의약품, 화장품, 건강기능식품 개발), 변리사, 국제기구</td>
+			<td><a href="https://www.kunsan.ac.kr/CLS/index.kunsan" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit" rowspan="10">사회과학대학</td>
+			<td class="unit">법경찰학과</td>
+			<td>5</td>
+			<td>10</td>
+			<td class="rate4">2.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">법학과 경찰학을 기반으로 공공 · 법조 분야 전문 인재를 양성하는 학과 </span><br/>(취업분야) 일반직공무원(행정기관, 법원 등) 및 특정직공무원(경찰공무원, 소방공무원, 교육공무원, 군인, 군무원 등) 임용, 로스쿨 진학, 공공기관 및 사기업 취업, 법·노무·공공 영역 자격증(법무사, 노무사, 손해사정사 등) 취득</td>
+			<td><a href="https://www.kunsan.ac.kr/kslaw/index.kunsan" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">행정학과</td>
+			<td>5</td>
+			<td>5</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">정부/공공기관을 넘어 기업·지역사회·국제기구까지 다양한 영역에서 더 나은 사회를 위한 융합형 인재 양성 </span><br/>(취업분야) 일반행정직 9급, 7급 공무원, 소방공무원, 정책연구기관, 지방공기업, 출자·출연기관, 민간기업 대외협력·ESG·공공사업 분야, 비영리기관 및 국제개발협력 분야 등</td>
+			<td><a href="https://www.kunsan.ac.kr/knupa/index.kunsan" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">사회복지학과</td>
+			<td>6</td>
+			<td>7</td>
+			<td class="rate4">1.17 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">사회복지와의 동행, 너라서 다행 </span><br/>(취업분야) 사회복지직·사회복지 관련 공무원(사회복지직 5급 사무관, 9급 지방직, 교정직) / 사회보험공단(국민연금, 근로복지, 장애인 고용공단 등), 지역사회복지관, 분야별 복지시설 (아동, 청소년, 노인, 장애인, 여성 등</td>
+			<td><a href="https://www.kunsan.ac.kr/nkssw/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">아동학과</td>
+			<td>5</td>
+			<td>6</td>
+			<td class="rate4">1.20 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">국가의 미래인 아동의 건강한 성장을 지원하기 위한 전문가를 양성하는 학부 </span><br/>(취업분야) 국공립·직장·민간 어린이집 원장 및 교사, 육아종합지원센터, 유아교구 및 산업체, 아동전문 출판사 등 대학원 진학 : 관련분야 대학원</td>
+			<td><a href="https://www.kunsan.ac.kr/child_family/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">경영학과</td>
+			<td>9</td>
+			<td>17</td>
+			<td class="rate4">1.89 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">기업을 이해하고 미래 산업을 설계하는 데이터 기반 경영 인재 양성 학부 </span><br/>(취업분야) 일반기업(인사·마케팅·재무·전략), 금융기관(은행·증권·보험), 공기업 및 공공기관, 데이터 분석 및 경영컨설팅, 플랫폼 기업 및 IT기업, 유통·물류·SCM, 스타트업 창업 및 기업경영, ESG경영 및 지속가능경영 분야 등</td>
+			<td><a href="https://www.kunsan.ac.kr/business/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">국제물류학과</td>
+			<td>5</td>
+			<td>7</td>
+			<td class="rate4">1.40 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">취업률 끝판왕! 물류가 멈추면 세상이 멈춘다. 우리의 생활을 움직이는 숨은 주역 </span><br/>(취업분야) 물류기업(항공, 해운, 항만, 물류시설 등), 유통기업(전자상거래, 백화점, 편의점 등), 제조기업(생산물류, 구매물류, 자재관리 등)</td>
+			<td><a href="https://www.kunsan.ac.kr/logistics/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">무역학과</td>
+			<td>4</td>
+			<td>12</td>
+			<td class="rate4">3.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">국경을 넘어 세계로, 신 대항해 시대를 여는 무역 </span><br/>(취업분야) 관세법인(관세사), 금융권(신용장 전문가 및 금융전문가), 상사분쟁 조정관 (대한상사중재원), 민간기업(수출입 부분), 관련 직종 공무원 (관세직, 출입국관리직, 세무 등)</td>
+			<td><a href="https://www.kunsan.ac.kr/trade/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">회계학부</td>
+			<td>8</td>
+			<td>4</td>
+			<td class="rate4">0.50 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">숫자로 경영하라! </span><br/>(취업분야) 회계전문가(공인회계사, 세무사), 세무직 공무원(국가직, 지방직), 기업회계담당자(민간기업, 공기업), 금융기관 종사자</td>
+			<td><a href="https://www.kunsan.ac.kr/accounting/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">금융부동산경제학과</td>
+			<td>3</td>
+			<td>6</td>
+			<td class="rate4">2.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">돈과 사람이 만든 세상에서 이야기를 푸는 학문 </span><br/>금융기관, 공기업, 사기업, 공무원</td>
+			<td><a href="https://www.kunsan.ac.kr/economics/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">상담심리학과</td>
+			<td>4</td>
+			<td>4</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">마음을 읽고, 삶을 바꾸는 상담 전문가의 시작 </span><br/>(취업분야) 학교상담실(위센터, 위클래스), 청소년상담기관, 대학학생상담센터, 기업 상담(EAP), 정신건강의학과, 신경의학과, 정신건강복지센터, 상담센터 개소, 프리랜서 상담가, 연구 및 교육 분야</td>
+			<td><a href="https://www.kunsan.ac.kr/index.kunsan?contentsSid=8718&sso=ok&&cpath=%2Fiphak" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit" rowspan="5">AI·첨단대학</td>
+			<td class="unit">AI융합계열[교직]</td>
+			<td>41</td>
+			<td>28</td>
+			<td class="rate4">0.68 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">컴퓨터정보공학과: 인공지능/게임개발자/보안 인재를 양성하는 컴퓨터공학과 정보공학의 중심 컴퓨터정보공학과!</span><br/>(취업분야) 인공지능 개발자, 3D 게임개발자, 보안전문가, 클라우드 컴퓨팅 개발자, SW/웹 개발자, 컴퓨터 사이언티스트 ※ 최근 10년 내 졸업자 주요 취업 기업 : 삼성전자, (주)카카오, 네이버클라우드. CJ올리브네트워웍스, 스마일게이트<br/><span style="color: #CC0000">소프트웨어학과: 4차 산업의 핵심 기술을 선도하는 소프트웨어학과 </span><br/>(취업분야) 정보통신기술(ICT), 문화기술(CT), 금용·경영 등 관련 대기업, 벤처기업, 국가 정부기관의 연구소, 공무원, 국내외 대학원 등<br/><span style="color: #CC0000">인공지능융합학과: 고급 딥러닝 설계와 생성형 AI 기술로 미래 산업을 구현하는 인공지능융합학과 </span><br/>(취업분야) AI를 필요로 하고 활용하는 전 산업 분야의 대기업, 벤처기업, 국가기관, 공무원, 교수/교사, 국내외 연구소, 대학원 등<br/><span style="color: #CC0000">임베디드소프트웨어학과: 피지컬 AI시대의 주역, 임베디드 소프트웨어: 인공지능, 소프트웨어부터 자율주행, 로보틱스까지 모든 기술의 핵심 </span><br/>(취업분야) ① 임베디드 소프트웨어 분야: 펌웨어 개발자, 시스템 소프트웨어 개발자, 반도체 솔루션 개발자, 가전/모바일 기기 개발자, 등 ② 자율주행 및 로봇 분야 : 자율주행 AI,SW 개발자, 컴퓨터/로봇비전 개발자, AI모빌리티 개발자, 로봇 소프트웨어 개발자, 서비스/산업용 로봇 제어 개발자 등 ③ AIoT 소프트웨어 분야 : 스마프 홈, 스마트 팩토리, 스마트팜 개발자 등<br/><span style="color: #CC0000">AX융합통신공학과: AI와 통신의 융합, 초연결 시대를 설계하는 AX융합통신공학과 </span><br/>(취업분야) 한국전자통신연구원, 한국항공우주연구원, 한국방송통신전파진흥원, SK 텔레콤, KT, LG U플러스, 수협중앙회 어선안전조업국, 한국수자원공사, 주택관리공단, IT SW/HW 및 통신 SW/HW 관련 기업체, 공무원</td>
+			<td><a href="https://www.kunsan.ac.kr/ssw/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">이차전지·에너지학과</td>
+			<td>5</td>
+			<td>9</td>
+			<td class="rate4">1.80 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">Your Energy, Our Future </span><br/>(취업분야) 이차전지·에너지 분야 졸업생은 대체에너지개발연구원, 스마트그리드 엔지니어, 신재생에너지 전문가, LG에너지솔루션, 삼성SDI, SK온 등 이차전지 기업과 신재생에너지 산업, 연구기관, 공공기관, 정부 부처 등</td>
+			<td><a href="https://www.kunsan.ac.kr/energy/index.kunsan" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">스마트오션모빌리티공학과</td>
+			<td>3</td>
+			<td>1</td>
+			<td class="rate4">0.33 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">모빌리티, 인공지능, 로봇이 만나 미래를 열다! </span><br/>(취업분야) 대형 조선소, 유니콘기업, 중소벤처기업과 같은 기업에서의 설계, 관리직, 국책연구소와 기업연구소와 같은 연구기관에서의 연구직 및 기능직, 정부 및 지방자치단체와 공공기관의 기술직 공무원 및 군무원, 국내 및 해외 대학원 석사, 박사</td>
+			<td><a href="https://www.kunsan.ac.kr/some/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">스마트시티학과</td>
+			<td>3</td>
+			<td>3</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">미래 도시를 설계하고 혁신하는 크리에이터, 당신이 바로 스마트시티 디자이너! </span><br/>(취업분야) 공공 부문 (정부·공기업·지자체), 공기업, 민간기업(삼성SDS, LG CNS, SK C&C, KT, 현대자동차, 포스코건설, 현대건설, GS건설 등), 연구 및 학술 분야, 대학원 진학</td>
+			<td><a href="https://www.kunsan.ac.kr/dscs/index.kunsan" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">바이오헬스학과</td>
+			<td>3</td>
+			<td>4</td>
+			<td class="rate4">1.33 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">인간과 동물을 풍요롭게, 비전과 철학을 가진 미래 산업형 전문가를 양성합니다. </span><br/>(취업분야) 의약품 연구원, 의료기기 개발 연구원, 식품 연구원, 동물용 의약품 연구원, 동물용 사료 연구원, 규제기관 심사관, 국·공립 연구원, 규제과학 전문가</td>
+			<td><a href="https://www.kunsan.ac.kr/biohealth/index.kunsan" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit" rowspan="11">해양과학대학</td>
+			<td class="unit">해양수산공공인재학과</td>
+			<td>3</td>
+			<td>11</td>
+			<td class="rate2">3.67 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">"공무원 세계의 블루오션(Blue Ocean)" </span><br/>(취업분야) 해양경찰 공무원(함정, 선박관제), 해양수산직 · 어로직 · 선박직 · 수로직 · 해양교통시설직 공무원, 해양수산부 산하 공공기관 직원, 항해사, 도선사, 대한민국 해군장교, 전공 관련 연구원 및 교수, 해운·수산회사 직원</td>
+			<td><a href="https://www.kunsan.ac.kr/marine/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">해양생명과학과</td>
+			<td>3</td>
+			<td>3</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">해양바이오산업의 중심학과~ 해양바이오소재 생산 관련 4차산업 선도학과 </span><br/>(취업분야) 수산연구직(국립수산과학원, 지자체수산연구소), 수산과학기술직(수산물품질관리원, 지방해양수산청, 동서남해어업관리단, 해양수산직공무원, 국립해양생물자원관, 한국해양수산연구원, 국립공원공단, 수산자원관리공단 등), 스마트양식기업, 양어사료기업, 해조류개발기업, 해양바이오기업, 아쿠아리움, 환경영향평가 등</td>
+			<td><a href="https://www.kunsan.ac.kr/aquaculture/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">해양생물자원학과</td>
+			<td>6</td>
+			<td>8</td>
+			<td class="rate4">1.33 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">해양·수산분야 글로벌 인재 양성 학과 </span><br/>(취업분야) 해양수산부 및 지자체 공무원, 국·공립 연구기관, 환경기업, 아쿠아리움, 대학원 진학</td>
+			<td><a href="https://www.kunsan.ac.kr/mbiotec/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">수산생명의학과</td>
+			<td>5</td>
+			<td>1</td>
+			<td class="rate4">0.20 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">우리는 물고기의사! 수산질병관리사 면허 갖고싶니? </span><br/>(취업분야) 수산질병관리원 개원 및 취직(물고기병원 개원), 해양수산부, 국립수산과학원, 국립수산물품질관리원, 지방자지단체의 수산 해양직 공무원, 동물용의약품 제약회사 및 사료회사, 수산관련 공기업(수협, 한국수산자원공단 등), 아쿠아리움, 대학원</td>
+			<td><a href="https://www.kunsan.ac.kr/dalm/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">식품영양학과[교직]</td>
+			<td>7</td>
+			<td>18</td>
+			<td class="rate4">2.57 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">'건강한 미래를 만드는 식품영양 전문가 양성 학과' </span><br/>(취업분야) 전문영양사(학교, 병원, 단체급식 등), 식품위생 보건계열 공무원 (시청, 보건소 등), 어린이·사회복지급식관리지원센터, 영양상담원 (사회복지시설, 스포츠센터 등), 식품개발·관리직 (식품산업체), 급식코디네이터, 푸드코디네이터 등</td>
+			<td><a href="https://www.kunsan.ac.kr/foodnutr/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">해양경찰학과</td>
+			<td>4</td>
+			<td>9</td>
+			<td class="rate4">2.25 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">미래를 여는 경찰인재 양성의 요람 </span><br/>(취업분야) 경찰공무원(해양경찰청, 경찰청), 국가.지방직 공무원 등</td>
+			<td><a href="https://www.kunsan.ac.kr/mpolice/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">생명과학과</td>
+			<td>2</td>
+			<td>1</td>
+			<td class="rate4">0.50 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">유전자에서 생태계까지! 첨단 바이오 기술과 AI 데이터 융합으로 미래 생명과학, 그린바이오 산업을 선도할 2027학년도 주인공을 기다립니다! </span><br/>(취업분야) 생명과학 연구원, 그린바이오 기업 R&D, 스마트농업 연구원, 생태 및 생물분류 연구원, 국가 연구직·기술직 공무원, 환경영향평가사, 농림축산 생물검역관, 디지털 육종 전문가, AI·생물정보학 전문가, 생물교육전문가, 생태큐레이터</td>
+			<td><a href="https://www.kunsan.ac.kr/biology/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">기관공학과</td>
+			<td>2</td>
+			<td>1</td>
+			<td class="rate4">0.50 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">선박의 심장, 만능형 엔지니어 </span><br/>(취업분야) 선박 기관사, 해양경찰, 해군 장교, 공무원, 기술직 엔지니어</td>
+			<td><a href="https://www.kunsan.ac.kr/marineengineering/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">식품생명공학과</td>
+			<td>4</td>
+			<td>3</td>
+			<td class="rate4">0.75 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">식품에 숨은 비밀을 파헤치는 과학의 여정! </span><br/>(취업분야) 일반기업((주)대상, 대두식품, 오리온, 하림, 참프레, 프라임제약, 종근당, 광동제약 등),  공공기관(농촌진흥청, 한국식품연구원, 한국기능식품연구원, 해양수산과학기술 진흥원, 한국식품산업클러스터진흥원 등), 공무원(농업직, 수산직, 위생직, 보건직 공무원 등)</td>
+			<td><a href="https://www.kunsan.ac.kr/foodscience/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">환경공학과</td>
+			<td>7</td>
+			<td>14</td>
+			<td class="rate4">2.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">지구를 살리는 의사 - 환경공학과, 에너지 전환 시대의 ESG 리더를 꿈꾼다! </span><br/>①환경공학 전문가 및 기술직 : 한국수자원공사(K-water), 한국환경공단, 한국농어촌공사 등의 공사; 환경엔지니어링 및 컨설팅사(환경영향평가, 환경복원, 방재 컨설팅 전문기업 등); 대기업 ESG부서, 환경안전팀, 제조업체 환경관리직 ②환경관련 연구직 : 국립생태원, K-water연구원, 국립환경과학원, 국립농업과학원, 수자원연구소 등 국가 및 공공 연구기관; 포스코 기술연구원, 고등기술연구원 등 대기업 부설 연구기관 ③환경직 공무원 (환경부, 지자체 환경정책과, 수질·대기·폐기물 담당 공무원); 환경연구사 (국립환경과학원, 환경부 및 지자체 산하 연구기관 등에서 환관련 연구 및 기술개발 등)</td>
+			<td><a href="https://www.kunsan.ac.kr/environment/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">해양건설공학과</td>
+			<td>3</td>
+			<td>8</td>
+			<td class="rate4">2.67 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">해양 워터프론트 전문가는 해양건설공학과가 책임지겠습니다. </span><br/>(취업분야) 공무원 (전북도청, 충남도청, 군산시청, 익산시청 등 다수), 공기업 (농어촌공사, 한국국토정보공사, 코레일), 건설시공회사 (한화건설, 대림건설, 서희건설 등), 설계사 (항도엔지니어링, 한국종합기술, 대영엔지니어링 등)</td>
+			<td><a href="https://www.kunsan.ac.kr/constructionengineering/index.kunsan" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit" rowspan="8">공과대학</td>
+			<td class="unit">전자공학과[교직]</td>
+			<td>6</td>
+			<td>14</td>
+			<td class="rate4">2.33 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">너의 손에 있는 작은 세상(전자기기)을 만드는 전자공학! </span><br/>(취업분야) ①전자기업: 전자 제조업체, 반도체 기업, 전자 제품 회사 등에서 하드웨어 설계, 소프트웨어 개발, 시스템 엔지니어링, 제조, 품질 관리 등 다양한 역할을 수행할 수 있습니다. ②통신 기업: 통신 회사나 네트워크 기업에서 통신 시스템 설계, 네트워크 관리, 통신 소프트웨어 개발 등의 업무를 할 수 있습니다. ③컴퓨터 기업: 하드웨어 회사나 소프트웨어 기업에서 컴퓨터 시스템 설계, 임베디드 시스템 개발, 소프트웨어 엔지니어링 등을 할 수 있습니다. ④자동차 및 운송 기업: 자동차 제조업체나 운송 관련 기업에서 자율 주행 시스템, 차량 전자 시스템, 차량 통신 등에 관련된 업무를 할 수 있습니다. ⑤에너지 기업: 전력 회사나 에너지 기업에서 전력 전자, 제어 시스템, 스마트 그리드 등과 관련된 업무를 할 수 있습니다. ⑥중등교사 : 교직과정을 이수하여 중등학교정교사(2급)을 수료후 중·고등학교에 재직할수 있다.</td>
+			<td><a href="https://www.kunsan.ac.kr/electronic/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">전기공학과</td>
+			<td>8</td>
+			<td>16</td>
+			<td class="rate4">2.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">찌릿~ 찌릿! 전기에너지의 모든 것, 전기공학과와 함께! </span><br/>(취업분야) 공기업 (한국전력공사, 전기안전공사, 한국철도공사 등) ㅁ발전회사 (한국수력원자력, 서부발전, 중부발전 등) 산업체 (삼성전자, LG전자, 현대자동차, 현대중공업, 두산중공업 등) 전기설비 제조업체 및 전기공사 업체</td>
+			<td><a href="https://www.kunsan.ac.kr/electrical/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">신소재공학과</td>
+			<td>3</td>
+			<td>3</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">4차 산업의 핵심인 AI 반도체와 미래 첨단산업의 핵심은 바로 신소재!!! </span><br/>(취업분야) 반도체분야, 금속자동차분야, 전자부품소재장비분야, 이차전지 에너지분야, 공기업, 연구소</td>
+			<td><a href="https://www.kunsan.ac.kr/mse/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">화학공학과</td>
+			<td>4</td>
+			<td>1</td>
+			<td class="rate4">0.25 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">탄소중립으로 기후위기에서 지구를 지키는 과학의 마법사! 화학공학! </span><br/>(취업분야) ①에너지 : 발전소, 가스, 태양광, 수소연료전지, 이차전지 ②석유화학 : 고분자, 계면활성제, 촉매, 정유산업 ③정밀화학 : 제약, 화장품, 농약, 비료, 페인트, 식품 ④ IT산업 : 디스플레이, 반도체</td>
+			<td><a href="https://www.kunsan.ac.kr/nanochemeng/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">토목공학과</td>
+			<td>7</td>
+			<td>4</td>
+			<td class="rate4">0.57 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">자연과 문명의 조화, 지구를 디자인하는 토목공학과 </span><br/>(취업분야) 토목설계 엔지니어, 토목시공 엔지니어, 토목감리원, 토목분야 연구원, 재난·안전 평가원, 토목직 공무원, 토목 공기업</td>
+			<td><a href="https://www.kunsan.ac.kr/gscivil/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">기계공학부[교직]</td>
+			<td>17</td>
+			<td>32</td>
+			<td class="rate4">1.88 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">기계공학부!! 공학을 향한 열정 킵고잉 ~ 산업을 선도하는 기계공학부 / 모빌리티 산업 패러다임 변화에 대응하기 위한 다양한 활동을 구체화 함(미래 모빌리티 플랫폼 신뢰성 핵심연구지원센터) </span><br/>(취업분야) 기아자동차, GS건설, 타타대우상용차, 공업직 공무원.. 졸업 후에는 기계공학의 특성상 모든 산업분야에 걸쳐 취업이 가능. 기계, 자동차, 철강, 금속, 조선, 우주항공, 건설, 전자, 전기, 화학 등에 관련된 산업체에 진출하여 제품개발 및 설계, 생산관리, 공정자동화 검사 및 제어, 연구개발 등의 업무를 담당할 수 있으며 벤처기업에 진출하여 최신 첨단기술의 연구와 보급 업무를 담당. 또한 관련분야 공무원 및 교사 등으로 진출</td>
+			<td><a href="https://www.kunsan.ac.kr/kunsanwheel/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">건축공학과</td>
+			<td>7</td>
+			<td>11</td>
+			<td class="rate4">1.57 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">창의적 설계로 공간의 가치를 높이고, 완성도 높은 건축을 생산하는 정통 건축인 </span><br/>(취업분야) 1. 건축설계회사: 크리에이티브 디자인을 담당하는 종합건축설계사무소 등 2. 종합건설회사: 스마트 시공을 선도하는 현대건설, GS건설, 삼성물산 등 건설회사 3. 엔지니어링회사: 안전한 녹색건축을 지향하는 건축구조, 친환경, 건축설비 설계회사 등 4. 정부 및 공공분야: 도시의 얼굴을 디자인하는 건축직 공무원, LH공사, 국토정보공사, 새만금개발공사 등</td>
+			<td><a href="https://architecture.kunsan.ac.kr" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">공간디자인융합기술학과</td>
+			<td>6</td>
+			<td>4</td>
+			<td class="rate4">0.67 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">사람을 움직이는 공간의 힘, 공간디자이너가 합니다!! </span><br/>(취업분야) 1. 공간디자이너: 인간을 위한 생활 문화를 유지하는데 필요한 실내 공간을 창조하는 자로서, 실내 건축, 전시 디자인, 가구·조명디자이너, 마감재 관련 업체에 디자이너로 진출 2. 현장관리자: 실내 건축 설계도서를 바탕으로 공사를 계획하고 시공 현장의 전반적 사항을 관리하는 자로서 건축 및 실내 건축 관련 업체에 시공 실무자로 진출 3. 건축·디자인 관련 공무원: 공공기관이나 지자체의 건축·디자인 관련 사업의 진행 기획 및 관련 행정업무를 신속 정화하게 처리하는 자로서, 국가 및 시·도/ 지자체의 건축직 혹은 디자인직류 공무원 시험을 통해 임용</td>
+			<td><a href="https://www.kunsan.ac.kr/interiorhousing/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit" rowspan="4">자연예술대학</td>
+			<td class="unit">간호학과[교직]</td>
+			<td>15</td>
+			<td>24</td>
+			<td class="rate4">1.60 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">미래 사회에 이바지할 바른 인성을 갖춘 창의적 간호 인재 양성 </span><br/>(취업분야) 병원간호사, 보건분야 공무원, 산업간호사, 가정간호사, 연구간호사, 보험심사간호사, 간호장교, 해외취업</td>
+			<td><a href="https://www.kunsan.ac.kr/nursing/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">수학과[교직]</td>
+			<td>3</td>
+			<td>0</td>
+			<td class="rate4">0.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">원하면 뭐든 이룰 수 있는 수학과! </span><br/>(취업분야) 중등교사, 대학교수, 다양한 이공계 연구소 연구원, 통계청 리서치회사, 여론 및 마케팅 조사 및 분석, 데이터사이언티스트, 빅데이터분석가, 딥러닝(머신러닝) 및 AI 엔지니어, 은행, 보험 및 증권회사, 자산평가, 신용평가회사, 영상처리전문가, 유체역학 시뮬레이션전문가, 컴퓨팅소프트웨어개발자</td>
+			<td><a href="https://www.kunsan.ac.kr/math/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">첨단과학기술학부</td>
+			<td>4</td>
+			<td>2</td>
+			<td class="rate4">0.50 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">반도체물리전공: 입자에서 우주까지 모든 것을 설명한다. </span><br/>ㅁ연구소: 반도체, 전기전자, 신소재 및 신재생에너지 분야 연구소ㅁ기업: 삼성전자, 이차전지 관련 기업ㅁ정부기관: 기술직 공무원, 변리사<br/><span style="color: #CC0000">소재화학전공: 소재화학 없이는 어떤 것도 만들기 힘들 껄? </span><br/>ㅁ연구소 : 한국화학연구소, 보건환경연구소, 한국생명공학연구소, 국립과학수사연구소, 한국핵융합연구소 등 ㅁ기업 : OCI, 군장에너지, 동우, 대상, 한국바스프, 한농화성, 세아베스틸, 도레이첨단소재, 한국유리, 한림제약, 보령제약 등 ㅁ정부기관 : 전북지방환경청, 환경직공무원, 화학교사</td>
+			<td><a href="https://www.kunsan.ac.kr/cdscience/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">의류학과</td>
+			<td>5</td>
+			<td>9</td>
+			<td class="rate4">1.80 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">패션을 알고 싶어? 패션이 사람을 만드니까! </span><br/>패션디자이너, 3D가상패션디자이너, 기획MD, 온라인마케터, 패턴사(2D CAD), VMD, 샵마스터, 수입바이어, 텍스타일디자이너, 소재컨버터, 콘텐츠마케터, 그레이딩사, 컬러리스트, 패션일러스트레이터, 패션잡지 저널리스트, 패턴에디터, 무대의상디자이너, 니트디자이너, 모델리스트, 패션코디네이터, 악세서리 디자이너, 생산MD, 수출입무역업, 패션인플루언서</td>
+			<td><a href="https://www.kunsan.ac.kr/clothing/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<!-- 총계 //-->
+		<tr class="total">
+			<td colspan=2>총계</td>
+			<td>309</td>
+			<td>459</td>
+			<td class="rate4">1.49 : 1</td>
+			<td colspan="2"></td>
+		</tr>
+		<!--// 총계 -->
+	</table>
+	</div>
+	<a name='lik_41268'></a><div id="SelType41268">
+	<h2><strong>학생부교과 지역인재Ⅱ</strong> 경쟁률 현황</h2>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableRatio3">
+		<colgroup>
+			<col width="8.5%" />
+			<col width="18" />
+			<col width="7%" />
+			<col width="7%" />
+			<col width="8%" />
+			<col width="44.5%" />
+			<col width="7%" />
+		</colgroup>
+		<tr>
+			<th>대학</th>
+			<th>모집단위</th>
+			<th>모집인원</th>
+			<th>지원인원</th>
+			<th>경쟁률</th>
+			<th>학과소개 및 취업분야</th>
+			<th>홈페이지</th>
+		</tr>
+		<!-- 반복 //-->
+		<tr>
+			<td class="unit" rowspan="1">자연예술대학</td>
+			<td class="unit">간호학과[교직]</td>
+			<td rowspan="1">1</td>
+			<td>3</td>
+			<td class="rate4" rowspan = '1'>3.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">미래 사회에 이바지할 바른 인성을 갖춘 창의적 간호 인재 양성 </span><br/>(취업분야) 병원간호사, 보건분야 공무원, 산업간호사, 가정간호사, 연구간호사, 보험심사간호사, 간호장교, 해외취업</td>
+			<td><a href="https://www.kunsan.ac.kr/nursing/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<!-- 총계 //-->
+		<tr class="total">
+			<td colspan=2>총계</td>
+			<td>1</td>
+			<td>3</td>
+			<td class="rate4">3.00 : 1</td>
+			<td colspan="2"></td>
+		</tr>
+		<!--// 총계 -->
+	</table>
+	</div>
+	<a name='lik_41269'></a><div id="SelType41269">
+	<h2><strong>학생부교과 저소득층학생</strong> 경쟁률 현황</h2>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableRatio3">
+		<colgroup>
+			<col width="8.5%" />
+			<col width="18" />
+			<col width="7%" />
+			<col width="7%" />
+			<col width="8%" />
+			<col width="44.5%" />
+			<col width="7%" />
+		</colgroup>
+		<tr>
+			<th>대학</th>
+			<th>모집단위</th>
+			<th>모집인원</th>
+			<th>지원인원</th>
+			<th>경쟁률</th>
+			<th>학과소개 및 취업분야</th>
+			<th>홈페이지</th>
+		</tr>
+		<!-- 반복 //-->
+		<tr>
+			<td class="unit" rowspan="3">인문콘텐츠융합대학</td>
+			<td class="unit">국어국문학과</td>
+			<td rowspan="1">1</td>
+			<td>1</td>
+			<td class="rate4" rowspan = '1'>1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">웹콘텐츠 시대, 4대 특성화 교육으로 K-문화 전문가 양성! </span><br/>(취업분야) 콘텐츠기획자, 웹라이터, 웹소설·웹툰 작가, 방송작가, 드라마작가, PD, 키워드에디터, 출판전문가, 문화예술전문가, 인문학연구원, 공무원, 한국어교사, 국어교사, 교직원, 독서지도사</td>
+			<td><a href="https://www.kunsan.ac.kr/korean/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">일어일문학과</td>
+			<td>1</td>
+			<td>1</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">서울로 유학 갈래, 일본으로 유학 갈래? </span><br/>(취업분야) 일본 현지 기업, 국내외 항공사, 국내외 호텔 및 리조트, 국내 외 공무원, IT계열</td>
+			<td><a href="https://www.kunsan.ac.kr/japanese/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">미디어문화학과</td>
+			<td>1</td>
+			<td>4</td>
+			<td class="rate2">4.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">믿으니까 미디어~ </span><br/>미디어콘텐츠연출가(영상촬영,편집 등), 프로듀서(PD), 시나리오 작가, 문화산업마케터, 미디어교육가, 프리랜서</td>
+			<td><a href="https://www.kunsan.ac.kr/mediaculture/index.kunsan" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit" rowspan="3">사회과학대학</td>
+			<td class="unit">사회복지학과</td>
+			<td>1</td>
+			<td>5</td>
+			<td class="rate2">5.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">사회복지와의 동행, 너라서 다행 </span><br/>(취업분야) 사회복지직·사회복지 관련 공무원(사회복지직 5급 사무관, 9급 지방직, 교정직) / 사회보험공단(국민연금, 근로복지, 장애인 고용공단 등), 지역사회복지관, 분야별 복지시설 (아동, 청소년, 노인, 장애인, 여성 등</td>
+			<td><a href="https://www.kunsan.ac.kr/nkssw/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">아동학과</td>
+			<td>1</td>
+			<td>1</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">국가의 미래인 아동의 건강한 성장을 지원하기 위한 전문가를 양성하는 학부 </span><br/>(취업분야) 국공립·직장·민간 어린이집 원장 및 교사, 육아종합지원센터, 유아교구 및 산업체, 아동전문 출판사 등 대학원 진학 : 관련분야 대학원</td>
+			<td><a href="https://www.kunsan.ac.kr/child_family/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">경영학과</td>
+			<td>1</td>
+			<td>2</td>
+			<td class="rate4">2.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">기업을 이해하고 미래 산업을 설계하는 데이터 기반 경영 인재 양성 학부 </span><br/>(취업분야) 일반기업(인사·마케팅·재무·전략), 금융기관(은행·증권·보험), 공기업 및 공공기관, 데이터 분석 및 경영컨설팅, 플랫폼 기업 및 IT기업, 유통·물류·SCM, 스타트업 창업 및 기업경영, ESG경영 및 지속가능경영 분야 등</td>
+			<td><a href="https://www.kunsan.ac.kr/business/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit" rowspan="1">AI·첨단대학</td>
+			<td class="unit">AI융합계열[교직]</td>
+			<td>4</td>
+			<td>2</td>
+			<td class="rate4">0.50 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">컴퓨터정보공학과: 인공지능/게임개발자/보안 인재를 양성하는 컴퓨터공학과 정보공학의 중심 컴퓨터정보공학과!</span><br/>(취업분야) 인공지능 개발자, 3D 게임개발자, 보안전문가, 클라우드 컴퓨팅 개발자, SW/웹 개발자, 컴퓨터 사이언티스트 ※ 최근 10년 내 졸업자 주요 취업 기업 : 삼성전자, (주)카카오, 네이버클라우드. CJ올리브네트워웍스, 스마일게이트<br/><span style="color: #CC0000">소프트웨어학과: 4차 산업의 핵심 기술을 선도하는 소프트웨어학과 </span><br/>(취업분야) 정보통신기술(ICT), 문화기술(CT), 금용·경영 등 관련 대기업, 벤처기업, 국가 정부기관의 연구소, 공무원, 국내외 대학원 등<br/><span style="color: #CC0000">인공지능융합학과: 고급 딥러닝 설계와 생성형 AI 기술로 미래 산업을 구현하는 인공지능융합학과 </span><br/>(취업분야) AI를 필요로 하고 활용하는 전 산업 분야의 대기업, 벤처기업, 국가기관, 공무원, 교수/교사, 국내외 연구소, 대학원 등<br/><span style="color: #CC0000">임베디드소프트웨어학과: 피지컬 AI시대의 주역, 임베디드 소프트웨어: 인공지능, 소프트웨어부터 자율주행, 로보틱스까지 모든 기술의 핵심 </span><br/>(취업분야) ① 임베디드 소프트웨어 분야: 펌웨어 개발자, 시스템 소프트웨어 개발자, 반도체 솔루션 개발자, 가전/모바일 기기 개발자, 등 ② 자율주행 및 로봇 분야 : 자율주행 AI,SW 개발자, 컴퓨터/로봇비전 개발자, AI모빌리티 개발자, 로봇 소프트웨어 개발자, 서비스/산업용 로봇 제어 개발자 등 ③ AIoT 소프트웨어 분야 : 스마프 홈, 스마트 팩토리, 스마트팜 개발자 등<br/><span style="color: #CC0000">AX융합통신공학과: AI와 통신의 융합, 초연결 시대를 설계하는 AX융합통신공학과 </span><br/>(취업분야) 한국전자통신연구원, 한국항공우주연구원, 한국방송통신전파진흥원, SK 텔레콤, KT, LG U플러스, 수협중앙회 어선안전조업국, 한국수자원공사, 주택관리공단, IT SW/HW 및 통신 SW/HW 관련 기업체, 공무원</td>
+			<td><a href="https://www.kunsan.ac.kr/ssw/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit" rowspan="1">해양과학대학</td>
+			<td class="unit">환경공학과</td>
+			<td>1</td>
+			<td>2</td>
+			<td class="rate4">2.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">지구를 살리는 의사 - 환경공학과, 에너지 전환 시대의 ESG 리더를 꿈꾼다! </span><br/>①환경공학 전문가 및 기술직 : 한국수자원공사(K-water), 한국환경공단, 한국농어촌공사 등의 공사; 환경엔지니어링 및 컨설팅사(환경영향평가, 환경복원, 방재 컨설팅 전문기업 등); 대기업 ESG부서, 환경안전팀, 제조업체 환경관리직 ②환경관련 연구직 : 국립생태원, K-water연구원, 국립환경과학원, 국립농업과학원, 수자원연구소 등 국가 및 공공 연구기관; 포스코 기술연구원, 고등기술연구원 등 대기업 부설 연구기관 ③환경직 공무원 (환경부, 지자체 환경정책과, 수질·대기·폐기물 담당 공무원); 환경연구사 (국립환경과학원, 환경부 및 지자체 산하 연구기관 등에서 환관련 연구 및 기술개발 등)</td>
+			<td><a href="https://www.kunsan.ac.kr/environment/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit" rowspan="2">공과대학</td>
+			<td class="unit">토목공학과</td>
+			<td>1</td>
+			<td>0</td>
+			<td class="rate4">0.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">자연과 문명의 조화, 지구를 디자인하는 토목공학과 </span><br/>(취업분야) 토목설계 엔지니어, 토목시공 엔지니어, 토목감리원, 토목분야 연구원, 재난·안전 평가원, 토목직 공무원, 토목 공기업</td>
+			<td><a href="https://www.kunsan.ac.kr/gscivil/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">기계공학부[교직]</td>
+			<td>1</td>
+			<td>3</td>
+			<td class="rate4">3.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">기계공학부!! 공학을 향한 열정 킵고잉 ~ 산업을 선도하는 기계공학부 / 모빌리티 산업 패러다임 변화에 대응하기 위한 다양한 활동을 구체화 함(미래 모빌리티 플랫폼 신뢰성 핵심연구지원센터) </span><br/>(취업분야) 기아자동차, GS건설, 타타대우상용차, 공업직 공무원.. 졸업 후에는 기계공학의 특성상 모든 산업분야에 걸쳐 취업이 가능. 기계, 자동차, 철강, 금속, 조선, 우주항공, 건설, 전자, 전기, 화학 등에 관련된 산업체에 진출하여 제품개발 및 설계, 생산관리, 공정자동화 검사 및 제어, 연구개발 등의 업무를 담당할 수 있으며 벤처기업에 진출하여 최신 첨단기술의 연구와 보급 업무를 담당. 또한 관련분야 공무원 및 교사 등으로 진출</td>
+			<td><a href="https://www.kunsan.ac.kr/kunsanwheel/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit" rowspan="2">자연예술대학</td>
+			<td class="unit">간호학과[교직]</td>
+			<td>1</td>
+			<td>4</td>
+			<td class="rate2">4.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">미래 사회에 이바지할 바른 인성을 갖춘 창의적 간호 인재 양성 </span><br/>(취업분야) 병원간호사, 보건분야 공무원, 산업간호사, 가정간호사, 연구간호사, 보험심사간호사, 간호장교, 해외취업</td>
+			<td><a href="https://www.kunsan.ac.kr/nursing/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">의류학과</td>
+			<td>1</td>
+			<td>1</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">패션을 알고 싶어? 패션이 사람을 만드니까! </span><br/>패션디자이너, 3D가상패션디자이너, 기획MD, 온라인마케터, 패턴사(2D CAD), VMD, 샵마스터, 수입바이어, 텍스타일디자이너, 소재컨버터, 콘텐츠마케터, 그레이딩사, 컬러리스트, 패션일러스트레이터, 패션잡지 저널리스트, 패턴에디터, 무대의상디자이너, 니트디자이너, 모델리스트, 패션코디네이터, 악세서리 디자이너, 생산MD, 수출입무역업, 패션인플루언서</td>
+			<td><a href="https://www.kunsan.ac.kr/clothing/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<!-- 총계 //-->
+		<tr class="total">
+			<td colspan=2>총계</td>
+			<td>15</td>
+			<td>26</td>
+			<td class="rate4">1.73 : 1</td>
+			<td colspan="2"></td>
+		</tr>
+		<!--// 총계 -->
+	</table>
+	</div>
+	<a name='lik_41270'></a><div id="SelType41270">
+	<h2><strong>학생부종합 일반학생</strong> 경쟁률 현황</h2>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableRatio3">
+		<colgroup>
+			<col width="8.5%" />
+			<col width="18" />
+			<col width="7%" />
+			<col width="7%" />
+			<col width="8%" />
+			<col width="44.5%" />
+			<col width="7%" />
+		</colgroup>
+		<tr>
+			<th>대학</th>
+			<th>모집단위</th>
+			<th>모집인원</th>
+			<th>지원인원</th>
+			<th>경쟁률</th>
+			<th>학과소개 및 취업분야</th>
+			<th>홈페이지</th>
+		</tr>
+		<!-- 반복 //-->
+		<tr>
+			<td class="unit" rowspan="8">인문콘텐츠융합대학</td>
+			<td class="unit">국어국문학과</td>
+			<td rowspan="1">4</td>
+			<td>11</td>
+			<td class="rate4" rowspan = '1'>2.75 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">웹콘텐츠 시대, 4대 특성화 교육으로 K-문화 전문가 양성! </span><br/>(취업분야) 콘텐츠기획자, 웹라이터, 웹소설·웹툰 작가, 방송작가, 드라마작가, PD, 키워드에디터, 출판전문가, 문화예술전문가, 인문학연구원, 공무원, 한국어교사, 국어교사, 교직원, 독서지도사</td>
+			<td><a href="https://www.kunsan.ac.kr/korean/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">영어영문학과[교직]</td>
+			<td>5</td>
+			<td>6</td>
+			<td class="rate4">1.20 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">디지털 시대, 꼭 필요한 영어! 자유롭게 쓰고 싶어?</span><br/>(취업분야) 영어교사, 공무원, 기업근무자, 항공승무원, 통·번역사</td>
+			<td><a href="https://www.kunsan.ac.kr/knuenglish/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">일어일문학과</td>
+			<td>5</td>
+			<td>30</td>
+			<td class="rate1">6.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">서울로 유학 갈래, 일본으로 유학 갈래? </span><br/>(취업분야) 일본 현지 기업, 국내외 항공사, 국내외 호텔 및 리조트, 국내 외 공무원, IT계열</td>
+			<td><a href="https://www.kunsan.ac.kr/japanese/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">중어중문학과[교직]</td>
+			<td>4</td>
+			<td>8</td>
+			<td class="rate4">2.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">요즘 같은 시대에 중국어 안 배우면 코 베이징!! </span><br/>(취업분야) 중국어교육, 해양경찰, 외사경찰, 해외마케팅, 국제교류, 관광·레저, 국제물류, 호텔·항공사, 통·번역, 한중MC</td>
+			<td><a href="https://www.kunsan.ac.kr/chinese/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">역사학과</td>
+			<td>5</td>
+			<td>13</td>
+			<td class="rate4">2.60 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">과거를 알면 미래가 보입니다! 역사학·고고학·문화자원을 바탕으로 과거를 오늘과 미래로 연결하는 인재를 양성합니다. </span><br/>(취업분야) 고고학자, 역사학자, 연구원, 역사교육 전문가(교사, 교수, 강사 등), 역사 콘텐츠 기획 전문가, 학예사, 학예직 공무원, 기록연구사</td>
+			<td><a href="https://www.kunsan.ac.kr/history/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">철학과[교직]</td>
+			<td>2</td>
+			<td>2</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">진리는 나의 힘! 모든 학문의 뿌리는 철학! </span><br/>(취업분야) 철학 교수, 교사, 연구원, 공무원, 논리논술지도사, 독서토론지도사, 글쓰기지도사, 어린이철학지도사, 영화 및 문화 평론가, 광고업, 종교계, 언론계, 관광업, 출판계, 대학원 및 교육대학원, 법학전문대학</td>
+			<td><a href="https://www.kunsan.ac.kr/philosophy/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">미디어문화학과</td>
+			<td>8</td>
+			<td>30</td>
+			<td class="rate2">3.75 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">믿으니까 미디어~ </span><br/>미디어콘텐츠연출가(영상촬영,편집 등), 프로듀서(PD), 시나리오 작가, 문화산업마케터, 미디어교육가, 프리랜서</td>
+			<td><a href="https://www.kunsan.ac.kr/mediaculture/index.kunsan" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">자율전공학부</td>
+			<td>42</td>
+			<td>67</td>
+			<td class="rate4">1.60 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">자기설계 맞춤 인재, 내가 만드는 미래의 나, 자율전공학부에서! </span><br/>국공립기관, 병원, 교육기관, 기업체, 보건소 및 병의원 운동처방사, 재활트레이너, 한국과학창의재단, 동아사이언스, 시공테크, 각종 과학관/박물관, 교통전문직 공무원, 교통연구원, 국토연구원, 건설기술 연구원, 제약사, 동물용 의약품 제조회사, 식품회사, 바이오헬스기관 전반, 환경공무원, 정부연구소, 정부출연기업, 민간연구기업,  디지털·미디어아트작가, 3D모델러, 캐릭터 아트 작가, 교육 분야, 언어치료 분야, 해양수산분야 정부 기관 및 국책연구소, 해양바이오기업(의약품, 화장품, 건강기능식품 개발), 변리사, 국제기구</td>
+			<td><a href="https://www.kunsan.ac.kr/CLS/index.kunsan" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit" rowspan="10">사회과학대학</td>
+			<td class="unit">법경찰학과</td>
+			<td>9</td>
+			<td>40</td>
+			<td class="rate2">4.44 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">법학과 경찰학을 기반으로 공공 · 법조 분야 전문 인재를 양성하는 학과 </span><br/>(취업분야) 일반직공무원(행정기관, 법원 등) 및 특정직공무원(경찰공무원, 소방공무원, 교육공무원, 군인, 군무원 등) 임용, 로스쿨 진학, 공공기관 및 사기업 취업, 법·노무·공공 영역 자격증(법무사, 노무사, 손해사정사 등) 취득</td>
+			<td><a href="https://www.kunsan.ac.kr/kslaw/index.kunsan" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">행정학과</td>
+			<td>8</td>
+			<td>15</td>
+			<td class="rate4">1.88 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">정부/공공기관을 넘어 기업·지역사회·국제기구까지 다양한 영역에서 더 나은 사회를 위한 융합형 인재 양성 </span><br/>(취업분야) 일반행정직 9급, 7급 공무원, 소방공무원, 정책연구기관, 지방공기업, 출자·출연기관, 민간기업 대외협력·ESG·공공사업 분야, 비영리기관 및 국제개발협력 분야 등</td>
+			<td><a href="https://www.kunsan.ac.kr/knupa/index.kunsan" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">사회복지학과</td>
+			<td>11</td>
+			<td>43</td>
+			<td class="rate2">3.91 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">사회복지와의 동행, 너라서 다행 </span><br/>(취업분야) 사회복지직·사회복지 관련 공무원(사회복지직 5급 사무관, 9급 지방직, 교정직) / 사회보험공단(국민연금, 근로복지, 장애인 고용공단 등), 지역사회복지관, 분야별 복지시설 (아동, 청소년, 노인, 장애인, 여성 등</td>
+			<td><a href="https://www.kunsan.ac.kr/nkssw/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">아동학과</td>
+			<td>7</td>
+			<td>12</td>
+			<td class="rate4">1.71 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">국가의 미래인 아동의 건강한 성장을 지원하기 위한 전문가를 양성하는 학부 </span><br/>(취업분야) 국공립·직장·민간 어린이집 원장 및 교사, 육아종합지원센터, 유아교구 및 산업체, 아동전문 출판사 등 대학원 진학 : 관련분야 대학원</td>
+			<td><a href="https://www.kunsan.ac.kr/child_family/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">경영학과</td>
+			<td>9</td>
+			<td>25</td>
+			<td class="rate4">2.78 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">기업을 이해하고 미래 산업을 설계하는 데이터 기반 경영 인재 양성 학부 </span><br/>(취업분야) 일반기업(인사·마케팅·재무·전략), 금융기관(은행·증권·보험), 공기업 및 공공기관, 데이터 분석 및 경영컨설팅, 플랫폼 기업 및 IT기업, 유통·물류·SCM, 스타트업 창업 및 기업경영, ESG경영 및 지속가능경영 분야 등</td>
+			<td><a href="https://www.kunsan.ac.kr/business/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">국제물류학과</td>
+			<td>5</td>
+			<td>5</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">취업률 끝판왕! 물류가 멈추면 세상이 멈춘다. 우리의 생활을 움직이는 숨은 주역 </span><br/>(취업분야) 물류기업(항공, 해운, 항만, 물류시설 등), 유통기업(전자상거래, 백화점, 편의점 등), 제조기업(생산물류, 구매물류, 자재관리 등)</td>
+			<td><a href="https://www.kunsan.ac.kr/logistics/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">무역학과</td>
+			<td>6</td>
+			<td>9</td>
+			<td class="rate4">1.50 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">국경을 넘어 세계로, 신 대항해 시대를 여는 무역 </span><br/>(취업분야) 관세법인(관세사), 금융권(신용장 전문가 및 금융전문가), 상사분쟁 조정관 (대한상사중재원), 민간기업(수출입 부분), 관련 직종 공무원 (관세직, 출입국관리직, 세무 등)</td>
+			<td><a href="https://www.kunsan.ac.kr/trade/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">회계학부</td>
+			<td>8</td>
+			<td>6</td>
+			<td class="rate4">0.75 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">숫자로 경영하라! </span><br/>(취업분야) 회계전문가(공인회계사, 세무사), 세무직 공무원(국가직, 지방직), 기업회계담당자(민간기업, 공기업), 금융기관 종사자</td>
+			<td><a href="https://www.kunsan.ac.kr/accounting/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">금융부동산경제학과</td>
+			<td>5</td>
+			<td>12</td>
+			<td class="rate4">2.40 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">돈과 사람이 만든 세상에서 이야기를 푸는 학문 </span><br/>금융기관, 공기업, 사기업, 공무원</td>
+			<td><a href="https://www.kunsan.ac.kr/economics/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">상담심리학과</td>
+			<td>5</td>
+			<td>15</td>
+			<td class="rate4">3.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">마음을 읽고, 삶을 바꾸는 상담 전문가의 시작 </span><br/>(취업분야) 학교상담실(위센터, 위클래스), 청소년상담기관, 대학학생상담센터, 기업 상담(EAP), 정신건강의학과, 신경의학과, 정신건강복지센터, 상담센터 개소, 프리랜서 상담가, 연구 및 교육 분야</td>
+			<td><a href="https://www.kunsan.ac.kr/index.kunsan?contentsSid=8718&sso=ok&&cpath=%2Fiphak" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit" rowspan="5">AI·첨단대학</td>
+			<td class="unit">AI융합계열[교직]</td>
+			<td>37</td>
+			<td>21</td>
+			<td class="rate4">0.57 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">컴퓨터정보공학과: 인공지능/게임개발자/보안 인재를 양성하는 컴퓨터공학과 정보공학의 중심 컴퓨터정보공학과!</span><br/>(취업분야) 인공지능 개발자, 3D 게임개발자, 보안전문가, 클라우드 컴퓨팅 개발자, SW/웹 개발자, 컴퓨터 사이언티스트 ※ 최근 10년 내 졸업자 주요 취업 기업 : 삼성전자, (주)카카오, 네이버클라우드. CJ올리브네트워웍스, 스마일게이트<br/><span style="color: #CC0000">소프트웨어학과: 4차 산업의 핵심 기술을 선도하는 소프트웨어학과 </span><br/>(취업분야) 정보통신기술(ICT), 문화기술(CT), 금용·경영 등 관련 대기업, 벤처기업, 국가 정부기관의 연구소, 공무원, 국내외 대학원 등<br/><span style="color: #CC0000">인공지능융합학과: 고급 딥러닝 설계와 생성형 AI 기술로 미래 산업을 구현하는 인공지능융합학과 </span><br/>(취업분야) AI를 필요로 하고 활용하는 전 산업 분야의 대기업, 벤처기업, 국가기관, 공무원, 교수/교사, 국내외 연구소, 대학원 등<br/><span style="color: #CC0000">임베디드소프트웨어학과: 피지컬 AI시대의 주역, 임베디드 소프트웨어: 인공지능, 소프트웨어부터 자율주행, 로보틱스까지 모든 기술의 핵심 </span><br/>(취업분야) ① 임베디드 소프트웨어 분야: 펌웨어 개발자, 시스템 소프트웨어 개발자, 반도체 솔루션 개발자, 가전/모바일 기기 개발자, 등 ② 자율주행 및 로봇 분야 : 자율주행 AI,SW 개발자, 컴퓨터/로봇비전 개발자, AI모빌리티 개발자, 로봇 소프트웨어 개발자, 서비스/산업용 로봇 제어 개발자 등 ③ AIoT 소프트웨어 분야 : 스마프 홈, 스마트 팩토리, 스마트팜 개발자 등<br/><span style="color: #CC0000">AX융합통신공학과: AI와 통신의 융합, 초연결 시대를 설계하는 AX융합통신공학과 </span><br/>(취업분야) 한국전자통신연구원, 한국항공우주연구원, 한국방송통신전파진흥원, SK 텔레콤, KT, LG U플러스, 수협중앙회 어선안전조업국, 한국수자원공사, 주택관리공단, IT SW/HW 및 통신 SW/HW 관련 기업체, 공무원</td>
+			<td><a href="https://www.kunsan.ac.kr/ssw/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">이차전지·에너지학과</td>
+			<td>14</td>
+			<td>9</td>
+			<td class="rate4">0.64 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">Your Energy, Our Future </span><br/>(취업분야) 이차전지·에너지 분야 졸업생은 대체에너지개발연구원, 스마트그리드 엔지니어, 신재생에너지 전문가, LG에너지솔루션, 삼성SDI, SK온 등 이차전지 기업과 신재생에너지 산업, 연구기관, 공공기관, 정부 부처 등</td>
+			<td><a href="https://www.kunsan.ac.kr/energy/index.kunsan" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">스마트오션모빌리티공학과</td>
+			<td>4</td>
+			<td>0</td>
+			<td class="rate4">0.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">모빌리티, 인공지능, 로봇이 만나 미래를 열다! </span><br/>(취업분야) 대형 조선소, 유니콘기업, 중소벤처기업과 같은 기업에서의 설계, 관리직, 국책연구소와 기업연구소와 같은 연구기관에서의 연구직 및 기능직, 정부 및 지방자치단체와 공공기관의 기술직 공무원 및 군무원, 국내 및 해외 대학원 석사, 박사</td>
+			<td><a href="https://www.kunsan.ac.kr/some/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">스마트시티학과</td>
+			<td>8</td>
+			<td>6</td>
+			<td class="rate4">0.75 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">미래 도시를 설계하고 혁신하는 크리에이터, 당신이 바로 스마트시티 디자이너! </span><br/>(취업분야) 공공 부문 (정부·공기업·지자체), 공기업, 민간기업(삼성SDS, LG CNS, SK C&C, KT, 현대자동차, 포스코건설, 현대건설, GS건설 등), 연구 및 학술 분야, 대학원 진학</td>
+			<td><a href="https://www.kunsan.ac.kr/dscs/index.kunsan" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">바이오헬스학과</td>
+			<td>4</td>
+			<td>3</td>
+			<td class="rate4">0.75 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">인간과 동물을 풍요롭게, 비전과 철학을 가진 미래 산업형 전문가를 양성합니다. </span><br/>(취업분야) 의약품 연구원, 의료기기 개발 연구원, 식품 연구원, 동물용 의약품 연구원, 동물용 사료 연구원, 규제기관 심사관, 국·공립 연구원, 규제과학 전문가</td>
+			<td><a href="https://www.kunsan.ac.kr/biohealth/index.kunsan" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit" rowspan="11">해양과학대학</td>
+			<td class="unit">해양수산공공인재학과</td>
+			<td>4</td>
+			<td>13</td>
+			<td class="rate2">3.25 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">"공무원 세계의 블루오션(Blue Ocean)" </span><br/>(취업분야) 해양경찰 공무원(함정, 선박관제), 해양수산직 · 어로직 · 선박직 · 수로직 · 해양교통시설직 공무원, 해양수산부 산하 공공기관 직원, 항해사, 도선사, 대한민국 해군장교, 전공 관련 연구원 및 교수, 해운·수산회사 직원</td>
+			<td><a href="https://www.kunsan.ac.kr/marine/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">해양생명과학과</td>
+			<td>5</td>
+			<td>7</td>
+			<td class="rate4">1.40 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">해양바이오산업의 중심학과~ 해양바이오소재 생산 관련 4차산업 선도학과 </span><br/>(취업분야) 수산연구직(국립수산과학원, 지자체수산연구소), 수산과학기술직(수산물품질관리원, 지방해양수산청, 동서남해어업관리단, 해양수산직공무원, 국립해양생물자원관, 한국해양수산연구원, 국립공원공단, 수산자원관리공단 등), 스마트양식기업, 양어사료기업, 해조류개발기업, 해양바이오기업, 아쿠아리움, 환경영향평가 등</td>
+			<td><a href="https://www.kunsan.ac.kr/aquaculture/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">해양생물자원학과</td>
+			<td>6</td>
+			<td>15</td>
+			<td class="rate4">2.50 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">해양·수산분야 글로벌 인재 양성 학과 </span><br/>(취업분야) 해양수산부 및 지자체 공무원, 국·공립 연구기관, 환경기업, 아쿠아리움, 대학원 진학</td>
+			<td><a href="https://www.kunsan.ac.kr/mbiotec/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">수산생명의학과</td>
+			<td>8</td>
+			<td>24</td>
+			<td class="rate4">3.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">우리는 물고기의사! 수산질병관리사 면허 갖고싶니? </span><br/>(취업분야) 수산질병관리원 개원 및 취직(물고기병원 개원), 해양수산부, 국립수산과학원, 국립수산물품질관리원, 지방자지단체의 수산 해양직 공무원, 동물용의약품 제약회사 및 사료회사, 수산관련 공기업(수협, 한국수산자원공단 등), 아쿠아리움, 대학원</td>
+			<td><a href="https://www.kunsan.ac.kr/dalm/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">식품영양학과[교직]</td>
+			<td>7</td>
+			<td>24</td>
+			<td class="rate2">3.43 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">'건강한 미래를 만드는 식품영양 전문가 양성 학과' </span><br/>(취업분야) 전문영양사(학교, 병원, 단체급식 등), 식품위생 보건계열 공무원 (시청, 보건소 등), 어린이·사회복지급식관리지원센터, 영양상담원 (사회복지시설, 스포츠센터 등), 식품개발·관리직 (식품산업체), 급식코디네이터, 푸드코디네이터 등</td>
+			<td><a href="https://www.kunsan.ac.kr/foodnutr/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">해양경찰학과</td>
+			<td>8</td>
+			<td>25</td>
+			<td class="rate2">3.13 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">미래를 여는 경찰인재 양성의 요람 </span><br/>(취업분야) 경찰공무원(해양경찰청, 경찰청), 국가.지방직 공무원 등</td>
+			<td><a href="https://www.kunsan.ac.kr/mpolice/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">생명과학과</td>
+			<td>6</td>
+			<td>6</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">유전자에서 생태계까지! 첨단 바이오 기술과 AI 데이터 융합으로 미래 생명과학, 그린바이오 산업을 선도할 2027학년도 주인공을 기다립니다! </span><br/>(취업분야) 생명과학 연구원, 그린바이오 기업 R&D, 스마트농업 연구원, 생태 및 생물분류 연구원, 국가 연구직·기술직 공무원, 환경영향평가사, 농림축산 생물검역관, 디지털 육종 전문가, AI·생물정보학 전문가, 생물교육전문가, 생태큐레이터</td>
+			<td><a href="https://www.kunsan.ac.kr/biology/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">기관공학과</td>
+			<td>3</td>
+			<td>5</td>
+			<td class="rate4">1.67 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">선박의 심장, 만능형 엔지니어 </span><br/>(취업분야) 선박 기관사, 해양경찰, 해군 장교, 공무원, 기술직 엔지니어</td>
+			<td><a href="https://www.kunsan.ac.kr/marineengineering/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">식품생명공학과</td>
+			<td>4</td>
+			<td>11</td>
+			<td class="rate4">2.75 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">식품에 숨은 비밀을 파헤치는 과학의 여정! </span><br/>(취업분야) 일반기업((주)대상, 대두식품, 오리온, 하림, 참프레, 프라임제약, 종근당, 광동제약 등),  공공기관(농촌진흥청, 한국식품연구원, 한국기능식품연구원, 해양수산과학기술 진흥원, 한국식품산업클러스터진흥원 등), 공무원(농업직, 수산직, 위생직, 보건직 공무원 등)</td>
+			<td><a href="https://www.kunsan.ac.kr/foodscience/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">환경공학과</td>
+			<td>9</td>
+			<td>6</td>
+			<td class="rate4">0.67 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">지구를 살리는 의사 - 환경공학과, 에너지 전환 시대의 ESG 리더를 꿈꾼다! </span><br/>①환경공학 전문가 및 기술직 : 한국수자원공사(K-water), 한국환경공단, 한국농어촌공사 등의 공사; 환경엔지니어링 및 컨설팅사(환경영향평가, 환경복원, 방재 컨설팅 전문기업 등); 대기업 ESG부서, 환경안전팀, 제조업체 환경관리직 ②환경관련 연구직 : 국립생태원, K-water연구원, 국립환경과학원, 국립농업과학원, 수자원연구소 등 국가 및 공공 연구기관; 포스코 기술연구원, 고등기술연구원 등 대기업 부설 연구기관 ③환경직 공무원 (환경부, 지자체 환경정책과, 수질·대기·폐기물 담당 공무원); 환경연구사 (국립환경과학원, 환경부 및 지자체 산하 연구기관 등에서 환관련 연구 및 기술개발 등)</td>
+			<td><a href="https://www.kunsan.ac.kr/environment/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">해양건설공학과</td>
+			<td>3</td>
+			<td>6</td>
+			<td class="rate4">2.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">해양 워터프론트 전문가는 해양건설공학과가 책임지겠습니다. </span><br/>(취업분야) 공무원 (전북도청, 충남도청, 군산시청, 익산시청 등 다수), 공기업 (농어촌공사, 한국국토정보공사, 코레일), 건설시공회사 (한화건설, 대림건설, 서희건설 등), 설계사 (항도엔지니어링, 한국종합기술, 대영엔지니어링 등)</td>
+			<td><a href="https://www.kunsan.ac.kr/constructionengineering/index.kunsan" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit" rowspan="8">공과대학</td>
+			<td class="unit">전자공학과[교직]</td>
+			<td>4</td>
+			<td>9</td>
+			<td class="rate4">2.25 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">너의 손에 있는 작은 세상(전자기기)을 만드는 전자공학! </span><br/>(취업분야) ①전자기업: 전자 제조업체, 반도체 기업, 전자 제품 회사 등에서 하드웨어 설계, 소프트웨어 개발, 시스템 엔지니어링, 제조, 품질 관리 등 다양한 역할을 수행할 수 있습니다. ②통신 기업: 통신 회사나 네트워크 기업에서 통신 시스템 설계, 네트워크 관리, 통신 소프트웨어 개발 등의 업무를 할 수 있습니다. ③컴퓨터 기업: 하드웨어 회사나 소프트웨어 기업에서 컴퓨터 시스템 설계, 임베디드 시스템 개발, 소프트웨어 엔지니어링 등을 할 수 있습니다. ④자동차 및 운송 기업: 자동차 제조업체나 운송 관련 기업에서 자율 주행 시스템, 차량 전자 시스템, 차량 통신 등에 관련된 업무를 할 수 있습니다. ⑤에너지 기업: 전력 회사나 에너지 기업에서 전력 전자, 제어 시스템, 스마트 그리드 등과 관련된 업무를 할 수 있습니다. ⑥중등교사 : 교직과정을 이수하여 중등학교정교사(2급)을 수료후 중·고등학교에 재직할수 있다.</td>
+			<td><a href="https://www.kunsan.ac.kr/electronic/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">전기공학과</td>
+			<td>9</td>
+			<td>31</td>
+			<td class="rate2">3.44 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">찌릿~ 찌릿! 전기에너지의 모든 것, 전기공학과와 함께! </span><br/>(취업분야) 공기업 (한국전력공사, 전기안전공사, 한국철도공사 등) ㅁ발전회사 (한국수력원자력, 서부발전, 중부발전 등) 산업체 (삼성전자, LG전자, 현대자동차, 현대중공업, 두산중공업 등) 전기설비 제조업체 및 전기공사 업체</td>
+			<td><a href="https://www.kunsan.ac.kr/electrical/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">신소재공학과</td>
+			<td>3</td>
+			<td>3</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">4차 산업의 핵심인 AI 반도체와 미래 첨단산업의 핵심은 바로 신소재!!! </span><br/>(취업분야) 반도체분야, 금속자동차분야, 전자부품소재장비분야, 이차전지 에너지분야, 공기업, 연구소</td>
+			<td><a href="https://www.kunsan.ac.kr/mse/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">화학공학과</td>
+			<td>4</td>
+			<td>2</td>
+			<td class="rate4">0.50 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">탄소중립으로 기후위기에서 지구를 지키는 과학의 마법사! 화학공학! </span><br/>(취업분야) ①에너지 : 발전소, 가스, 태양광, 수소연료전지, 이차전지 ②석유화학 : 고분자, 계면활성제, 촉매, 정유산업 ③정밀화학 : 제약, 화장품, 농약, 비료, 페인트, 식품 ④ IT산업 : 디스플레이, 반도체</td>
+			<td><a href="https://www.kunsan.ac.kr/nanochemeng/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">토목공학과</td>
+			<td>8</td>
+			<td>7</td>
+			<td class="rate4">0.88 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">자연과 문명의 조화, 지구를 디자인하는 토목공학과 </span><br/>(취업분야) 토목설계 엔지니어, 토목시공 엔지니어, 토목감리원, 토목분야 연구원, 재난·안전 평가원, 토목직 공무원, 토목 공기업</td>
+			<td><a href="https://www.kunsan.ac.kr/gscivil/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">기계공학부[교직]</td>
+			<td>15</td>
+			<td>28</td>
+			<td class="rate4">1.87 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">기계공학부!! 공학을 향한 열정 킵고잉 ~ 산업을 선도하는 기계공학부 / 모빌리티 산업 패러다임 변화에 대응하기 위한 다양한 활동을 구체화 함(미래 모빌리티 플랫폼 신뢰성 핵심연구지원센터) </span><br/>(취업분야) 기아자동차, GS건설, 타타대우상용차, 공업직 공무원.. 졸업 후에는 기계공학의 특성상 모든 산업분야에 걸쳐 취업이 가능. 기계, 자동차, 철강, 금속, 조선, 우주항공, 건설, 전자, 전기, 화학 등에 관련된 산업체에 진출하여 제품개발 및 설계, 생산관리, 공정자동화 검사 및 제어, 연구개발 등의 업무를 담당할 수 있으며 벤처기업에 진출하여 최신 첨단기술의 연구와 보급 업무를 담당. 또한 관련분야 공무원 및 교사 등으로 진출</td>
+			<td><a href="https://www.kunsan.ac.kr/kunsanwheel/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">건축공학과</td>
+			<td>7</td>
+			<td>25</td>
+			<td class="rate2">3.57 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">창의적 설계로 공간의 가치를 높이고, 완성도 높은 건축을 생산하는 정통 건축인 </span><br/>(취업분야) 1. 건축설계회사: 크리에이티브 디자인을 담당하는 종합건축설계사무소 등 2. 종합건설회사: 스마트 시공을 선도하는 현대건설, GS건설, 삼성물산 등 건설회사 3. 엔지니어링회사: 안전한 녹색건축을 지향하는 건축구조, 친환경, 건축설비 설계회사 등 4. 정부 및 공공분야: 도시의 얼굴을 디자인하는 건축직 공무원, LH공사, 국토정보공사, 새만금개발공사 등</td>
+			<td><a href="https://architecture.kunsan.ac.kr" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">공간디자인융합기술학과</td>
+			<td>6</td>
+			<td>6</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">사람을 움직이는 공간의 힘, 공간디자이너가 합니다!! </span><br/>(취업분야) 1. 공간디자이너: 인간을 위한 생활 문화를 유지하는데 필요한 실내 공간을 창조하는 자로서, 실내 건축, 전시 디자인, 가구·조명디자이너, 마감재 관련 업체에 디자이너로 진출 2. 현장관리자: 실내 건축 설계도서를 바탕으로 공사를 계획하고 시공 현장의 전반적 사항을 관리하는 자로서 건축 및 실내 건축 관련 업체에 시공 실무자로 진출 3. 건축·디자인 관련 공무원: 공공기관이나 지자체의 건축·디자인 관련 사업의 진행 기획 및 관련 행정업무를 신속 정화하게 처리하는 자로서, 국가 및 시·도/ 지자체의 건축직 혹은 디자인직류 공무원 시험을 통해 임용</td>
+			<td><a href="https://www.kunsan.ac.kr/interiorhousing/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit" rowspan="5">자연예술대학</td>
+			<td class="unit">간호학과[교직]</td>
+			<td>13</td>
+			<td>73</td>
+			<td class="rate1">5.62 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">미래 사회에 이바지할 바른 인성을 갖춘 창의적 간호 인재 양성 </span><br/>(취업분야) 병원간호사, 보건분야 공무원, 산업간호사, 가정간호사, 연구간호사, 보험심사간호사, 간호장교, 해외취업</td>
+			<td><a href="https://www.kunsan.ac.kr/nursing/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">수학과[교직]</td>
+			<td>2</td>
+			<td>0</td>
+			<td class="rate4">0.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">원하면 뭐든 이룰 수 있는 수학과! </span><br/>(취업분야) 중등교사, 대학교수, 다양한 이공계 연구소 연구원, 통계청 리서치회사, 여론 및 마케팅 조사 및 분석, 데이터사이언티스트, 빅데이터분석가, 딥러닝(머신러닝) 및 AI 엔지니어, 은행, 보험 및 증권회사, 자산평가, 신용평가회사, 영상처리전문가, 유체역학 시뮬레이션전문가, 컴퓨팅소프트웨어개발자</td>
+			<td><a href="https://www.kunsan.ac.kr/math/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">첨단과학기술학부</td>
+			<td>7</td>
+			<td>7</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">반도체물리전공: 입자에서 우주까지 모든 것을 설명한다. </span><br/>ㅁ연구소: 반도체, 전기전자, 신소재 및 신재생에너지 분야 연구소ㅁ기업: 삼성전자, 이차전지 관련 기업ㅁ정부기관: 기술직 공무원, 변리사<br/><span style="color: #CC0000">소재화학전공: 소재화학 없이는 어떤 것도 만들기 힘들 껄? </span><br/>ㅁ연구소 : 한국화학연구소, 보건환경연구소, 한국생명공학연구소, 국립과학수사연구소, 한국핵융합연구소 등 ㅁ기업 : OCI, 군장에너지, 동우, 대상, 한국바스프, 한농화성, 세아베스틸, 도레이첨단소재, 한국유리, 한림제약, 보령제약 등 ㅁ정부기관 : 전북지방환경청, 환경직공무원, 화학교사</td>
+			<td><a href="https://www.kunsan.ac.kr/cdscience/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">체육학부[교직]</td>
+			<td>7</td>
+			<td>27</td>
+			<td class="rate2">3.86 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">SPORTS FOR ALL ! </span><br/>(취업분야) 체육전문가(시·도 체육회, 장애인체육회, 경기단체 등), 스포츠지도사(전문·생활·노인·장애인·유소년), 건강운동관리사, 체육교사(중·고등학교), 스포츠센터 운영 및 지도자, 실업팀 선수, 군장교, 경찰 및 소방직 공무원</td>
+			<td><a href="https://www.kunsan.ac.kr/ksports/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">의류학과</td>
+			<td>7</td>
+			<td>19</td>
+			<td class="rate4">2.71 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">패션을 알고 싶어? 패션이 사람을 만드니까! </span><br/>패션디자이너, 3D가상패션디자이너, 기획MD, 온라인마케터, 패턴사(2D CAD), VMD, 샵마스터, 수입바이어, 텍스타일디자이너, 소재컨버터, 콘텐츠마케터, 그레이딩사, 컬러리스트, 패션일러스트레이터, 패션잡지 저널리스트, 패턴에디터, 무대의상디자이너, 니트디자이너, 모델리스트, 패션코디네이터, 악세서리 디자이너, 생산MD, 수출입무역업, 패션인플루언서</td>
+			<td><a href="https://www.kunsan.ac.kr/clothing/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<!-- 총계 //-->
+		<tr class="total">
+			<td colspan=2>총계</td>
+			<td>370</td>
+			<td>767</td>
+			<td class="rate4">2.07 : 1</td>
+			<td colspan="2"></td>
+		</tr>
+		<!--// 총계 -->
+	</table>
+	</div>
+	<a name='lik_41272'></a><div id="SelType41272">
+	<h2><strong>학생부종합 사회통합</strong> 경쟁률 현황</h2>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableRatio3">
+		<colgroup>
+			<col width="8.5%" />
+			<col width="18" />
+			<col width="7%" />
+			<col width="7%" />
+			<col width="8%" />
+			<col width="44.5%" />
+			<col width="7%" />
+		</colgroup>
+		<tr>
+			<th>대학</th>
+			<th>모집단위</th>
+			<th>모집인원</th>
+			<th>지원인원</th>
+			<th>경쟁률</th>
+			<th>학과소개 및 취업분야</th>
+			<th>홈페이지</th>
+		</tr>
+		<!-- 반복 //-->
+		<tr>
+			<td class="unit" rowspan="1">인문콘텐츠융합대학</td>
+			<td class="unit">국어국문학과</td>
+			<td rowspan="1">1</td>
+			<td>2</td>
+			<td class="rate4" rowspan = '1'>2.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">웹콘텐츠 시대, 4대 특성화 교육으로 K-문화 전문가 양성! </span><br/>(취업분야) 콘텐츠기획자, 웹라이터, 웹소설·웹툰 작가, 방송작가, 드라마작가, PD, 키워드에디터, 출판전문가, 문화예술전문가, 인문학연구원, 공무원, 한국어교사, 국어교사, 교직원, 독서지도사</td>
+			<td><a href="https://www.kunsan.ac.kr/korean/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit" rowspan="1">AI·첨단대학</td>
+			<td class="unit">AI융합계열[교직]</td>
+			<td>1</td>
+			<td>0</td>
+			<td class="rate4">0.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">컴퓨터정보공학과: 인공지능/게임개발자/보안 인재를 양성하는 컴퓨터공학과 정보공학의 중심 컴퓨터정보공학과!</span><br/>(취업분야) 인공지능 개발자, 3D 게임개발자, 보안전문가, 클라우드 컴퓨팅 개발자, SW/웹 개발자, 컴퓨터 사이언티스트 ※ 최근 10년 내 졸업자 주요 취업 기업 : 삼성전자, (주)카카오, 네이버클라우드. CJ올리브네트워웍스, 스마일게이트<br/><span style="color: #CC0000">소프트웨어학과: 4차 산업의 핵심 기술을 선도하는 소프트웨어학과 </span><br/>(취업분야) 정보통신기술(ICT), 문화기술(CT), 금용·경영 등 관련 대기업, 벤처기업, 국가 정부기관의 연구소, 공무원, 국내외 대학원 등<br/><span style="color: #CC0000">인공지능융합학과: 고급 딥러닝 설계와 생성형 AI 기술로 미래 산업을 구현하는 인공지능융합학과 </span><br/>(취업분야) AI를 필요로 하고 활용하는 전 산업 분야의 대기업, 벤처기업, 국가기관, 공무원, 교수/교사, 국내외 연구소, 대학원 등<br/><span style="color: #CC0000">임베디드소프트웨어학과: 피지컬 AI시대의 주역, 임베디드 소프트웨어: 인공지능, 소프트웨어부터 자율주행, 로보틱스까지 모든 기술의 핵심 </span><br/>(취업분야) ① 임베디드 소프트웨어 분야: 펌웨어 개발자, 시스템 소프트웨어 개발자, 반도체 솔루션 개발자, 가전/모바일 기기 개발자, 등 ② 자율주행 및 로봇 분야 : 자율주행 AI,SW 개발자, 컴퓨터/로봇비전 개발자, AI모빌리티 개발자, 로봇 소프트웨어 개발자, 서비스/산업용 로봇 제어 개발자 등 ③ AIoT 소프트웨어 분야 : 스마프 홈, 스마트 팩토리, 스마트팜 개발자 등<br/><span style="color: #CC0000">AX융합통신공학과: AI와 통신의 융합, 초연결 시대를 설계하는 AX융합통신공학과 </span><br/>(취업분야) 한국전자통신연구원, 한국항공우주연구원, 한국방송통신전파진흥원, SK 텔레콤, KT, LG U플러스, 수협중앙회 어선안전조업국, 한국수자원공사, 주택관리공단, IT SW/HW 및 통신 SW/HW 관련 기업체, 공무원</td>
+			<td><a href="https://www.kunsan.ac.kr/ssw/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit" rowspan="1">해양과학대학</td>
+			<td class="unit">해양경찰학과</td>
+			<td>1</td>
+			<td>1</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">미래를 여는 경찰인재 양성의 요람 </span><br/>(취업분야) 경찰공무원(해양경찰청, 경찰청), 국가.지방직 공무원 등</td>
+			<td><a href="https://www.kunsan.ac.kr/mpolice/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit" rowspan="1">자연예술대학</td>
+			<td class="unit">간호학과[교직]</td>
+			<td>1</td>
+			<td>4</td>
+			<td class="rate2">4.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">미래 사회에 이바지할 바른 인성을 갖춘 창의적 간호 인재 양성 </span><br/>(취업분야) 병원간호사, 보건분야 공무원, 산업간호사, 가정간호사, 연구간호사, 보험심사간호사, 간호장교, 해외취업</td>
+			<td><a href="https://www.kunsan.ac.kr/nursing/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<!-- 총계 //-->
+		<tr class="total">
+			<td colspan=2>총계</td>
+			<td>4</td>
+			<td>7</td>
+			<td class="rate4">1.75 : 1</td>
+			<td colspan="2"></td>
+		</tr>
+		<!--// 총계 -->
+	</table>
+	</div>
+	<a name='lik_41259'></a><div id="SelType41259">
+	<h2><strong>실기/실적위주 일반전형(미술계열)</strong> 경쟁률 현황</h2>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableRatio3">
+		<colgroup>
+			<col width="8.5%" />
+			<col width="18" />
+			<col width="7%" />
+			<col width="7%" />
+			<col width="8%" />
+			<col width="44.5%" />
+			<col width="7%" />
+		</colgroup>
+		<tr>
+			<th>대학</th>
+			<th>모집단위</th>
+			<th>모집인원</th>
+			<th>지원인원</th>
+			<th>경쟁률</th>
+			<th>학과소개 및 취업분야</th>
+			<th>홈페이지</th>
+		</tr>
+		<!-- 반복 //-->
+		<tr>
+			<td class="unit" rowspan="2">자연예술대학</td>
+			<td class="unit">산업디자인학과[교직]</td>
+			<td rowspan="1">27</td>
+			<td>16</td>
+			<td class="rate4" rowspan = '1'>0.59 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">세상을 바꾸는 디자인의 힘 !국립군산대학교 산업디자인학부는 "21세기 지역과 세계를 선도하는 디자이너의 비전과 실력을 함양하기 위한 실무중심 교육"을 목표로 하고 있습니다. </span><br/>(취업분야) 시각디자이너, 광고디자이너, 편집디자이너, 일러스트레이터, 2D & 3D 캐릭터디자이너, 텍스타일디자이너, 패션디자이너, 비주얼머천다이저, UX/UI디자이너, 웹디자이너, 영상디자이너, AI디자이너, 웹툰 작가, 고등학교 정교사(2급)</td>
+			<td><a href="https://www.kunsan.ac.kr/kssandi/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">미술학과</td>
+			<td>10</td>
+			<td>14</td>
+			<td class="rate4">1.40 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">미래를 그리는 미술학과!현대미술을 기반으로 예술 분야의 전문가 양성을 위한 학과입니다. </span><br/>(취업분야) 현대미술 분야의 대학원 진학, 작가, 학예사, 광고디자인, 일러스트레이터, 문화예술기획자, 크리에이터</td>
+			<td><a href="https://www.kunsan.ac.kr/finearts/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<!-- 총계 //-->
+		<tr class="total">
+			<td colspan=2>총계</td>
+			<td>37</td>
+			<td>30</td>
+			<td class="rate4">0.81 : 1</td>
+			<td colspan="2"></td>
+		</tr>
+		<!--// 총계 -->
+	</table>
+	</div>
+	<a name='lik_41260'></a><div id="SelType41260">
+	<h2><strong>실기/실적위주 특기자전형(체육계열)</strong> 경쟁률 현황</h2>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableRatio3">
+		<colgroup>
+			<col width="8.5%" />
+			<col width="18" />
+			<col width="7%" />
+			<col width="7%" />
+			<col width="8%" />
+			<col width="44.5%" />
+			<col width="7%" />
+		</colgroup>
+		<tr>
+			<th>대학</th>
+			<th>모집단위</th>
+			<th>모집인원</th>
+			<th>지원인원</th>
+			<th>경쟁률</th>
+			<th>학과소개 및 취업분야</th>
+			<th>홈페이지</th>
+		</tr>
+		<!-- 반복 //-->
+		<tr>
+			<td class="unit" rowspan="1">자연예술대학</td>
+			<td class="unit">체육학부[교직]</td>
+			<td rowspan="1">15</td>
+			<td>22</td>
+			<td class="rate4" rowspan = '1'>1.47 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">SPORTS FOR ALL ! </span><br/>(취업분야) 체육전문가(시·도 체육회, 장애인체육회, 경기단체 등), 스포츠지도사(전문·생활·노인·장애인·유소년), 건강운동관리사, 체육교사(중·고등학교), 스포츠센터 운영 및 지도자, 실업팀 선수, 군장교, 경찰 및 소방직 공무원</td>
+			<td><a href="https://www.kunsan.ac.kr/ksports/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<!-- 총계 //-->
+		<tr class="total">
+			<td colspan=2>총계</td>
+			<td>15</td>
+			<td>22</td>
+			<td class="rate4">1.47 : 1</td>
+			<td colspan="2"></td>
+		</tr>
+		<!--// 총계 -->
+	</table>
+	</div>
+	<a name='lik_41221'></a><div id="SelType41221">
+	<h2><strong>학생부교과 농어촌학생(정원외)</strong> 경쟁률 현황</h2>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableRatio3">
+		<colgroup>
+			<col width="8.5%" />
+			<col width="18" />
+			<col width="7%" />
+			<col width="7%" />
+			<col width="8%" />
+			<col width="44.5%" />
+			<col width="7%" />
+		</colgroup>
+		<tr>
+			<th>대학</th>
+			<th>모집단위</th>
+			<th>모집인원</th>
+			<th>지원인원</th>
+			<th>경쟁률</th>
+			<th>학과소개 및 취업분야</th>
+			<th>홈페이지</th>
+		</tr>
+		<!-- 반복 //-->
+		<tr>
+			<td class="unit" rowspan="7">인문콘텐츠융합대학</td>
+			<td class="unit">국어국문학과</td>
+			<td rowspan="1">1</td>
+			<td>1</td>
+			<td class="rate4" rowspan = '1'>1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">웹콘텐츠 시대, 4대 특성화 교육으로 K-문화 전문가 양성! </span><br/>(취업분야) 콘텐츠기획자, 웹라이터, 웹소설·웹툰 작가, 방송작가, 드라마작가, PD, 키워드에디터, 출판전문가, 문화예술전문가, 인문학연구원, 공무원, 한국어교사, 국어교사, 교직원, 독서지도사</td>
+			<td><a href="https://www.kunsan.ac.kr/korean/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">영어영문학과[교직]</td>
+			<td>1</td>
+			<td>0</td>
+			<td class="rate4">0.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">디지털 시대, 꼭 필요한 영어! 자유롭게 쓰고 싶어?</span><br/>(취업분야) 영어교사, 공무원, 기업근무자, 항공승무원, 통·번역사</td>
+			<td><a href="https://www.kunsan.ac.kr/knuenglish/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">일어일문학과</td>
+			<td>1</td>
+			<td>0</td>
+			<td class="rate4">0.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">서울로 유학 갈래, 일본으로 유학 갈래? </span><br/>(취업분야) 일본 현지 기업, 국내외 항공사, 국내외 호텔 및 리조트, 국내 외 공무원, IT계열</td>
+			<td><a href="https://www.kunsan.ac.kr/japanese/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">중어중문학과[교직]</td>
+			<td>1</td>
+			<td>0</td>
+			<td class="rate4">0.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">요즘 같은 시대에 중국어 안 배우면 코 베이징!! </span><br/>(취업분야) 중국어교육, 해양경찰, 외사경찰, 해외마케팅, 국제교류, 관광·레저, 국제물류, 호텔·항공사, 통·번역, 한중MC</td>
+			<td><a href="https://www.kunsan.ac.kr/chinese/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">역사학과</td>
+			<td>1</td>
+			<td>1</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">과거를 알면 미래가 보입니다! 역사학·고고학·문화자원을 바탕으로 과거를 오늘과 미래로 연결하는 인재를 양성합니다. </span><br/>(취업분야) 고고학자, 역사학자, 연구원, 역사교육 전문가(교사, 교수, 강사 등), 역사 콘텐츠 기획 전문가, 학예사, 학예직 공무원, 기록연구사</td>
+			<td><a href="https://www.kunsan.ac.kr/history/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">철학과[교직]</td>
+			<td>1</td>
+			<td>0</td>
+			<td class="rate4">0.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">진리는 나의 힘! 모든 학문의 뿌리는 철학! </span><br/>(취업분야) 철학 교수, 교사, 연구원, 공무원, 논리논술지도사, 독서토론지도사, 글쓰기지도사, 어린이철학지도사, 영화 및 문화 평론가, 광고업, 종교계, 언론계, 관광업, 출판계, 대학원 및 교육대학원, 법학전문대학</td>
+			<td><a href="https://www.kunsan.ac.kr/philosophy/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">미디어문화학과</td>
+			<td>1</td>
+			<td>2</td>
+			<td class="rate4">2.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">믿으니까 미디어~ </span><br/>미디어콘텐츠연출가(영상촬영,편집 등), 프로듀서(PD), 시나리오 작가, 문화산업마케터, 미디어교육가, 프리랜서</td>
+			<td><a href="https://www.kunsan.ac.kr/mediaculture/index.kunsan" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit" rowspan="9">사회과학대학</td>
+			<td class="unit">법경찰학과</td>
+			<td>1</td>
+			<td>5</td>
+			<td class="rate2">5.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">법학과 경찰학을 기반으로 공공 · 법조 분야 전문 인재를 양성하는 학과 </span><br/>(취업분야) 일반직공무원(행정기관, 법원 등) 및 특정직공무원(경찰공무원, 소방공무원, 교육공무원, 군인, 군무원 등) 임용, 로스쿨 진학, 공공기관 및 사기업 취업, 법·노무·공공 영역 자격증(법무사, 노무사, 손해사정사 등) 취득</td>
+			<td><a href="https://www.kunsan.ac.kr/kslaw/index.kunsan" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">행정학과</td>
+			<td>1</td>
+			<td>0</td>
+			<td class="rate4">0.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">정부/공공기관을 넘어 기업·지역사회·국제기구까지 다양한 영역에서 더 나은 사회를 위한 융합형 인재 양성 </span><br/>(취업분야) 일반행정직 9급, 7급 공무원, 소방공무원, 정책연구기관, 지방공기업, 출자·출연기관, 민간기업 대외협력·ESG·공공사업 분야, 비영리기관 및 국제개발협력 분야 등</td>
+			<td><a href="https://www.kunsan.ac.kr/knupa/index.kunsan" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">아동학과</td>
+			<td>2</td>
+			<td>1</td>
+			<td class="rate4">0.50 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">국가의 미래인 아동의 건강한 성장을 지원하기 위한 전문가를 양성하는 학부 </span><br/>(취업분야) 국공립·직장·민간 어린이집 원장 및 교사, 육아종합지원센터, 유아교구 및 산업체, 아동전문 출판사 등 대학원 진학 : 관련분야 대학원</td>
+			<td><a href="https://www.kunsan.ac.kr/child_family/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">경영학과</td>
+			<td>4</td>
+			<td>4</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">기업을 이해하고 미래 산업을 설계하는 데이터 기반 경영 인재 양성 학부 </span><br/>(취업분야) 일반기업(인사·마케팅·재무·전략), 금융기관(은행·증권·보험), 공기업 및 공공기관, 데이터 분석 및 경영컨설팅, 플랫폼 기업 및 IT기업, 유통·물류·SCM, 스타트업 창업 및 기업경영, ESG경영 및 지속가능경영 분야 등</td>
+			<td><a href="https://www.kunsan.ac.kr/business/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">국제물류학과</td>
+			<td>1</td>
+			<td>1</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">취업률 끝판왕! 물류가 멈추면 세상이 멈춘다. 우리의 생활을 움직이는 숨은 주역 </span><br/>(취업분야) 물류기업(항공, 해운, 항만, 물류시설 등), 유통기업(전자상거래, 백화점, 편의점 등), 제조기업(생산물류, 구매물류, 자재관리 등)</td>
+			<td><a href="https://www.kunsan.ac.kr/logistics/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">무역학과</td>
+			<td>1</td>
+			<td>0</td>
+			<td class="rate4">0.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">국경을 넘어 세계로, 신 대항해 시대를 여는 무역 </span><br/>(취업분야) 관세법인(관세사), 금융권(신용장 전문가 및 금융전문가), 상사분쟁 조정관 (대한상사중재원), 민간기업(수출입 부분), 관련 직종 공무원 (관세직, 출입국관리직, 세무 등)</td>
+			<td><a href="https://www.kunsan.ac.kr/trade/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">회계학부</td>
+			<td>1</td>
+			<td>0</td>
+			<td class="rate4">0.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">숫자로 경영하라! </span><br/>(취업분야) 회계전문가(공인회계사, 세무사), 세무직 공무원(국가직, 지방직), 기업회계담당자(민간기업, 공기업), 금융기관 종사자</td>
+			<td><a href="https://www.kunsan.ac.kr/accounting/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">금융부동산경제학과</td>
+			<td>2</td>
+			<td>0</td>
+			<td class="rate4">0.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">돈과 사람이 만든 세상에서 이야기를 푸는 학문 </span><br/>금융기관, 공기업, 사기업, 공무원</td>
+			<td><a href="https://www.kunsan.ac.kr/economics/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">상담심리학과</td>
+			<td>2</td>
+			<td>3</td>
+			<td class="rate4">1.50 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">마음을 읽고, 삶을 바꾸는 상담 전문가의 시작 </span><br/>(취업분야) 학교상담실(위센터, 위클래스), 청소년상담기관, 대학학생상담센터, 기업 상담(EAP), 정신건강의학과, 신경의학과, 정신건강복지센터, 상담센터 개소, 프리랜서 상담가, 연구 및 교육 분야</td>
+			<td><a href="https://www.kunsan.ac.kr/index.kunsan?contentsSid=8718&sso=ok&&cpath=%2Fiphak" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit" rowspan="1">AI·첨단대학</td>
+			<td class="unit">AI융합계열[교직]</td>
+			<td>7</td>
+			<td>2</td>
+			<td class="rate4">0.29 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">컴퓨터정보공학과: 인공지능/게임개발자/보안 인재를 양성하는 컴퓨터공학과 정보공학의 중심 컴퓨터정보공학과!</span><br/>(취업분야) 인공지능 개발자, 3D 게임개발자, 보안전문가, 클라우드 컴퓨팅 개발자, SW/웹 개발자, 컴퓨터 사이언티스트 ※ 최근 10년 내 졸업자 주요 취업 기업 : 삼성전자, (주)카카오, 네이버클라우드. CJ올리브네트워웍스, 스마일게이트<br/><span style="color: #CC0000">소프트웨어학과: 4차 산업의 핵심 기술을 선도하는 소프트웨어학과 </span><br/>(취업분야) 정보통신기술(ICT), 문화기술(CT), 금용·경영 등 관련 대기업, 벤처기업, 국가 정부기관의 연구소, 공무원, 국내외 대학원 등<br/><span style="color: #CC0000">인공지능융합학과: 고급 딥러닝 설계와 생성형 AI 기술로 미래 산업을 구현하는 인공지능융합학과 </span><br/>(취업분야) AI를 필요로 하고 활용하는 전 산업 분야의 대기업, 벤처기업, 국가기관, 공무원, 교수/교사, 국내외 연구소, 대학원 등<br/><span style="color: #CC0000">임베디드소프트웨어학과: 피지컬 AI시대의 주역, 임베디드 소프트웨어: 인공지능, 소프트웨어부터 자율주행, 로보틱스까지 모든 기술의 핵심 </span><br/>(취업분야) ① 임베디드 소프트웨어 분야: 펌웨어 개발자, 시스템 소프트웨어 개발자, 반도체 솔루션 개발자, 가전/모바일 기기 개발자, 등 ② 자율주행 및 로봇 분야 : 자율주행 AI,SW 개발자, 컴퓨터/로봇비전 개발자, AI모빌리티 개발자, 로봇 소프트웨어 개발자, 서비스/산업용 로봇 제어 개발자 등 ③ AIoT 소프트웨어 분야 : 스마프 홈, 스마트 팩토리, 스마트팜 개발자 등<br/><span style="color: #CC0000">AX융합통신공학과: AI와 통신의 융합, 초연결 시대를 설계하는 AX융합통신공학과 </span><br/>(취업분야) 한국전자통신연구원, 한국항공우주연구원, 한국방송통신전파진흥원, SK 텔레콤, KT, LG U플러스, 수협중앙회 어선안전조업국, 한국수자원공사, 주택관리공단, IT SW/HW 및 통신 SW/HW 관련 기업체, 공무원</td>
+			<td><a href="https://www.kunsan.ac.kr/ssw/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit" rowspan="11">해양과학대학</td>
+			<td class="unit">해양수산공공인재학과</td>
+			<td>1</td>
+			<td>2</td>
+			<td class="rate4">2.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">"공무원 세계의 블루오션(Blue Ocean)" </span><br/>(취업분야) 해양경찰 공무원(함정, 선박관제), 해양수산직 · 어로직 · 선박직 · 수로직 · 해양교통시설직 공무원, 해양수산부 산하 공공기관 직원, 항해사, 도선사, 대한민국 해군장교, 전공 관련 연구원 및 교수, 해운·수산회사 직원</td>
+			<td><a href="https://www.kunsan.ac.kr/marine/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">해양생명과학과</td>
+			<td>1</td>
+			<td>0</td>
+			<td class="rate4">0.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">해양바이오산업의 중심학과~ 해양바이오소재 생산 관련 4차산업 선도학과 </span><br/>(취업분야) 수산연구직(국립수산과학원, 지자체수산연구소), 수산과학기술직(수산물품질관리원, 지방해양수산청, 동서남해어업관리단, 해양수산직공무원, 국립해양생물자원관, 한국해양수산연구원, 국립공원공단, 수산자원관리공단 등), 스마트양식기업, 양어사료기업, 해조류개발기업, 해양바이오기업, 아쿠아리움, 환경영향평가 등</td>
+			<td><a href="https://www.kunsan.ac.kr/aquaculture/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">해양생물자원학과</td>
+			<td>3</td>
+			<td>2</td>
+			<td class="rate4">0.67 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">해양·수산분야 글로벌 인재 양성 학과 </span><br/>(취업분야) 해양수산부 및 지자체 공무원, 국·공립 연구기관, 환경기업, 아쿠아리움, 대학원 진학</td>
+			<td><a href="https://www.kunsan.ac.kr/mbiotec/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">수산생명의학과</td>
+			<td>1</td>
+			<td>1</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">우리는 물고기의사! 수산질병관리사 면허 갖고싶니? </span><br/>(취업분야) 수산질병관리원 개원 및 취직(물고기병원 개원), 해양수산부, 국립수산과학원, 국립수산물품질관리원, 지방자지단체의 수산 해양직 공무원, 동물용의약품 제약회사 및 사료회사, 수산관련 공기업(수협, 한국수산자원공단 등), 아쿠아리움, 대학원</td>
+			<td><a href="https://www.kunsan.ac.kr/dalm/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">식품영양학과[교직]</td>
+			<td>1</td>
+			<td>3</td>
+			<td class="rate4">3.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">'건강한 미래를 만드는 식품영양 전문가 양성 학과' </span><br/>(취업분야) 전문영양사(학교, 병원, 단체급식 등), 식품위생 보건계열 공무원 (시청, 보건소 등), 어린이·사회복지급식관리지원센터, 영양상담원 (사회복지시설, 스포츠센터 등), 식품개발·관리직 (식품산업체), 급식코디네이터, 푸드코디네이터 등</td>
+			<td><a href="https://www.kunsan.ac.kr/foodnutr/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">해양경찰학과</td>
+			<td>2</td>
+			<td>5</td>
+			<td class="rate4">2.50 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">미래를 여는 경찰인재 양성의 요람 </span><br/>(취업분야) 경찰공무원(해양경찰청, 경찰청), 국가.지방직 공무원 등</td>
+			<td><a href="https://www.kunsan.ac.kr/mpolice/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">생명과학과</td>
+			<td>2</td>
+			<td>5</td>
+			<td class="rate4">2.50 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">유전자에서 생태계까지! 첨단 바이오 기술과 AI 데이터 융합으로 미래 생명과학, 그린바이오 산업을 선도할 2027학년도 주인공을 기다립니다! </span><br/>(취업분야) 생명과학 연구원, 그린바이오 기업 R&D, 스마트농업 연구원, 생태 및 생물분류 연구원, 국가 연구직·기술직 공무원, 환경영향평가사, 농림축산 생물검역관, 디지털 육종 전문가, AI·생물정보학 전문가, 생물교육전문가, 생태큐레이터</td>
+			<td><a href="https://www.kunsan.ac.kr/biology/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">기관공학과</td>
+			<td>1</td>
+			<td>0</td>
+			<td class="rate4">0.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">선박의 심장, 만능형 엔지니어 </span><br/>(취업분야) 선박 기관사, 해양경찰, 해군 장교, 공무원, 기술직 엔지니어</td>
+			<td><a href="https://www.kunsan.ac.kr/marineengineering/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">식품생명공학과</td>
+			<td>1</td>
+			<td>0</td>
+			<td class="rate4">0.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">식품에 숨은 비밀을 파헤치는 과학의 여정! </span><br/>(취업분야) 일반기업((주)대상, 대두식품, 오리온, 하림, 참프레, 프라임제약, 종근당, 광동제약 등),  공공기관(농촌진흥청, 한국식품연구원, 한국기능식품연구원, 해양수산과학기술 진흥원, 한국식품산업클러스터진흥원 등), 공무원(농업직, 수산직, 위생직, 보건직 공무원 등)</td>
+			<td><a href="https://www.kunsan.ac.kr/foodscience/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">환경공학과</td>
+			<td>2</td>
+			<td>2</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">지구를 살리는 의사 - 환경공학과, 에너지 전환 시대의 ESG 리더를 꿈꾼다! </span><br/>①환경공학 전문가 및 기술직 : 한국수자원공사(K-water), 한국환경공단, 한국농어촌공사 등의 공사; 환경엔지니어링 및 컨설팅사(환경영향평가, 환경복원, 방재 컨설팅 전문기업 등); 대기업 ESG부서, 환경안전팀, 제조업체 환경관리직 ②환경관련 연구직 : 국립생태원, K-water연구원, 국립환경과학원, 국립농업과학원, 수자원연구소 등 국가 및 공공 연구기관; 포스코 기술연구원, 고등기술연구원 등 대기업 부설 연구기관 ③환경직 공무원 (환경부, 지자체 환경정책과, 수질·대기·폐기물 담당 공무원); 환경연구사 (국립환경과학원, 환경부 및 지자체 산하 연구기관 등에서 환관련 연구 및 기술개발 등)</td>
+			<td><a href="https://www.kunsan.ac.kr/environment/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">해양건설공학과</td>
+			<td>1</td>
+			<td>1</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">해양 워터프론트 전문가는 해양건설공학과가 책임지겠습니다. </span><br/>(취업분야) 공무원 (전북도청, 충남도청, 군산시청, 익산시청 등 다수), 공기업 (농어촌공사, 한국국토정보공사, 코레일), 건설시공회사 (한화건설, 대림건설, 서희건설 등), 설계사 (항도엔지니어링, 한국종합기술, 대영엔지니어링 등)</td>
+			<td><a href="https://www.kunsan.ac.kr/constructionengineering/index.kunsan" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit" rowspan="8">공과대학</td>
+			<td class="unit">전자공학과[교직]</td>
+			<td>1</td>
+			<td>1</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">너의 손에 있는 작은 세상(전자기기)을 만드는 전자공학! </span><br/>(취업분야) ①전자기업: 전자 제조업체, 반도체 기업, 전자 제품 회사 등에서 하드웨어 설계, 소프트웨어 개발, 시스템 엔지니어링, 제조, 품질 관리 등 다양한 역할을 수행할 수 있습니다. ②통신 기업: 통신 회사나 네트워크 기업에서 통신 시스템 설계, 네트워크 관리, 통신 소프트웨어 개발 등의 업무를 할 수 있습니다. ③컴퓨터 기업: 하드웨어 회사나 소프트웨어 기업에서 컴퓨터 시스템 설계, 임베디드 시스템 개발, 소프트웨어 엔지니어링 등을 할 수 있습니다. ④자동차 및 운송 기업: 자동차 제조업체나 운송 관련 기업에서 자율 주행 시스템, 차량 전자 시스템, 차량 통신 등에 관련된 업무를 할 수 있습니다. ⑤에너지 기업: 전력 회사나 에너지 기업에서 전력 전자, 제어 시스템, 스마트 그리드 등과 관련된 업무를 할 수 있습니다. ⑥중등교사 : 교직과정을 이수하여 중등학교정교사(2급)을 수료후 중·고등학교에 재직할수 있다.</td>
+			<td><a href="https://www.kunsan.ac.kr/electronic/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">전기공학과</td>
+			<td>1</td>
+			<td>5</td>
+			<td class="rate2">5.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">찌릿~ 찌릿! 전기에너지의 모든 것, 전기공학과와 함께! </span><br/>(취업분야) 공기업 (한국전력공사, 전기안전공사, 한국철도공사 등) ㅁ발전회사 (한국수력원자력, 서부발전, 중부발전 등) 산업체 (삼성전자, LG전자, 현대자동차, 현대중공업, 두산중공업 등) 전기설비 제조업체 및 전기공사 업체</td>
+			<td><a href="https://www.kunsan.ac.kr/electrical/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">신소재공학과</td>
+			<td>2</td>
+			<td>2</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">4차 산업의 핵심인 AI 반도체와 미래 첨단산업의 핵심은 바로 신소재!!! </span><br/>(취업분야) 반도체분야, 금속자동차분야, 전자부품소재장비분야, 이차전지 에너지분야, 공기업, 연구소</td>
+			<td><a href="https://www.kunsan.ac.kr/mse/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">화학공학과</td>
+			<td>2</td>
+			<td>0</td>
+			<td class="rate4">0.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">탄소중립으로 기후위기에서 지구를 지키는 과학의 마법사! 화학공학! </span><br/>(취업분야) ①에너지 : 발전소, 가스, 태양광, 수소연료전지, 이차전지 ②석유화학 : 고분자, 계면활성제, 촉매, 정유산업 ③정밀화학 : 제약, 화장품, 농약, 비료, 페인트, 식품 ④ IT산업 : 디스플레이, 반도체</td>
+			<td><a href="https://www.kunsan.ac.kr/nanochemeng/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">토목공학과</td>
+			<td>2</td>
+			<td>1</td>
+			<td class="rate4">0.50 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">자연과 문명의 조화, 지구를 디자인하는 토목공학과 </span><br/>(취업분야) 토목설계 엔지니어, 토목시공 엔지니어, 토목감리원, 토목분야 연구원, 재난·안전 평가원, 토목직 공무원, 토목 공기업</td>
+			<td><a href="https://www.kunsan.ac.kr/gscivil/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">기계공학부[교직]</td>
+			<td>3</td>
+			<td>3</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">기계공학부!! 공학을 향한 열정 킵고잉 ~ 산업을 선도하는 기계공학부 / 모빌리티 산업 패러다임 변화에 대응하기 위한 다양한 활동을 구체화 함(미래 모빌리티 플랫폼 신뢰성 핵심연구지원센터) </span><br/>(취업분야) 기아자동차, GS건설, 타타대우상용차, 공업직 공무원.. 졸업 후에는 기계공학의 특성상 모든 산업분야에 걸쳐 취업이 가능. 기계, 자동차, 철강, 금속, 조선, 우주항공, 건설, 전자, 전기, 화학 등에 관련된 산업체에 진출하여 제품개발 및 설계, 생산관리, 공정자동화 검사 및 제어, 연구개발 등의 업무를 담당할 수 있으며 벤처기업에 진출하여 최신 첨단기술의 연구와 보급 업무를 담당. 또한 관련분야 공무원 및 교사 등으로 진출</td>
+			<td><a href="https://www.kunsan.ac.kr/kunsanwheel/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">건축공학과</td>
+			<td>2</td>
+			<td>1</td>
+			<td class="rate4">0.50 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">창의적 설계로 공간의 가치를 높이고, 완성도 높은 건축을 생산하는 정통 건축인 </span><br/>(취업분야) 1. 건축설계회사: 크리에이티브 디자인을 담당하는 종합건축설계사무소 등 2. 종합건설회사: 스마트 시공을 선도하는 현대건설, GS건설, 삼성물산 등 건설회사 3. 엔지니어링회사: 안전한 녹색건축을 지향하는 건축구조, 친환경, 건축설비 설계회사 등 4. 정부 및 공공분야: 도시의 얼굴을 디자인하는 건축직 공무원, LH공사, 국토정보공사, 새만금개발공사 등</td>
+			<td><a href="https://architecture.kunsan.ac.kr" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">공간디자인융합기술학과</td>
+			<td>1</td>
+			<td>0</td>
+			<td class="rate4">0.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">사람을 움직이는 공간의 힘, 공간디자이너가 합니다!! </span><br/>(취업분야) 1. 공간디자이너: 인간을 위한 생활 문화를 유지하는데 필요한 실내 공간을 창조하는 자로서, 실내 건축, 전시 디자인, 가구·조명디자이너, 마감재 관련 업체에 디자이너로 진출 2. 현장관리자: 실내 건축 설계도서를 바탕으로 공사를 계획하고 시공 현장의 전반적 사항을 관리하는 자로서 건축 및 실내 건축 관련 업체에 시공 실무자로 진출 3. 건축·디자인 관련 공무원: 공공기관이나 지자체의 건축·디자인 관련 사업의 진행 기획 및 관련 행정업무를 신속 정화하게 처리하는 자로서, 국가 및 시·도/ 지자체의 건축직 혹은 디자인직류 공무원 시험을 통해 임용</td>
+			<td><a href="https://www.kunsan.ac.kr/interiorhousing/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit" rowspan="4">자연예술대학</td>
+			<td class="unit">간호학과[교직]</td>
+			<td>2</td>
+			<td>6</td>
+			<td class="rate4">3.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">미래 사회에 이바지할 바른 인성을 갖춘 창의적 간호 인재 양성 </span><br/>(취업분야) 병원간호사, 보건분야 공무원, 산업간호사, 가정간호사, 연구간호사, 보험심사간호사, 간호장교, 해외취업</td>
+			<td><a href="https://www.kunsan.ac.kr/nursing/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">수학과[교직]</td>
+			<td>2</td>
+			<td>0</td>
+			<td class="rate4">0.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">원하면 뭐든 이룰 수 있는 수학과! </span><br/>(취업분야) 중등교사, 대학교수, 다양한 이공계 연구소 연구원, 통계청 리서치회사, 여론 및 마케팅 조사 및 분석, 데이터사이언티스트, 빅데이터분석가, 딥러닝(머신러닝) 및 AI 엔지니어, 은행, 보험 및 증권회사, 자산평가, 신용평가회사, 영상처리전문가, 유체역학 시뮬레이션전문가, 컴퓨팅소프트웨어개발자</td>
+			<td><a href="https://www.kunsan.ac.kr/math/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">첨단과학기술학부</td>
+			<td>2</td>
+			<td>0</td>
+			<td class="rate4">0.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">반도체물리전공: 입자에서 우주까지 모든 것을 설명한다. </span><br/>ㅁ연구소: 반도체, 전기전자, 신소재 및 신재생에너지 분야 연구소ㅁ기업: 삼성전자, 이차전지 관련 기업ㅁ정부기관: 기술직 공무원, 변리사<br/><span style="color: #CC0000">소재화학전공: 소재화학 없이는 어떤 것도 만들기 힘들 껄? </span><br/>ㅁ연구소 : 한국화학연구소, 보건환경연구소, 한국생명공학연구소, 국립과학수사연구소, 한국핵융합연구소 등 ㅁ기업 : OCI, 군장에너지, 동우, 대상, 한국바스프, 한농화성, 세아베스틸, 도레이첨단소재, 한국유리, 한림제약, 보령제약 등 ㅁ정부기관 : 전북지방환경청, 환경직공무원, 화학교사</td>
+			<td><a href="https://www.kunsan.ac.kr/cdscience/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">의류학과</td>
+			<td>2</td>
+			<td>4</td>
+			<td class="rate4">2.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">패션을 알고 싶어? 패션이 사람을 만드니까! </span><br/>패션디자이너, 3D가상패션디자이너, 기획MD, 온라인마케터, 패턴사(2D CAD), VMD, 샵마스터, 수입바이어, 텍스타일디자이너, 소재컨버터, 콘텐츠마케터, 그레이딩사, 컬러리스트, 패션일러스트레이터, 패션잡지 저널리스트, 패턴에디터, 무대의상디자이너, 니트디자이너, 모델리스트, 패션코디네이터, 악세서리 디자이너, 생산MD, 수출입무역업, 패션인플루언서</td>
+			<td><a href="https://www.kunsan.ac.kr/clothing/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<!-- 총계 //-->
+		<tr class="total">
+			<td colspan=2>총계</td>
+			<td>67</td>
+			<td>64</td>
+			<td class="rate4">0.96 : 1</td>
+			<td colspan="2"></td>
+		</tr>
+		<!--// 총계 -->
+	</table>
+	</div>
+	<a name='lik_41263'></a><div id="SelType41263">
+	<h2><strong>학생부교과 특성화고교졸업자(정원외)</strong> 경쟁률 현황</h2>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableRatio3">
+		<colgroup>
+			<col width="8.5%" />
+			<col width="18" />
+			<col width="7%" />
+			<col width="7%" />
+			<col width="8%" />
+			<col width="44.5%" />
+			<col width="7%" />
+		</colgroup>
+		<tr>
+			<th>대학</th>
+			<th>모집단위</th>
+			<th>모집인원</th>
+			<th>지원인원</th>
+			<th>경쟁률</th>
+			<th>학과소개 및 취업분야</th>
+			<th>홈페이지</th>
+		</tr>
+		<!-- 반복 //-->
+		<tr>
+			<td class="unit" rowspan="2">인문콘텐츠융합대학</td>
+			<td class="unit">일어일문학과</td>
+			<td rowspan="1">1</td>
+			<td>0</td>
+			<td class="rate4" rowspan = '1'>0.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">서울로 유학 갈래, 일본으로 유학 갈래? </span><br/>(취업분야) 일본 현지 기업, 국내외 항공사, 국내외 호텔 및 리조트, 국내 외 공무원, IT계열</td>
+			<td><a href="https://www.kunsan.ac.kr/japanese/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">미디어문화학과</td>
+			<td>1</td>
+			<td>0</td>
+			<td class="rate4">0.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">믿으니까 미디어~ </span><br/>미디어콘텐츠연출가(영상촬영,편집 등), 프로듀서(PD), 시나리오 작가, 문화산업마케터, 미디어교육가, 프리랜서</td>
+			<td><a href="https://www.kunsan.ac.kr/mediaculture/index.kunsan" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit" rowspan="5">사회과학대학</td>
+			<td class="unit">법경찰학과</td>
+			<td>1</td>
+			<td>0</td>
+			<td class="rate4">0.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">법학과 경찰학을 기반으로 공공 · 법조 분야 전문 인재를 양성하는 학과 </span><br/>(취업분야) 일반직공무원(행정기관, 법원 등) 및 특정직공무원(경찰공무원, 소방공무원, 교육공무원, 군인, 군무원 등) 임용, 로스쿨 진학, 공공기관 및 사기업 취업, 법·노무·공공 영역 자격증(법무사, 노무사, 손해사정사 등) 취득</td>
+			<td><a href="https://www.kunsan.ac.kr/kslaw/index.kunsan" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">경영학과</td>
+			<td>1</td>
+			<td>2</td>
+			<td class="rate4">2.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">기업을 이해하고 미래 산업을 설계하는 데이터 기반 경영 인재 양성 학부 </span><br/>(취업분야) 일반기업(인사·마케팅·재무·전략), 금융기관(은행·증권·보험), 공기업 및 공공기관, 데이터 분석 및 경영컨설팅, 플랫폼 기업 및 IT기업, 유통·물류·SCM, 스타트업 창업 및 기업경영, ESG경영 및 지속가능경영 분야 등</td>
+			<td><a href="https://www.kunsan.ac.kr/business/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">국제물류학과</td>
+			<td>1</td>
+			<td>0</td>
+			<td class="rate4">0.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">취업률 끝판왕! 물류가 멈추면 세상이 멈춘다. 우리의 생활을 움직이는 숨은 주역 </span><br/>(취업분야) 물류기업(항공, 해운, 항만, 물류시설 등), 유통기업(전자상거래, 백화점, 편의점 등), 제조기업(생산물류, 구매물류, 자재관리 등)</td>
+			<td><a href="https://www.kunsan.ac.kr/logistics/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">무역학과</td>
+			<td>1</td>
+			<td>1</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">국경을 넘어 세계로, 신 대항해 시대를 여는 무역 </span><br/>(취업분야) 관세법인(관세사), 금융권(신용장 전문가 및 금융전문가), 상사분쟁 조정관 (대한상사중재원), 민간기업(수출입 부분), 관련 직종 공무원 (관세직, 출입국관리직, 세무 등)</td>
+			<td><a href="https://www.kunsan.ac.kr/trade/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">회계학부</td>
+			<td>1</td>
+			<td>1</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">숫자로 경영하라! </span><br/>(취업분야) 회계전문가(공인회계사, 세무사), 세무직 공무원(국가직, 지방직), 기업회계담당자(민간기업, 공기업), 금융기관 종사자</td>
+			<td><a href="https://www.kunsan.ac.kr/accounting/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit" rowspan="1">AI·첨단대학</td>
+			<td class="unit">AI융합계열[교직]</td>
+			<td>2</td>
+			<td>2</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">컴퓨터정보공학과: 인공지능/게임개발자/보안 인재를 양성하는 컴퓨터공학과 정보공학의 중심 컴퓨터정보공학과!</span><br/>(취업분야) 인공지능 개발자, 3D 게임개발자, 보안전문가, 클라우드 컴퓨팅 개발자, SW/웹 개발자, 컴퓨터 사이언티스트 ※ 최근 10년 내 졸업자 주요 취업 기업 : 삼성전자, (주)카카오, 네이버클라우드. CJ올리브네트워웍스, 스마일게이트<br/><span style="color: #CC0000">소프트웨어학과: 4차 산업의 핵심 기술을 선도하는 소프트웨어학과 </span><br/>(취업분야) 정보통신기술(ICT), 문화기술(CT), 금용·경영 등 관련 대기업, 벤처기업, 국가 정부기관의 연구소, 공무원, 국내외 대학원 등<br/><span style="color: #CC0000">인공지능융합학과: 고급 딥러닝 설계와 생성형 AI 기술로 미래 산업을 구현하는 인공지능융합학과 </span><br/>(취업분야) AI를 필요로 하고 활용하는 전 산업 분야의 대기업, 벤처기업, 국가기관, 공무원, 교수/교사, 국내외 연구소, 대학원 등<br/><span style="color: #CC0000">임베디드소프트웨어학과: 피지컬 AI시대의 주역, 임베디드 소프트웨어: 인공지능, 소프트웨어부터 자율주행, 로보틱스까지 모든 기술의 핵심 </span><br/>(취업분야) ① 임베디드 소프트웨어 분야: 펌웨어 개발자, 시스템 소프트웨어 개발자, 반도체 솔루션 개발자, 가전/모바일 기기 개발자, 등 ② 자율주행 및 로봇 분야 : 자율주행 AI,SW 개발자, 컴퓨터/로봇비전 개발자, AI모빌리티 개발자, 로봇 소프트웨어 개발자, 서비스/산업용 로봇 제어 개발자 등 ③ AIoT 소프트웨어 분야 : 스마프 홈, 스마트 팩토리, 스마트팜 개발자 등<br/><span style="color: #CC0000">AX융합통신공학과: AI와 통신의 융합, 초연결 시대를 설계하는 AX융합통신공학과 </span><br/>(취업분야) 한국전자통신연구원, 한국항공우주연구원, 한국방송통신전파진흥원, SK 텔레콤, KT, LG U플러스, 수협중앙회 어선안전조업국, 한국수자원공사, 주택관리공단, IT SW/HW 및 통신 SW/HW 관련 기업체, 공무원</td>
+			<td><a href="https://www.kunsan.ac.kr/ssw/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit" rowspan="8">해양과학대학</td>
+			<td class="unit">해양수산공공인재학과</td>
+			<td>1</td>
+			<td>0</td>
+			<td class="rate4">0.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">"공무원 세계의 블루오션(Blue Ocean)" </span><br/>(취업분야) 해양경찰 공무원(함정, 선박관제), 해양수산직 · 어로직 · 선박직 · 수로직 · 해양교통시설직 공무원, 해양수산부 산하 공공기관 직원, 항해사, 도선사, 대한민국 해군장교, 전공 관련 연구원 및 교수, 해운·수산회사 직원</td>
+			<td><a href="https://www.kunsan.ac.kr/marine/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">해양생명과학과</td>
+			<td>1</td>
+			<td>0</td>
+			<td class="rate4">0.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">해양바이오산업의 중심학과~ 해양바이오소재 생산 관련 4차산업 선도학과 </span><br/>(취업분야) 수산연구직(국립수산과학원, 지자체수산연구소), 수산과학기술직(수산물품질관리원, 지방해양수산청, 동서남해어업관리단, 해양수산직공무원, 국립해양생물자원관, 한국해양수산연구원, 국립공원공단, 수산자원관리공단 등), 스마트양식기업, 양어사료기업, 해조류개발기업, 해양바이오기업, 아쿠아리움, 환경영향평가 등</td>
+			<td><a href="https://www.kunsan.ac.kr/aquaculture/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">해양생물자원학과</td>
+			<td>1</td>
+			<td>1</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">해양·수산분야 글로벌 인재 양성 학과 </span><br/>(취업분야) 해양수산부 및 지자체 공무원, 국·공립 연구기관, 환경기업, 아쿠아리움, 대학원 진학</td>
+			<td><a href="https://www.kunsan.ac.kr/mbiotec/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">수산생명의학과</td>
+			<td>1</td>
+			<td>1</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">우리는 물고기의사! 수산질병관리사 면허 갖고싶니? </span><br/>(취업분야) 수산질병관리원 개원 및 취직(물고기병원 개원), 해양수산부, 국립수산과학원, 국립수산물품질관리원, 지방자지단체의 수산 해양직 공무원, 동물용의약품 제약회사 및 사료회사, 수산관련 공기업(수협, 한국수산자원공단 등), 아쿠아리움, 대학원</td>
+			<td><a href="https://www.kunsan.ac.kr/dalm/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">식품영양학과[교직]</td>
+			<td>1</td>
+			<td>4</td>
+			<td class="rate2">4.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">'건강한 미래를 만드는 식품영양 전문가 양성 학과' </span><br/>(취업분야) 전문영양사(학교, 병원, 단체급식 등), 식품위생 보건계열 공무원 (시청, 보건소 등), 어린이·사회복지급식관리지원센터, 영양상담원 (사회복지시설, 스포츠센터 등), 식품개발·관리직 (식품산업체), 급식코디네이터, 푸드코디네이터 등</td>
+			<td><a href="https://www.kunsan.ac.kr/foodnutr/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">해양경찰학과</td>
+			<td>1</td>
+			<td>4</td>
+			<td class="rate2">4.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">미래를 여는 경찰인재 양성의 요람 </span><br/>(취업분야) 경찰공무원(해양경찰청, 경찰청), 국가.지방직 공무원 등</td>
+			<td><a href="https://www.kunsan.ac.kr/mpolice/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">식품생명공학과</td>
+			<td>1</td>
+			<td>0</td>
+			<td class="rate4">0.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">식품에 숨은 비밀을 파헤치는 과학의 여정! </span><br/>(취업분야) 일반기업((주)대상, 대두식품, 오리온, 하림, 참프레, 프라임제약, 종근당, 광동제약 등),  공공기관(농촌진흥청, 한국식품연구원, 한국기능식품연구원, 해양수산과학기술 진흥원, 한국식품산업클러스터진흥원 등), 공무원(농업직, 수산직, 위생직, 보건직 공무원 등)</td>
+			<td><a href="https://www.kunsan.ac.kr/foodscience/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">환경공학과</td>
+			<td>1</td>
+			<td>1</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">지구를 살리는 의사 - 환경공학과, 에너지 전환 시대의 ESG 리더를 꿈꾼다! </span><br/>①환경공학 전문가 및 기술직 : 한국수자원공사(K-water), 한국환경공단, 한국농어촌공사 등의 공사; 환경엔지니어링 및 컨설팅사(환경영향평가, 환경복원, 방재 컨설팅 전문기업 등); 대기업 ESG부서, 환경안전팀, 제조업체 환경관리직 ②환경관련 연구직 : 국립생태원, K-water연구원, 국립환경과학원, 국립농업과학원, 수자원연구소 등 국가 및 공공 연구기관; 포스코 기술연구원, 고등기술연구원 등 대기업 부설 연구기관 ③환경직 공무원 (환경부, 지자체 환경정책과, 수질·대기·폐기물 담당 공무원); 환경연구사 (국립환경과학원, 환경부 및 지자체 산하 연구기관 등에서 환관련 연구 및 기술개발 등)</td>
+			<td><a href="https://www.kunsan.ac.kr/environment/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit" rowspan="4">공과대학</td>
+			<td class="unit">전자공학과[교직]</td>
+			<td>1</td>
+			<td>0</td>
+			<td class="rate4">0.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">너의 손에 있는 작은 세상(전자기기)을 만드는 전자공학! </span><br/>(취업분야) ①전자기업: 전자 제조업체, 반도체 기업, 전자 제품 회사 등에서 하드웨어 설계, 소프트웨어 개발, 시스템 엔지니어링, 제조, 품질 관리 등 다양한 역할을 수행할 수 있습니다. ②통신 기업: 통신 회사나 네트워크 기업에서 통신 시스템 설계, 네트워크 관리, 통신 소프트웨어 개발 등의 업무를 할 수 있습니다. ③컴퓨터 기업: 하드웨어 회사나 소프트웨어 기업에서 컴퓨터 시스템 설계, 임베디드 시스템 개발, 소프트웨어 엔지니어링 등을 할 수 있습니다. ④자동차 및 운송 기업: 자동차 제조업체나 운송 관련 기업에서 자율 주행 시스템, 차량 전자 시스템, 차량 통신 등에 관련된 업무를 할 수 있습니다. ⑤에너지 기업: 전력 회사나 에너지 기업에서 전력 전자, 제어 시스템, 스마트 그리드 등과 관련된 업무를 할 수 있습니다. ⑥중등교사 : 교직과정을 이수하여 중등학교정교사(2급)을 수료후 중·고등학교에 재직할수 있다.</td>
+			<td><a href="https://www.kunsan.ac.kr/electronic/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">전기공학과</td>
+			<td>2</td>
+			<td>6</td>
+			<td class="rate4">3.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">찌릿~ 찌릿! 전기에너지의 모든 것, 전기공학과와 함께! </span><br/>(취업분야) 공기업 (한국전력공사, 전기안전공사, 한국철도공사 등) ㅁ발전회사 (한국수력원자력, 서부발전, 중부발전 등) 산업체 (삼성전자, LG전자, 현대자동차, 현대중공업, 두산중공업 등) 전기설비 제조업체 및 전기공사 업체</td>
+			<td><a href="https://www.kunsan.ac.kr/electrical/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">토목공학과</td>
+			<td>1</td>
+			<td>1</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">자연과 문명의 조화, 지구를 디자인하는 토목공학과 </span><br/>(취업분야) 토목설계 엔지니어, 토목시공 엔지니어, 토목감리원, 토목분야 연구원, 재난·안전 평가원, 토목직 공무원, 토목 공기업</td>
+			<td><a href="https://www.kunsan.ac.kr/gscivil/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">공간디자인융합기술학과</td>
+			<td>1</td>
+			<td>2</td>
+			<td class="rate4">2.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">사람을 움직이는 공간의 힘, 공간디자이너가 합니다!! </span><br/>(취업분야) 1. 공간디자이너: 인간을 위한 생활 문화를 유지하는데 필요한 실내 공간을 창조하는 자로서, 실내 건축, 전시 디자인, 가구·조명디자이너, 마감재 관련 업체에 디자이너로 진출 2. 현장관리자: 실내 건축 설계도서를 바탕으로 공사를 계획하고 시공 현장의 전반적 사항을 관리하는 자로서 건축 및 실내 건축 관련 업체에 시공 실무자로 진출 3. 건축·디자인 관련 공무원: 공공기관이나 지자체의 건축·디자인 관련 사업의 진행 기획 및 관련 행정업무를 신속 정화하게 처리하는 자로서, 국가 및 시·도/ 지자체의 건축직 혹은 디자인직류 공무원 시험을 통해 임용</td>
+			<td><a href="https://www.kunsan.ac.kr/interiorhousing/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit" rowspan="2">자연예술대학</td>
+			<td class="unit">간호학과[교직]</td>
+			<td>1</td>
+			<td>1</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">미래 사회에 이바지할 바른 인성을 갖춘 창의적 간호 인재 양성 </span><br/>(취업분야) 병원간호사, 보건분야 공무원, 산업간호사, 가정간호사, 연구간호사, 보험심사간호사, 간호장교, 해외취업</td>
+			<td><a href="https://www.kunsan.ac.kr/nursing/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit">첨단과학기술학부</td>
+			<td>1</td>
+			<td>0</td>
+			<td class="rate4">0.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">반도체물리전공: 입자에서 우주까지 모든 것을 설명한다. </span><br/>ㅁ연구소: 반도체, 전기전자, 신소재 및 신재생에너지 분야 연구소ㅁ기업: 삼성전자, 이차전지 관련 기업ㅁ정부기관: 기술직 공무원, 변리사<br/><span style="color: #CC0000">소재화학전공: 소재화학 없이는 어떤 것도 만들기 힘들 껄? </span><br/>ㅁ연구소 : 한국화학연구소, 보건환경연구소, 한국생명공학연구소, 국립과학수사연구소, 한국핵융합연구소 등 ㅁ기업 : OCI, 군장에너지, 동우, 대상, 한국바스프, 한농화성, 세아베스틸, 도레이첨단소재, 한국유리, 한림제약, 보령제약 등 ㅁ정부기관 : 전북지방환경청, 환경직공무원, 화학교사</td>
+			<td><a href="https://www.kunsan.ac.kr/cdscience/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<!-- 총계 //-->
+		<tr class="total">
+			<td colspan=2>총계</td>
+			<td>24</td>
+			<td>27</td>
+			<td class="rate4">1.13 : 1</td>
+			<td colspan="2"></td>
+		</tr>
+		<!--// 총계 -->
+	</table>
+	</div>
+	<a name='lik_41273'></a><div id="SelType41273">
+	<h2><strong>학생부교과 특성화고졸재직자(정원외)</strong> 경쟁률 현황</h2>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableRatio3">
+		<colgroup>
+			<col width="8.5%" />
+			<col width="18" />
+			<col width="7%" />
+			<col width="7%" />
+			<col width="8%" />
+			<col width="44.5%" />
+			<col width="7%" />
+		</colgroup>
+		<tr>
+			<th>대학</th>
+			<th>모집단위</th>
+			<th>모집인원</th>
+			<th>지원인원</th>
+			<th>경쟁률</th>
+			<th>학과소개 및 취업분야</th>
+			<th>홈페이지</th>
+		</tr>
+		<!-- 반복 //-->
+		<tr>
+			<td class="unit" rowspan="1">사회과학대학</td>
+			<td class="unit">회계학부</td>
+			<td rowspan="1">12</td>
+			<td>2</td>
+			<td class="rate4" rowspan = '1'>0.17 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">숫자로 경영하라! </span><br/>(취업분야) 회계전문가(공인회계사, 세무사), 세무직 공무원(국가직, 지방직), 기업회계담당자(민간기업, 공기업), 금융기관 종사자</td>
+			<td><a href="https://www.kunsan.ac.kr/accounting/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit" rowspan="1">공과대학</td>
+			<td class="unit">기계공학부[교직]</td>
+			<td>12</td>
+			<td>1</td>
+			<td class="rate4">0.08 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">기계공학부!! 공학을 향한 열정 킵고잉 ~ 산업을 선도하는 기계공학부 / 모빌리티 산업 패러다임 변화에 대응하기 위한 다양한 활동을 구체화 함(미래 모빌리티 플랫폼 신뢰성 핵심연구지원센터) </span><br/>(취업분야) 기아자동차, GS건설, 타타대우상용차, 공업직 공무원.. 졸업 후에는 기계공학의 특성상 모든 산업분야에 걸쳐 취업이 가능. 기계, 자동차, 철강, 금속, 조선, 우주항공, 건설, 전자, 전기, 화학 등에 관련된 산업체에 진출하여 제품개발 및 설계, 생산관리, 공정자동화 검사 및 제어, 연구개발 등의 업무를 담당할 수 있으며 벤처기업에 진출하여 최신 첨단기술의 연구와 보급 업무를 담당. 또한 관련분야 공무원 및 교사 등으로 진출</td>
+			<td><a href="https://www.kunsan.ac.kr/kunsanwheel/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<!-- 총계 //-->
+		<tr class="total">
+			<td colspan=2>총계</td>
+			<td>24</td>
+			<td>3</td>
+			<td class="rate4">0.13 : 1</td>
+			<td colspan="2"></td>
+		</tr>
+		<!--// 총계 -->
+	</table>
+	</div>
+	<a name='lik_41213'></a><div id="SelType41213">
+	<h2><strong>학생부교과 만학도(정원외)</strong> 경쟁률 현황</h2>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableRatio3">
+		<colgroup>
+			<col width="8.5%" />
+			<col width="18" />
+			<col width="7%" />
+			<col width="7%" />
+			<col width="8%" />
+			<col width="44.5%" />
+			<col width="7%" />
+		</colgroup>
+		<tr>
+			<th>대학</th>
+			<th>모집단위</th>
+			<th>모집인원</th>
+			<th>지원인원</th>
+			<th>경쟁률</th>
+			<th>학과소개 및 취업분야</th>
+			<th>홈페이지</th>
+		</tr>
+		<!-- 반복 //-->
+		<tr>
+			<td class="unit" rowspan="1">인문콘텐츠융합대학</td>
+			<td class="unit">자율전공학부</td>
+			<td rowspan="1">30</td>
+			<td>11</td>
+			<td class="rate4" rowspan = '1'>0.37 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">자기설계 맞춤 인재, 내가 만드는 미래의 나, 자율전공학부에서! </span><br/>국공립기관, 병원, 교육기관, 기업체, 보건소 및 병의원 운동처방사, 재활트레이너, 한국과학창의재단, 동아사이언스, 시공테크, 각종 과학관/박물관, 교통전문직 공무원, 교통연구원, 국토연구원, 건설기술 연구원, 제약사, 동물용 의약품 제조회사, 식품회사, 바이오헬스기관 전반, 환경공무원, 정부연구소, 정부출연기업, 민간연구기업,  디지털·미디어아트작가, 3D모델러, 캐릭터 아트 작가, 교육 분야, 언어치료 분야, 해양수산분야 정부 기관 및 국책연구소, 해양바이오기업(의약품, 화장품, 건강기능식품 개발), 변리사, 국제기구</td>
+			<td><a href="https://www.kunsan.ac.kr/CLS/index.kunsan" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<!-- 총계 //-->
+		<tr class="total">
+			<td colspan=2>총계</td>
+			<td>30</td>
+			<td>11</td>
+			<td class="rate4">0.37 : 1</td>
+			<td colspan="2"></td>
+		</tr>
+		<!--// 총계 -->
+	</table>
+	</div>
+	<a name='lik_41222'></a><div id="SelType41222">
+	<h2><strong>학생부종합 특수교육대상자</strong> 경쟁률 현황</h2>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableRatio3">
+		<colgroup>
+			<col width="8.5%" />
+			<col width="18" />
+			<col width="7%" />
+			<col width="7%" />
+			<col width="8%" />
+			<col width="44.5%" />
+			<col width="7%" />
+		</colgroup>
+		<tr>
+			<th>대학</th>
+			<th>모집단위</th>
+			<th>모집인원</th>
+			<th>지원인원</th>
+			<th>경쟁률</th>
+			<th>학과소개 및 취업분야</th>
+			<th>홈페이지</th>
+		</tr>
+		<!-- 반복 //-->
+		<tr>
+			<td class="unit" rowspan="1">사회과학대학</td>
+			<td class="unit">사회복지학과</td>
+			<td rowspan="1">2</td>
+			<td>7</td>
+			<td class="rate2" rowspan = '1'>3.50 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">사회복지와의 동행, 너라서 다행 </span><br/>(취업분야) 사회복지직·사회복지 관련 공무원(사회복지직 5급 사무관, 9급 지방직, 교정직) / 사회보험공단(국민연금, 근로복지, 장애인 고용공단 등), 지역사회복지관, 분야별 복지시설 (아동, 청소년, 노인, 장애인, 여성 등</td>
+			<td><a href="https://www.kunsan.ac.kr/nkssw/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<tr>
+			<td class="unit" rowspan="1">해양과학대학</td>
+			<td class="unit">해양생명과학과</td>
+			<td>1</td>
+			<td>1</td>
+			<td class="rate4">1.00 : 1</td>
+			<td style="text-align:left;"><span style="color: #CC0000">해양바이오산업의 중심학과~ 해양바이오소재 생산 관련 4차산업 선도학과 </span><br/>(취업분야) 수산연구직(국립수산과학원, 지자체수산연구소), 수산과학기술직(수산물품질관리원, 지방해양수산청, 동서남해어업관리단, 해양수산직공무원, 국립해양생물자원관, 한국해양수산연구원, 국립공원공단, 수산자원관리공단 등), 스마트양식기업, 양어사료기업, 해조류개발기업, 해양바이오기업, 아쿠아리움, 환경영향평가 등</td>
+			<td><a href="https://www.kunsan.ac.kr/aquaculture/" target=_blank> <img src="/RatioV1/img/ico_home_1.png" border="0" alt="학과홈페이지"> </a></td>
+		</tr>
+		<!-- 총계 //-->
+		<tr class="total">
+			<td colspan=2>총계</td>
+			<td>3</td>
+			<td>8</td>
+			<td class="rate4">2.67 : 1</td>
+			<td colspan="2"></td>
+		</tr>
+		<!--// 총계 -->
+	</table>
+	</div>
+
+					<!--// 컨텐츠 -->
+				</div>
+
+				<div class="btnR">
+					<a href="javascript:print();" id="btnPrint">
+						<img src="/RatioV1/img/btn_print.gif" width="86" height="21" border="0" alt="인쇄하기"></a>
+					
+				</div>
+			</div> <!-- cont end -->
+
+			
+
+			<div class="quick_menu" style="display:none;">
+				<a class="btn_top" href="javascript:void(0);MoveTop()">상단으로 이동</a> 
+			</div>
+
+			<div class="footer" id="Logo1">
+				<a href="http://www.jinhakapply.com" target="_blank"><img src="/RatioV1/img/jinhak_logo.gif" border="0"></a>
+			</div>
+	</form>
+</body>
+
+</html>
